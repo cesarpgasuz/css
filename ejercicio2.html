@@ -1,0 +1,134 @@
+<html>
+<head>
+	<title>ejercicio2</title>
+
+	<style>
+
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+
+		body{
+			background-color: #000;
+			padding: 200px;
+		}
+
+
+		a{
+			position: relative;
+			text-transform: uppercase;
+			color: yellow;
+			padding: 10px 20px;
+			overflow: hidden;
+			text-decoration: none;
+			transition: .5s;
+			display: inline-block;
+
+
+		}
+		a span{
+			position: absolute;
+			display: block;
+		}
+
+		a span:nth-child(1){
+			left: -100%;
+			top: 0;
+			height: 2px;
+			width: 100%;
+			background: linear-gradient(90deg, transparent, yellow);
+			animation: an1 1s linear infinite;
+
+		}
+		@keyframes an1{
+			0%{
+				left: -100%;
+			}
+			50%, 100%{
+				left: 100%;
+			}
+		}
+
+		a span:nth-child(2){
+			right: 0;
+			width: 2px;
+			top: -100%;
+			height: 100%;
+			background: linear-gradient(180deg, transparent, yellow);
+			animation: an2 1s linear infinite;
+			animation-delay: .25s;
+		}
+		@keyframes an2{
+			0%{
+				top: -100%;
+			}
+			50%, 100%{
+				top: 100%;
+			}
+		}
+		a span:nth-child(3){
+			bottom: 0;
+			right: -100%;
+			width: 100%;
+			height: 2px;
+			background: linear-gradient(270deg, transparent, yellow);
+			animation: an3 1s linear infinite;
+			animation-delay: .5s;
+		}
+		@keyframes an3{
+			0%{
+				right: -100%;
+			}
+			50%, 100%{
+				right: 100%;
+			}
+		}
+		a span:nth-child(4){
+			bottom: -100%;
+			width: 2px;
+			left: 0;
+			height: 100%;
+			background: linear-gradient(360deg, transparent, yellow);
+			animation: an4 1s linear infinite;
+			animation-delay: .75s;
+		}
+		@keyframes an4{
+			0%{
+				bottom: -100%;
+			}
+			50%, 100%{
+				bottom: 100%;
+			}
+		}
+
+
+
+
+
+
+	</style>
+
+
+
+
+
+
+</head>
+<body>
+
+
+
+
+
+		<a href=""> 
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			entrar </a>
+
+</body>
+</html>
