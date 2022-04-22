@@ -6,6 +6,9 @@
 	<title>animation radar</title>
 
 	<style>
+		body{
+			background: #000;
+		}
 		@keyframes pulsing{
 			to{
 				transform: perspective(300px) translateZ(150px);
@@ -24,8 +27,8 @@
 			position: absolute;
 			border-radius: 50%;
 			inset: 0;
-			background: radial-gradient(circle 10px, #f6ee24 94%, #000), repeating-conic-gradient(from -30deg, #000 0 60deg, #f6ee24 61deg 120deg);
-           -webkit-mask: radial-gradient(circle 15px, #000 calc(100% -6px), #000 calc(100% - 5px) 94%, #000);
+			background: radial-gradient(circle 10px, #f6ee24 94%, #0000), repeating-conic-gradient(from -30deg, #0000 0 60deg, #f6ee24 61deg 120deg);
+           -webkit-mask: radial-gradient(circle 15px, #000 calc(100% - 6px), #0000 calc(100% - 5px) 94%, #000);
 		}
 		.radiation::after{
 			animation: pulsing 1s infinite;
