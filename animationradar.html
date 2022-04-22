@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>animation radar</title>
+
+	<style>
+		@keyframes pulsing{
+			to{
+				transform: perspective(300px) translateZ(150px);
+				opacity: 0;
+			}
+		}
+		.radiation{
+			width: 120px;
+			height: 120px;
+			left: 60px;
+			position: relative;
+		}
+		.radiation::before,
+		.radiation::after{
+			content: "";
+			position: absolute;
+			border-radius: 50%;
+			inset: 0;
+			background: radial-gradient(circle 10px, #f6ee24 94%, #000), repeating-conic-gradient(from -30deg, #000 0 60deg, #f6ee24 61deg 120deg);
+           -webkit-mask: radial-gradient(circle 15px, #000 calc(100% -6px), #000 calc(100% - 5px) 94%, #000);
+		}
+		.radiation::after{
+			animation: pulsing 1s infinite;
+			transform: perspective(300px) translateZ(0px);
+		}
+
+	</style>
+
+
+
+
+</head>
+<body>
+
+	<div class="radiation"></div>
+
+</body>
+</html>
