@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Boton degradado movimiento</title>
+
+	<style>
+		
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+
+		}
+		body{
+			background-color: black;
+			height: 100vh;
+			padding: 200px;
+		}
+		.boton{
+			text-decoration: none;
+			color: #fff;
+			font-family: Arial;
+			font-size: 24px;
+			padding: 10px 30px;
+			background-image: linear-gradient(120deg, #3a61fe, #d43afe);
+			border-radius: 100px;
+			animation: gradient 10s linear infinite;
+			position: relative;
+		}
+		.boton::before{
+			content: "";
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background: inherit;
+			border-radius: inherit;
+			z-index: -1;
+			top: 15px;
+			left: 0;
+			filter: blur(30px);
+			opacity: 0.9;
+		}
+		@keyframes gradient{
+			from{
+				filter: hue-rotate(0deg);
+			}
+			to{
+				filter: hue-rotate(360deg);
+			}
+		}
+
+
+	</style>
+
+
+
+</head>
+<body>
+
+
+
+	<a href="#" class="boton">Boton</a>
+
+
+
+</body>
+</html>
