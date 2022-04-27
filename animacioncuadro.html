@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>animacion cuadro</title>
+
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body{
+			background: black;
+			padding: 200px;
+		}
+		.clip{
+			position: relative;
+			width: 90px;
+			height: 90px;
+			display: grid;
+			place-items: center;
+		}
+		.imagen{
+			width: 90%;
+			height: 90%;
+			background-color: yellow;
+		}
+
+		@keyframes clipMe{
+			0%, 100%{
+				clip: rect(0, 100px, 2px, 0);
+			}
+			25%{
+				clip: rect(0, 2px, 100px, 0);
+			}
+			50%{
+				clip: rect(98px, 100px, 100px, 0);
+			}
+			75%{
+				clip: rect(0, 100px, 100px, 98px);
+			}
+		}
+		.clip::before, .clip::after{
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 110%;
+			height: 110%;
+			margin: -5%;
+			box-shadow: inset 0 0 0 2px yellow;
+			animation: clipMe 3s linear infinite;
+		}
+		.clip::before{
+			animation-delay: -1.5s;
+		}
+
+
+	</style>
+</head>
+<body>
+
+
+
+
+	<div class="clip">
+		<div class="imagen"></div>
+	</div>
+
+</body>
+</html>
