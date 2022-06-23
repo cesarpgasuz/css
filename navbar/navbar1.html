@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Navbar 1</title>
+
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+		:root{
+			--primary: #4df9ff;
+			--anim-speed: 0.5s;
+			--anim-delay: 0.7s;
+		}
+		body, html{
+			padding: 0;
+			margin: 0;
+			font-family: 'Open Sans', sans-serif;
+			background: #1d1e22;
+		}
+		.navbar{
+			height: 48px;
+			padding: 1rem;
+			display: flex;
+			justify-content: space-between;
+		}
+		.navbar__list{
+			display: flex;
+			justify-content: flex-end;
+			list-style: none;
+		}
+		.logo{
+			margin: 0.5rem;
+			color: #fff;
+			position: relative;
+			cursor: pointer;
+			letter-spacing: 2px;
+		}
+		.nav__item{
+			margin: 1rem;
+			color: #fff;
+			position: relative;
+			cursor: pointer;
+			letter-spacing: 2px;
+		}
+		.nav__item.active{
+			position: relative;
+			color: var(--primary);
+		}
+		.active.nav__item::after{
+			content: "";
+			width: 100%;
+			height: 2px;
+			position: absolute;
+			left: 0;
+			top: 25px;
+			background: var(--primary);
+			animation: item-grow var(--anim-speed) ease;
+		}
+		.active.nav__item::before{
+			content: "";
+			position: absolute;
+			background: var(--primary);
+			width: 100%;
+			height: 100%;
+			transform: scaleX(0);
+			top: 0;
+			bottom: -30px;
+			animation: item-grow var(--anim-speed) ease, item-shrink var(--anim-speed) ease var(--anim-speed);
+		}
+
+
+		@keyframes item-grow{
+			0%{
+				transform-origin: 0%;
+				transform: scaleX(0);
+			}
+			80%{
+				transform-origin: 0%;
+				transform: scaleX(1);
+			}
+			100%{
+				transform-origin: 0%;
+				transform: scaleX(1);
+			}
+		}
+		@keyframes item-shrink{
+			0%{
+				transform: scaleX(1);
+				transform-origin: 100%;
+			}
+			100%{
+				transform-origin: 100%;
+				transform: scaleX(0);
+			}
+		}
+
+
+
+
+
+	</style>
+
+
+</head>
+<body>
+
+
+	<nav class="navbar">
+		<div class="logo"><h1>logo</h1></div>
+		<ul class="navbar__list">
+			<li class="nav__item active">Inicio</li>
+			<li class="nav__item">Productos</li>
+			<li class="nav__item">Testimonios</li>
+			<li class="nav__item">Locaciones</li>
+			<li class="nav__item">Acerca</li>
+			<li class="nav__item">Contacto</li>
+		</ul>
+	</nav>
+
+
+
+	<script>
+		const items = document.querySelectorAll('.nav__item');
+
+		items.forEach(item=>item.addEventListener('mousedown', function(){
+			items.forEach(item=>item.classList.remove('active'));
+			this.classList.add('active');
+		}));
+
+	</script>
+
+
+
+</body>
+</html>
