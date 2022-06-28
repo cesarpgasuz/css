@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modal con javascript</title>
+    <style>
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: #11111198;
+        display: flex;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.6s;
+      }
+      .modal--show {
+        opacity: 1;
+        pointer-events: unset;
+        transition: opacity 0.6s;
+      }
+      .modal__container {
+        margin: auto;
+        width: 90%;
+        max-width: 600px;
+        max-height: 90%;
+        background-color: #fff;
+        border-radius: 6px;
+        padding: 3em 2.5em;
+        display: grid;
+        gap: 1em;
+        place-items: center;
+        grid-auto-columns: 100%;
+      }
+      .modal__title {
+        font-size: 2.5em;
+      }
+      .modal__paragraph {
+        margin-bottom: 10px;
+      }
+      .modal__img {
+        width: 90%;
+        max-width: 300px;
+      }
+      .modal__close {
+        text-decoration: none;
+        color: #fff;
+        background-color: orange;
+        padding: 1em 3em;
+        border: 1px solid;
+        display: inline-block;
+        font-weight: 300;
+        transition: background-color 0.3s;
+      }
+      .modal__close:hover {
+        background-color: #fff;
+        color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="modal">
+      <div class="modal__container">
+        <img src="Bears.jpg" class="modal__img" />
+        <h2 class="modal__title">Bienvenido al sitio</h2>
+        <p class="modal__paragraph">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
+          sapiente, illum eius vero molestias exercitationem accusamus non
+          impedit repellat consequatur, possimus animi quae odit commodi
+          tempore. Molestias quas accusantium in?
+        </p>
+        <a href="#" class="modal__close">Cerra modal</a>
+      </div>
+    </section>
+
+    <a href="#" class="hero__cta">Abrir modal</a>
+
+    <script>
+      const openModal = document.querySelector(".hero__cta");
+      const modal = document.querySelector(".modal");
+      const closeModal = document.querySelector(".modal__close");
+
+      openModal.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal.classList.add("modal--show");
+      });
+
+      closeModal.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal.classList.remove("modal--show");
+      });
+    </script>
+  </body>
+</html>
