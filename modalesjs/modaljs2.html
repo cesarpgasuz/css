@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>modal js 2</title>
+
+
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body{
+			background: greenyellow;
+		}
+		.modal{
+			background: #fff;
+			height: 200px;
+			width: 400px;
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			margin: auto;
+			transform: translateY(-100vh);
+			transition: all 0.6s;
+		}
+		.modal--show{
+			transform: translateY(0);
+			transition: all 0.6s;
+		}
+
+
+	</style>
+
+</head>
+<body>
+
+	<a href="#" class="open__modal">abrir modal</a>
+
+	<div class="modal">
+		<h1>hola soy un modal</h1>
+		<a href="#" class="close__modal">cerrar modal</a>
+	</div>
+
+
+	<script>
+			const openModal = document.querySelector('.open__modal');
+			const closeModal = document.querySelector('.close__modal');
+			const modal = document.querySelector('.modal');
+
+			openModal.addEventListener('click', (e) => {
+				e.preventDefault();
+				modal.classList.add('modal--show');
+			});
+
+			closeModal.addEventListener('click', (e) => {
+				e.preventDefault();
+				modal.classList.remove('modal--show');
+			});
+
+
+			const producto = {
+				nombre: "monitor curvo 20 pulgadas",
+				precio: 500,
+				disponible: true,
+				informacion: {
+					medidas: {
+						peso: '1kg',
+						medida: '1m'
+					},
+					fabricacion: {
+						pais: 'china'
+					}
+				}
+			}
+
+			const {informacion: { medidas: { peso, medida } }} = producto;
+			
+			console.log(peso);
+			console.log(medida);
+
+
+
+			function Producto(nombre, precio){
+				this.nombre = nombre;
+				this.precio = precio;
+				this.disponible = true;
+			}
+			const producto2 = new Producto("celular", 100);
+			const producto3 = new Producto("laptop", 200);
+
+			console.log(producto2);
+			console.log(producto3);
+
+
+
+			
+
+	</script>
+
+</body>
+</html>

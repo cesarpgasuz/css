@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>modal js 1</title>
+
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body{
+			background-color: yellow;
+		}
+		.modal{
+			width: 200px;
+			height: 200px;
+			background-color: #fff;
+			position: fixed;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+			transform: translateY(-100vh);
+			transition: all 0.7s;
+		}
+		.modal--show{
+			transform: translateY(0);
+		}
+	</style>
+</head>
+<body>
+
+	<a href="#" class="open__modal">abril modal</a>
+
+	<div class="modal">
+		<p>hola soy un modal</p>
+		<a href="#" class="close__modal">cerrar modal</a>
+
+	</div>
+
+
+
+
+	<script>
+			const openModal = document.querySelector('.open__modal');
+			const closeModal = document.querySelector('.close__modal');
+			const modal = document.querySelector('.modal');
+
+
+			openModal.addEventListener('click', (e) => {
+				e.preventDefault();
+				modal.classList.add('modal--show');
+			});
+
+			closeModal.addEventListener('click', (e) => {
+				e.preventDefault();
+				modal.classList.remove('modal--show')
+			});
+
+
+	</script>
+
+</body>
+</html>
