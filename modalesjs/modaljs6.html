@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>modal js 6</title>
+
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body{
+			background: seagreen;
+		}
+		.modal{
+			background: white;
+			height: 200px;
+			width: 400px;
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			margin: auto;
+			transform: translateY(-100vh);
+			transition: all 0.5s;
+		}
+		.modal--show{
+			transform: translateY(0);
+			transition: all 0.5s;
+		}
+	</style>
+
+</head>
+<body>
+
+		<a href="#" class="open__modal">abrir modal</a>
+
+		<div class="modal">
+			<h1>soy un modal</h1>
+			<a href="#" class="close__modal">cerrar modal</a>
+		</div>
+
+
+
+
+		<script>
+			
+			const openModal = document.querySelector('.open__modal');
+			const closeModal = document.querySelector('.close__modal');
+			const modal = document.querySelector('.modal');
+
+			openModal.addEventListener('click', (e) => {
+				e.preventDefault();
+				modal.classList.add('modal--show');
+			});
+
+			closeModal.addEventListener('click', (e) => {
+				e.preventDefault();
+				modal.classList.remove('modal--show');
+			});
+
+
+
+
+
+			const producto = {
+				nombre: "telefono",
+				precio: 300,
+				disponible: true,
+				fabricacion: {
+					origen: {
+						pais: "china",
+						ciudad: "tokio"
+					}
+				},
+				destino: {
+					pais: "mexico",
+					ciudad: "guanajuato",
+					usuario: {
+						nombre: "cesar",
+						datos: {
+							direccion: "los duraznos",
+							telefono: "4191389032"
+						}
+					}
+				}
+			}
+
+
+			//crear la variable direccion, nombre, ciudad utilizando destructuring.
+
+
+ 		// crear un objeto llamadado persona con los atributos de nombre, direccion, telefono, correo.
+ 		// acceder con la sintaxis de punto para llegar asta correo.
+
+
+
+
+ 		//crear dos objetos y juntarlos en uno mismo... se creara el objeto producto, destino
+
+
+
+
+ 		//crear un array con los meses asta septiembre, y agregar los meses correspodientes. y sacar en consola el mes de junio
+
+
+ 		
+
+		</script>
+
+
+
+</body>
+</html>
