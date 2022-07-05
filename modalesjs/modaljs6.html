@@ -93,20 +93,63 @@
 			//crear la variable direccion, nombre, ciudad utilizando destructuring.
 
 
+
+			const {destino: { ciudad, usuario: { nombre, datos: { direccion } } } } = producto;
+
+			console.log(producto);
+
+			console.log(ciudad);
+			console.log(nombre);
+			console.log(direccion);
+
+
+
  		// crear un objeto llamadado persona con los atributos de nombre, direccion, telefono, correo.
  		// acceder con la sintaxis de punto para llegar asta correo.
+
+ 		const persona = {
+ 			nombre: "cesar",
+ 			apellidoPaterno: "garcia",
+ 			apellidoMaterno: "suarez",
+ 			datosContacto: {
+ 				telefono: "4191389032",
+ 				correo: "cesarpgasuz@gmail.com"
+ 			}
+ 		}
+
+ 		console.log(persona.datosContacto.correo);
+
+ 		const datosPersona = persona.datosContacto.correo;
+ 		console.log(datosPersona);
 
 
 
 
  		//crear dos objetos y juntarlos en uno mismo... se creara el objeto producto, destino
 
+ 		const producto2 = {
+ 			nombre: "arroz",
+ 			precio: 20,
+ 			disponible: true
+ 		}
+ 		const destino = {
+ 			pais: "mexico",
+ 			estado: "guanajuato",
+ 			municipio: "doctor mora"
+ 		}
 
 
+ 		const productoFinal = {...producto2, ...destino};
+ 		console.log(productoFinal);
 
  		//crear un array con los meses asta septiembre, y agregar los meses correspodientes. y sacar en consola el mes de junio
 
+ 		const meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "agosto", "septiembre"];
 
+ 		console.table(meses);
+ 		console.log(meses[7]);
+
+ 		meses = [7]
  		
 
 		</script>
