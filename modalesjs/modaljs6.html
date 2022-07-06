@@ -144,13 +144,47 @@
 
  		//crear un array con los meses asta septiembre, y agregar los meses correspodientes. y sacar en consola el mes de junio
 
- 		const meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "agosto", "septiembre"];
+ 		const meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio", 'julio', "agosto", "septiembre"];
 
- 		console.table(meses);
- 		console.log(meses[7]);
+ 		//console.table(meses);
+ 		//console.log(meses[7]);
 
- 		meses = [7]
+ 		meses[9] = 'octubre';
+ 		meses[10] = 'noviembre';
+ 		meses[11] = 'diciembre';
+
+ 		//console.table(meses);
  		
+
+
+
+ 		const carrito = [];
+
+ 		const product1 = {
+ 			nombre: "television 32",
+ 			precio: 300
+ 		}
+
+ 		const product2 = {
+ 			nombre: "celular",
+ 			precio: 200
+ 		}
+
+ 		carrito.push(product1);
+ 		carrito.push(product2);
+
+ 		console.table(carrito);
+
+
+ 		const product3 = {
+ 			nombre: "tablet",
+ 			precio: 1000
+ 		}
+
+ 		carrito.unshift(product3);
+
+
+ 		console.table(carrito);
 
 		</script>
 
