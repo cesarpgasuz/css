@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>modal js 14</title>
+
+	<style>
+			*{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body{
+				background: paleturquoise;
+			}
+			.modal{
+				height: 300px;
+				width: 300px;
+				position: fixed;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				margin: auto;
+				background: ghostwhite;
+				transform: translateY(-100vh);
+				transition: all 0.5s;
+			}
+			.modal--show{
+				transform: translateY(0);
+				transition: all 0.5s;
+			}
+
+	</style>
+
+
+</head>
+<body>
+
+	<a href="#" class="open__modal">abrir modal</a>
+
+	<div class="modal">
+		<h1>hola soy un modal</h1>
+		<a href="#" class="close__modal">cerrar modal</a>
+	</div>
+
+
+
+	<script>
+		const openModal = document.querySelector(".open__modal");
+		const closeModal = document.querySelector(".close__modal");
+		const modal = document.querySelector(".modal");
+
+		openModal.addEventListener("click", (e) => {
+			e.preventDefault();
+			modal.classList.add("modal--show");
+		});
+
+		closeModal.addEventListener("click", (e) => {
+			e.preventDefault();
+			modal.classList.remove("modal--show");
+		});
+
+
+
+
+
+		const carrito = [
+			{nombre: "monitor", precio: 200},
+			{nombre: "celular", precio: 300},
+			{nombre: "Computadora", precio: 400},
+			{nombre: "usb", precio: 50},
+		]
+
+
+		const total = carrito.map(producto => `${producto.nombre} - ${producto.precio}`);
+		console.log(total);
+
+		carrito.forEach(producto2 => console.log(`${producto2.nombre} -- ${producto2.precio}`));
+
+
+
+
+		const formaPago = 'tarjeta de credito';
+
+		switch(formaPago){
+
+			case 'tarjeta':
+				console.log(`elegiste ${formaPago} como forma de pago`);
+				break;
+			case 'efectivo':
+				console.log(`elegiste ${formaPago} como forma de pago`);
+				break;
+			case 'cheque':
+				console.log(`elegiste ${formaPago} como forma de pago`);
+				break;
+			default:
+				console.log(`Forma de pago no soportado, elige una de la formas disponibles`);
+				break;
+
+		}
+
+
+		for(let i = 0; i < carrito.length; i++){
+			console.log(carrito[i]);
+		}
+
+
+
+		const carrito2 = [
+			{nombre: 'tablet', precio: 200, descuento: true, rebaja: 100},
+			{nombre: 'celular', precio: 100, descuento: true, rebaja: 100},
+			{nombre: 'monitor', precio: 150, rebaja:50},
+			{nombre: 'audifonos', precio: 500},
+			{nombre: 'teclado', precio:30, descuento: true, rebaja: 20},
+
+		]
+
+		/*
+		for(let i = 0; i < carrito2.length; i++){
+			if(carrito2[i].descuento){
+				console.log(`El articulo: ${carrito2[i].nombre} tiene descuento`);
+				continue;
+			}
+			console.log(carrito2[i].nombre);
+		}
+
+		*/
+
+		console.log(carrito2);
+
+		for(let i = 0; i < carrito2.length; i++){
+			if(carrito2[i].rebaja <= 100){
+				console.log(`El articulo: ${carrito2[i].nombre} tiene rebaja`);
+				continue;
+			}
+			console.log(carrito2[i].nombre);
+		}
+
+
+		
+	</script>
+</body>
+</html>
