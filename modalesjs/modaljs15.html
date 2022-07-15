@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>modal js 15</title>
+
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body{
+			background: orangered;
+		}
+		.modal{
+			width: 300px;
+			height: 300px;
+			background: white;
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			transform: translateY(-100vh);
+			transition: all 0.5s;
+			margin: auto;
+		}
+		.modal--show{
+			transform: translateY(0);
+			transition: all 0.5s;
+		}
+	</style>
+
+
+</head>
+<body>
+
+	<a href="#" class="open__modal">abrir modal</a>
+
+	<div class="modal">
+		<h1>hola soy un modal</h1>
+		<a href="#" class="close__modal">cerrar modal</a>
+	</div>
+
+
+	<script>
+		
+		const openModal = document.querySelector('.open__modal');
+		const closeModal = document.querySelector('.close__modal');
+		const modal = document.querySelector('.modal');
+
+		openModal.addEventListener('click', (e) => {
+			e.preventDefault();
+			modal.classList.add('modal--show');
+		});
+
+		closeModal.addEventListener('click', (e) => {
+			e.preventDefault();
+			modal.classList.remove('modal--show');
+		});
+
+
+
+		iniciarApp();
+
+
+		function iniciarApp(){
+			console.log('iniciando app...');
+
+			cargandoInfo();
+		}
+
+		function cargandoInfo(){
+			console.log('cargando informacion ...');
+
+			cargandoUsuario();
+		}
+
+		function cargandoUsuario(){
+			console.log('cargando usuario....')
+
+			bienvendio('cesar');
+		}
+
+		function bienvendio(usuario){
+			console.log(`Bienvendio ${usuario}`);
+		}
+
+
+
+
+		const carrito = [
+			{nombre: 'monitor', precio: 400},
+			{nombre: 'television', precio: 200},
+			{nombre: 'telefono', precio: 100},
+			{nombre: 'teclado', precio: 50}
+
+		]
+
+
+		const total = carrito.map(producto => `${producto.nombre} -- ${producto.precio}`);
+		console.log(total);
+
+		carrito.forEach(producto2 => console.log(`${producto2.nombre} -- ${producto2.precio}`));
+
+
+
+
+		const formaPago = 'efectivo';
+
+		switch(formaPago){
+			case 'tarjeta':
+				console.log(`seleccionaste ${formaPago} como forma de pago`);
+				break;
+			case 'efectivo':
+				console.log(`seleccionaste ${formaPago} como forma de pago`);
+				break;
+			case 'cheque':
+				console.log(`seleccionaste ${formaPago} como forma de pago`);
+				break;
+			default:
+				console.log(`seleciona una opcion de las disponibles`);
+				break;
+
+		}
+
+
+		for( let i = 0; i < carrito.length; i++){
+			console.log(carrito[i]);
+		}
+
+
+	</script>
+
+</body>
+</html>
