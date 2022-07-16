@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<mela soy uta name="viewport" content="width=device-width, initial-scale=1">
+	<title>modal js 16</title>
+
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body{
+			background: chocolate;
+		}
+		.modal{
+			height: 200px;
+			width: 350px;
+			background: ghostwhite;
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			margin: auto;
+			transform: translateY(-100vh);
+			transition: all 0.5s;
+		}
+		.modal--show{
+			transform: translateY(0);
+			transition: all 0.5s;
+		}
+
+
+
+	</style>
+</head>
+<body>
+
+	<a href="#" class="open__modal">abrir modal</a>
+
+	<div class="modal">
+		<h1>hola soy un modal</h1>
+		<a href="#" class="close__modal">cerrar modal</a>
+	</div>
+
+	<script>
+			const openModal = document.querySelector('.open__modal');
+			const closeModal = document.querySelector('.close__modal');
+			const modal = document.querySelector('.modal');
+
+			openModal.addEventListener('click', (e) => {
+				e.preventDefault();
+				modal.classList.add('modal--show');
+			});
+
+			closeModal.addEventListener('click', (e) => {
+				e.preventDefault();
+				modal.classList.remove('modal--show');
+			});
+
+
+			const carrito = [
+				{nombre: 'monitor', precio: 300},
+				{nombre: 'television', precio: 200},
+				{nombre: 'teclado', precio: 100},
+				{nombre: 'celular', precio: 400},
+			]
+
+			const total = carrito.map(producto => `${producto.nombre} - ${producto.precio}`);
+			console.log(total);
+
+			carrito.forEach(producto2 => console.log(`${producto2.nombre} -- ${producto2.precio}`));
+
+
+
+			const pago = 'vale';
+
+			switch(pago){
+				case 'efectivo': 
+					console.log(`Seleccionaste ${pago} como forma de pago`);
+				break;
+				case 'tarjeta':
+					console.log(`Seleccionaste ${pago} como forma de pago`);
+				break;
+				case 'cheque':
+					console.log(`Seleccionaste ${pago} como forma de pago`);
+				break;
+				default:
+					console.log(`Selecciona una de las opciones disponibles`);
+				break;
+
+			}
+
+			for(let i = 0; i < carrito.length; i++){
+				console.log(carrito[i]);
+			}
+
+
+			const productosfinal = carrito.filter(producto => producto.precio > 100);
+			console.log(productosfinal);
+
+
+
+	</script>
+
+</body>
+</html>
