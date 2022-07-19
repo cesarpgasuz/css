@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ejercicios js 01</title>
+
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		.card{
+			background: greenyellow;
+		}
+		.imagen__reduce{
+			width: 300px;
+			height: 100%;
+			object-fit: cover;
+		}
+		
+	</style>
+
+
+</head>
+<body>
+
+<nav>
+	<li class="item">inicio</li>
+	<li class="item">acerca </li>
+	<li class="item">contactoss</li>
+	<li class="item">nosotros</li>
+</nav>
+
+
+
+<h1>hola mundo</h1>
+
+<div class="contenedor__cards">
+	<div class="card">
+		<img src="../../Bears.jpg" class="imagen__bear" alt="osos">
+		<h2>hola soy un card</h2>
+	</div>
+	<div class="card">
+		<img src="../../Bears.jpg" class="imagen__bear"  alt="osos">
+		<h2>hola soy un card</h2>
+	</div>
+</div>
+
+
+	<script>
+		
+		//const encabezado = document.querySelector('h1');
+		//console.log(encabezado.style);
+
+		//const card = document.querySelector('.card');
+		//console.log(card.classList);
+
+		// const titulo = document.querySelector('h1');
+		// titulo.textContent = 'nuevo titulo';
+		// console.log(titulo);
+
+		const navegacion = document.querySelector('nav');
+		console.log(navegacion);
+
+		console.log(navegacion.children);
+
+		navegacion.children[2].textContent = 'contacto';
+		navegacion.children[0].style.backgroundColor = 'red';
+		navegacion.lastElementChild.style.textTransform = 'uppercase';
+
+
+
+		const card = document.querySelector('.card');
+		const imagen = document.querySelector('.imagen__bear');
+
+
+		console.log(card.children);
+
+		card.children[0].src = '../../girl.jpg';
+		card.children[0].classList.add('imagen__reduce');
+
+		console.log(card.nextElementSibling);
+
+
+
+	</script>
+
+</body>
+</html>
