@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modal js 20</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+           background: darkcyan; 
+        }
+        .modal{
+            height: 200px;
+            width: 400px;
+            background: white;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            transform: translateY(-100vh);
+            transition: all 0.6s;
+        }
+        .modal--show{
+            transform: translateY(0);
+            transition: all 0.6s;
+        }
+        .btonFooter{
+            background: blue;
+            color: white;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 40px;
+            border-radius: 10px;
+            user-select: none;
+            cursor: pointer;
+            transition: all 0.7s;
+           
+        }
+        .btonFooter.active{
+            background: red;
+            color: white;
+            transition: all 0.7s;
+        }
+        .footer{
+            background: pink;
+            height: auto;
+            width: 100%;
+            position: fixed;
+            bottom: -100%;
+            left: 0;
+            right: 0;
+            transition: all 0.4s;
+        }
+        .footer.active{
+            bottom: 0;
+            transition: all 0.4s;
+        }
+    </style>
+
+
+</head>
+<body>
+    <a href="#" class="open__modal">abrir modal</a>
+
+    <div class="modal">
+        <h1>hola soy un modal</h1>
+        <a href="#" class="close__modal">cerrar modal</a>
+    </div>
+
+
+    <div class="btonFooter">abrir footer</div>
+
+    <div class="footer">
+        <h3>soy el footer</h3>
+        <ul>
+            <li>inicio</li>
+            <li>inicio</li>
+            <li>inicio</li>
+            <li>inicio</li>
+            <li>inicio</li>
+        </ul>
+    </div>
+
+
+
+    <script>
+        const openModal = document.querySelector('.open__modal');
+        const closeModal = document.querySelector('.close__modal');
+        const modal = document.querySelector('.modal');
+
+        openModal.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.add('modal--show');
+        });
+
+        closeModal.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.remove('modal--show');
+        });
+
+        const botonFooter = document.querySelector('.btonFooter');
+        const footer = document.querySelector('.footer');
+
+        botonFooter.addEventListener('click', abrirCerrarFooter);
+
+        function abrirCerrarFooter(){
+            if(footer.classList.contains('active')){
+                footer.classList.remove('active');
+                this.classList.remove('active');
+                this.textContent = 'abrir footer';
+                
+            }else{
+                footer.classList.add('active');
+                this.classList.add('active'); 
+                this.textContent = 'cerrar footer';
+            }
+        }
+
+        const estilo = document.querySelector('h1')
+        console.log(estilo.style);
+
+
+    </script>
+    
+</body>
+</html>
