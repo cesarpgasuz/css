@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 // creamos las variables
 
 const carrito = document.querySelector('#carrito');
