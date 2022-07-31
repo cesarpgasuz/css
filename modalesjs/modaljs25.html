@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modal js 25</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        body{
+            background-color: aqua;
+            
+        }
+        .modal{
+            height: 200px;
+            width: 200px;
+            background-color: pink;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            transition: all 0.5s;
+            transform: translateY(100vh);
+        }
+        .modal.active{
+            transform: translateY(0);
+            transition: all 0.5s;
+        }
+        .modal-2{
+            background-color: rgba(0, 0, 0, 0.513);
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            visibility: hidden;
+            cursor: pointer;
+            z-index: 1;
+            transition: all 0.5s;
+            transition-delay: 0.2s;
+        }
+       
+      
+         .modal-content{
+            height: 200px;
+            width: 200px;
+            background-color: rgb(255, 255, 255);
+            position: absolute;
+            top: -100%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 200;
+            display: block;
+            cursor: auto;
+            transition: all 1s;
+        } 
+         .modal-2.active{
+            visibility: visible; 
+            
+        }
+        .modal-2.active .modal-content{
+            transition-delay: 0.5s;
+            top: 50%;
+            transition: all 1s;
+        }
+        .footer{
+            width: 100%;
+            min-height: 100px;
+            background-color: red;
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: -100%;
+            transition: all 0.5s;
+        }
+        .footer.active{
+            bottom: 0;
+            transition: all 0.5s;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <a href="#" class="open__modal">abrir modal</a>
+    <div class="modal">
+        <h2>soy un modal</h2>
+        <a href="#" class="close__modal">cerrar modal</a>
+    </div>
+
+    <div class="footer">hola soy el footer</div>
+    <div class="btnFooter">abrir footer</div>
+
+
+    <button type="button" class="open--modal" data-open="1">modal 1</button>
+    <button type="button" class="open--modal" data-open="2">modal 2</button>
+    <button type="button" class="open--modal" data-open="3">modal 3</button>
+    <button type="button" class="open--modal" data-open="4">modal 4</button>
+
+
+    <div class="modal-2" id="1">
+        <div class="modal-content">
+            modal 1<button class="close-modal" aria-label="close modal" data-close>✕</button>
+        </div>
+    </div>
+
+    <div class="modal-2" id="2">
+        <div class="modal-content">
+            modal 2<button class="close-modal" aria-label="close modal" data-close>✕</button>
+        </div>
+    </div>
+
+    <div class="modal-2" id="3">
+        <div class="modal-content">
+            modal 3<button class="close-modal" aria-label="close modal" data-close>✕</button>
+        </div>
+    </div>
+
+    <div class="modal-2" id="4">
+        <div class="modal-content">
+            modal 4<button class="close-modal" aria-label="close modal" data-close>✕</button>
+        </div>
+    </div>
+
+    <script>
+        const openModal = document.querySelectorAll('[data-open]');
+        const closeModal = document.querySelectorAll('[data-close]');
+        
+
+        for(const mo of openModal){
+            mo.addEventListener('click', () => {
+                const modalId = mo.dataset.open;
+                document.getElementById(modalId).classList.add('active');
+            })
+        }
+
+        for( const mo of closeModal){
+            mo.addEventListener('click', () => {
+                mo.parentElement.parentElement.classList.remove('active');
+            })
+        }
+
+        document.addEventListener('click', (e) => {
+           if(e.target == document.querySelector('.modal-2.active')){
+                console.log(e.target)
+              document.querySelector('.modal-2.active').classList.remove('active');
+           }
+        })
+
+
+        const openMoodal = document.querySelector('.open__modal');
+        const closeMoodal = document.querySelector('.close__modal');
+        const modal = document.querySelector('.modal');
+
+        openMoodal.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.add('active');
+        });
+        closeMoodal.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.remove('active');
+        });
+
+
+        const bntFooter = document.querySelector('.btnFooter');
+        const footer = document.querySelector('.footer');
+
+        bntFooter.addEventListener('click', abrirCerrarFooter);
+
+        function abrirCerrarFooter(){
+            if(footer.classList.contains('active')){
+                footer.classList.remove('active');
+            }else{
+                footer.classList.add('active');
+            }
+        }
+
+    </script>
+    
+</body>
+</html>

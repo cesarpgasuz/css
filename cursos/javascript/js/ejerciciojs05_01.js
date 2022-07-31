@@ -40,16 +40,23 @@ function validarFormulario(e){
         
         e.target.classList.add('failed');
 
-        mostrarError();
+        mostrarError('todos los campos son obligatorios');
 
     }
 
+   if(e.target.type === 'email'){
+    const resultado = e.target.value.indexOf('@');
+        if(resultado < 0 ){
+            mostrarError('email no valido');
+        }
+   }
+
 }
 
-function mostrarError(){
+function mostrarError(mensaje){
 
     const mensajeError = document.createElement('p');
-    mensajeError.textContent = 'Todos los campos son obligarios';
+    mensajeError.textContent = mensaje;
     mensajeError.classList.add('error', 'mensaje__error');
 
     const errores = document.querySelectorAll('.error');
