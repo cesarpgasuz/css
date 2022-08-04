@@ -8,7 +8,7 @@ const er = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0
 
 const resetBtn = document.querySelector('#resetBtn');
 
-const mensajeError = document.createElement('p');
+
 
 
 //funciones
@@ -91,7 +91,7 @@ function validarFormulario(e){
 
 function mostrarError(mensaje){
    
-   
+    const mensajeError = document.createElement('p');
     mensajeError.classList.add('mensaje__error', 'error');
     mensajeError.textContent = mensaje;
 
