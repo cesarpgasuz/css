@@ -14,6 +14,13 @@
              ransition: all 0.5s ease;
              --color-primary: #262626;
         }
+        .titulo{
+            background-color: black;
+            color: white;
+            display: block;
+            padding: 50px;
+            text-align: center;
+        }
         .tarjeta{
             width: 300px;
             height: 300px;
@@ -59,6 +66,8 @@
         }
 
 
+      
+
         .switch{
             background-color: #343058;
             position: relative;
@@ -101,3 +110,6 @@
             right: 0;
             left: unset;
         }
+
+
+        
