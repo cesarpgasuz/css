@@ -4,9 +4,174 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>agosto modal js 1</title>
+    <title>agosto modal js 18</title>
+    <link rel="stylesheet" type="text/css" href="stylesmodales.css">
+
+    <style>
+        .switch{
+            border-radius: 100px;
+            border: none;
+            outline: none;
+            position: relative;
+            background: blueviolet;
+            color: white;
+            display: flex;
+            cursor: pointer;
+        }
+        .switch span{
+            height: 30px;
+            width: 30px;
+            background: transparent;
+            border-radius: 100px;
+            line-height: 30px;
+        }
+        .switch::after{
+            content: "";
+            display: block;
+            position: absolute;
+            height: 30px;
+            width: 30px;
+            background: white;
+            border-radius: 100px;
+            left: 0;
+            top: 0;
+            right: unset;
+            transition: all 1s;
+        }
+        .switch.active::after{
+            right: 0;
+            left: unset;
+            transition: all 1s;
+        }
+        .switch.active{
+            color: black;
+            background: orangered;
+        }
+
+    </style>
+
+
 </head>
 <body>
     
+
+    <a href="#" class="open__modal">abrir modal</a>
+    <div class="modal">
+        <h3>hola soy un modal</h3>
+        <a href="#" class="close__modal">cerrar modal</a>
+    </div>
+
+    <div class="btnFooter">abrir footer</div>
+    <div class="footer">hola soy el footer</div>
+
+
+    <button data-open="modal1">modal 1</button>
+    <button data-open="modal2">modal 2</button>
+    <button data-open="modal3">modal 3</button>
+    <button data-open="modal4">modal 4</button>
+
+    <div id="modal1" class="modal2">modal1 <button data-close>X</button></div>
+    <div id="modal2" class="modal2">modal2 <button data-close>X</button></div>
+    <div id="modal3" class="modal2">modal3 <button data-close>X</button></div>
+    <div id="modal4" class="modal2">modal4 <button data-close>X</button></div>
+
+    <div class="tarjeta">hola soy una tarjeta</div>
+
+
+    <button class="switch">
+        <span class="sol">O</span>
+        <span class="luna">C</span>
+    </button>
+
+    <script>
+
+        const btnSwitch = document.querySelector('.switch');
+
+        btnSwitch.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            btnSwitch.classList.toggle('active');
+
+            if(document.body.classList.contains('dark')){
+                localStorage.setItem('dark-mode', true);
+            }else{
+                localStorage.setItem('dark-mode', false);
+            }
+
+        })
+
+
+        if(localStorage.getItem('dark-mode') === 'true'){
+            document.body.classList.add('dark');
+            btnSwitch.classList.add('active');
+        }else{
+            document.body.classList.remove('dark');
+            btnSwitch.classList.remove('active');
+        }
+
+
+
+
+        ///////////////////////////////
+
+        const openModal2 = document.querySelectorAll('[data-open]');
+        const closeModal2 = document.querySelectorAll('[data-close]');
+
+        for(const mod of openModal2){
+            mod.addEventListener('click', () => {
+                modalId = mod.dataset.open;
+                document.getElementById(modalId).classList.add('active');
+            });
+        }
+        for(const mod of closeModal2){
+            mod.addEventListener('click', () => {
+                mod.parentElement.classList.remove('active');
+            })
+        }
+
+
+        ////////////////////////////////////////////////////////
+
+        const btnFooter = document.querySelector('.btnFooter');
+        const footer = document.querySelector('.footer');
+
+        btnFooter.addEventListener('click', abrirCerrarFooter);
+
+        function abrirCerrarFooter(){
+            if(footer.classList.contains('active')){
+                footer.classList.remove('active');
+                this.textContent = 'abrir footer';
+            }else{
+                footer.classList.add('active');
+                this.textContent = 'cerrar footer';
+            }
+        }
+
+
+
+        ////////////////////////
+        const openModal = document.querySelector('.open__modal');
+        const closeModal = document.querySelector('.close__modal');
+        const modal = document.querySelector('.modal');
+
+        openModal.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.add('active');
+        });
+
+        closeModal.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.remove('active');
+        });
+
+
+
+
+
+    </script>
+
+
+
+
+
 </body>
 </html>
