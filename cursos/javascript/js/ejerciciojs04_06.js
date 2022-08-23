@@ -112,8 +112,11 @@ function carritoHTML(){
 
     })
 
+    
 
 }
+
+
 
 
 //limpiamos el html

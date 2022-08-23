@@ -13,6 +13,16 @@ function eventListeners(){
 
     listaCursos.addEventListener('click', agregarCurso);
     carrito.addEventListener('click', borrarCurso);
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+        articulosCarrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+        carritoHTML();
+
+    })
+
     vaciarCarritoBtn.addEventListener('click', () => {
 
         articulosCarrito = [];
@@ -114,6 +124,15 @@ function carritoHTML(){
        
     })
 
+    sincronizarStorage();
+
+}
+
+
+
+function sincronizarStorage(){
+
+    localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
 
 }
 
