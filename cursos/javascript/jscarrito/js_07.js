@@ -26,6 +26,7 @@ function eventListeners(){
     vaciarCarritoBtn.addEventListener('click', () => {
 
         articulosCarrito = [];
+       
         console.log(articulosCarrito);
         limpiarHTML();
 
