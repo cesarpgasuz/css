@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>online 01</title>
+</head>
+<body>
+	<section>
+		<p id="title">you are <span></span></p>
+	</section>
+
+
+	<script>
+		
+		const titleTarget = document.querySelector('p[id="title"] span');
+
+		if(window.navigator.onLine){
+			setOnline();
+		}else{
+			setOffline();
+		}
+
+		window.addEventListener('online', () => {
+			setOnline();
+		})
+		window.addEventListener('offline', () => {
+			setOffline();
+		})
+
+		function setOnline(){
+			titleTarget.textContent = 'Online';
+			titleTarget.style.color = 'green';
+		}
+		function setOffline(){
+			titleTarget.textContent = 'Offline';
+			titleTarget.style.color = 'red';
+		}
+
+	</script>
+
+</body>
+</html>
