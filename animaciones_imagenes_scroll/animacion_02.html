@@ -119,6 +119,17 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
 
 	const callback = (entries) => {
+
+		entries.forEach(entrie => {
+			if(entrie.isIntersecting){
+				flotante.classList.remove('active');
+			}else{
+				flotante.classList.add('active');
+			}
+
+		})
+
+		/*
 		for(const entrie of entries){
 			if(entrie.isIntersecting){
 				flotante.classList.remove('active');
@@ -126,6 +137,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 				flotante.classList.add('active');
 			}
 		}
+		*/
 	}
 
 
