@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animacion 01 imagenes scroll</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header{
+            width: 100%;
+            display: block;
+            background-color: palevioletred;
+            text-align: center;
+            min-height: 200px;
+            line-height: 200px;
+        }
+        .container{
+            max-width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .parrafo{
+            padding: 50px 0px;
+            line-height: 32px;
+        }
+        img{
+            width: 100%;
+            transform: translateY(50px);
+            transition: all 0.6s ease-in-out;
+            border: 2px solid red;
+            position: relative;
+            filter: grayscale(100%);
+        }
+    
+        img.active{
+            filter: grayscale(50%);
+            transform: translateX(0);
+            transition: all 0.6s ease-in-out;
+            filter: grayscale(0);
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <h1>animacion imagenes scroll</h1>
+    </header>
+    <div class="container">
+        <p class="parrafo">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sed eligendi obcaecati, maxime corrupti quae qui, itaque quidem doloribus, provident corporis. Voluptatem assumenda minima enim quam optio reprehenderit excepturi esse!
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id atque illum aliquam dolores sunt voluptates! Quidem, hic! Nemo ex id suscipit soluta deleniti maxime rerum possimus, architecto odio nihil nam.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus corporis neque ipsa rerum soluta dignissimos voluptatibus facere excepturi sint laborum maiores nemo nostrum, mollitia aliquam dolorem voluptates! Deleniti, tempora dignissimos.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus eum ipsa nesciunt doloremque! Aperiam ab iusto veniam sequi ullam officiis dolores vel repellendus quasi, blanditiis odit ea harum illum unde.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sed eligendi obcaecati, maxime corrupti quae qui, itaque quidem doloribus, provident corporis. Voluptatem assumenda minima enim quam optio reprehenderit excepturi esse!
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id atque illum aliquam dolores sunt voluptates! Quidem, hic! Nemo ex id suscipit soluta deleniti maxime rerum possimus, architecto odio nihil nam.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus corporis neque ipsa rerum soluta dignissimos voluptatibus facere excepturi sint laborum maiores nemo nostrum, mollitia aliquam dolorem voluptates! Deleniti, tempora dignissimos.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sed eligendi obcaecati, maxime corrupti quae qui, itaque quidem doloribus, provident corporis. Voluptatem assumenda minima enim quam optio reprehenderit excepturi esse!
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id atque illum aliquam dolores sunt voluptates! Quidem, hic! Nemo ex id suscipit soluta deleniti maxime rerum possimus, architecto odio nihil nam.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus corporis neque ipsa rerum soluta dignissimos voluptatibus facere excepturi sint laborum maiores nemo nostrum, mollitia aliquam dolorem voluptates! Deleniti, tempora dignissimos.
+       
+        </p>
+        <img src="../../../Bears.jpg" class="image_animation imagen1">
+        <p class="parrafo">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sed eligendi obcaecati, maxime corrupti quae qui, itaque quidem doloribus, provident corporis. Voluptatem assumenda minima enim quam optio reprehenderit excepturi esse!
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id atque illum aliquam dolores sunt voluptates! Quidem, hic! Nemo ex id suscipit soluta deleniti maxime rerum possimus, architecto odio nihil nam.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus corporis neque ipsa rerum soluta dignissimos voluptatibus facere excepturi sint laborum maiores nemo nostrum, mollitia aliquam dolorem voluptates! Deleniti, tempora dignissimos.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sed eligendi obcaecati, maxime corrupti quae qui, itaque quidem doloribus, provident corporis. Voluptatem assumenda minima enim quam optio reprehenderit excepturi esse!
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id atque illum aliquam dolores sunt voluptates! Quidem, hic! Nemo ex id suscipit soluta deleniti maxime rerum possimus, architecto odio nihil nam.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus corporis neque ipsa rerum soluta dignissimos voluptatibus facere excepturi sint laborum maiores nemo nostrum, mollitia aliquam dolorem voluptates! Deleniti, tempora dignissimos.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sed eligendi obcaecati, maxime corrupti quae qui, itaque quidem doloribus, provident corporis. Voluptatem assumenda minima enim quam optio reprehenderit excepturi esse!
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id atque illum aliquam dolores sunt voluptates! Quidem, hic! Nemo ex id suscipit soluta deleniti maxime rerum possimus, architecto odio nihil nam.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus corporis neque ipsa rerum soluta dignissimos voluptatibus facere excepturi sint laborum maiores nemo nostrum, mollitia aliquam dolorem voluptates! Deleniti, tempora dignissimos.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sed eligendi obcaecati, maxime corrupti quae qui, itaque quidem doloribus, provident corporis. Voluptatem assumenda minima enim quam optio reprehenderit excepturi esse!
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id atque illum aliquam dolores sunt voluptates! Quidem, hic! Nemo ex id suscipit soluta deleniti maxime rerum possimus, architecto odio nihil nam.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus corporis neque ipsa rerum soluta dignissimos voluptatibus facere excepturi sint laborum maiores nemo nostrum, mollitia aliquam dolorem voluptates! Deleniti, tempora dignissimos.
+       
+       
+       
+        </p>
+        <img src="../../../Sea.jpg" alt="" class="image_animation">
+        <p class="parrafo">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sed eligendi obcaecati, maxime corrupti quae qui, itaque quidem doloribus, provident corporis. Voluptatem assumenda minima enim quam optio reprehenderit excepturi esse!
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id atque illum aliquam dolores sunt voluptates! Quidem, hic! Nemo ex id suscipit soluta deleniti maxime rerum possimus, architecto odio nihil nam.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus corporis neque ipsa rerum soluta dignissimos voluptatibus facere excepturi sint laborum maiores nemo nostrum, mollitia aliquam dolorem voluptates! Deleniti, tempora dignissimos.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sed eligendi obcaecati, maxime corrupti quae qui, itaque quidem doloribus, provident corporis. Voluptatem assumenda minima enim quam optio reprehenderit excepturi esse!
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id atque illum aliquam dolores sunt voluptates! Quidem, hic! Nemo ex id suscipit soluta deleniti maxime rerum possimus, architecto odio nihil nam.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus corporis neque ipsa rerum soluta dignissimos voluptatibus facere excepturi sint laborum maiores nemo nostrum, mollitia aliquam dolorem voluptates! Deleniti, tempora dignissimos.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sed eligendi obcaecati, maxime corrupti quae qui, itaque quidem doloribus, provident corporis. Voluptatem assumenda minima enim quam optio reprehenderit excepturi esse!
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id atque illum aliquam dolores sunt voluptates! Quidem, hic! Nemo ex id suscipit soluta deleniti maxime rerum possimus, architecto odio nihil nam.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus corporis neque ipsa rerum soluta dignissimos voluptatibus facere excepturi sint laborum maiores nemo nostrum, mollitia aliquam dolorem voluptates! Deleniti, tempora dignissimos.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sed eligendi obcaecati, maxime corrupti quae qui, itaque quidem doloribus, provident corporis. Voluptatem assumenda minima enim quam optio reprehenderit excepturi esse!
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id atque illum aliquam dolores sunt voluptates! Quidem, hic! Nemo ex id suscipit soluta deleniti maxime rerum possimus, architecto odio nihil nam.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus corporis neque ipsa rerum soluta dignissimos voluptatibus facere excepturi sint laborum maiores nemo nostrum, mollitia aliquam dolorem voluptates! Deleniti, tempora dignissimos.
+       
+        
+        
+        </p>
+        <img src="../../../girl2.png" alt="" class="image_animation">
+        <p class="parrafo">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sed eligendi obcaecati, maxime corrupti quae qui, itaque quidem doloribus, provident corporis. Voluptatem assumenda minima enim quam optio reprehenderit excepturi esse!
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id atque illum aliquam dolores sunt voluptates! Quidem, hic! Nemo ex id suscipit soluta deleniti maxime rerum possimus, architecto odio nihil nam.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus corporis neque ipsa rerum soluta dignissimos voluptatibus facere excepturi sint laborum maiores nemo nostrum, mollitia aliquam dolorem voluptates! Deleniti, tempora dignissimos.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sed eligendi obcaecati, maxime corrupti quae qui, itaque quidem doloribus, provident corporis. Voluptatem assumenda minima enim quam optio reprehenderit excepturi esse!
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id atque illum aliquam dolores sunt voluptates! Quidem, hic! Nemo ex id suscipit soluta deleniti maxime rerum possimus, architecto odio nihil nam.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus corporis neque ipsa rerum soluta dignissimos voluptatibus facere excepturi sint laborum maiores nemo nostrum, mollitia aliquam dolorem voluptates! Deleniti, tempora dignissimos.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sed eligendi obcaecati, maxime corrupti quae qui, itaque quidem doloribus, provident corporis. Voluptatem assumenda minima enim quam optio reprehenderit excepturi esse!
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id atque illum aliquam dolores sunt voluptates! Quidem, hic! Nemo ex id suscipit soluta deleniti maxime rerum possimus, architecto odio nihil nam.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus corporis neque ipsa rerum soluta dignissimos voluptatibus facere excepturi sint laborum maiores nemo nostrum, mollitia aliquam dolorem voluptates! Deleniti, tempora dignissimos.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sed eligendi obcaecati, maxime corrupti quae qui, itaque quidem doloribus, provident corporis. Voluptatem assumenda minima enim quam optio reprehenderit excepturi esse!
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id atque illum aliquam dolores sunt voluptates! Quidem, hic! Nemo ex id suscipit soluta deleniti maxime rerum possimus, architecto odio nihil nam.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus corporis neque ipsa rerum soluta dignissimos voluptatibus facere excepturi sint laborum maiores nemo nostrum, mollitia aliquam dolorem voluptates! Deleniti, tempora dignissimos.
+       
+        
+        </p>
+
+    </div>
+
+
+
+<!-- <script src="app_01.js"></script> -->
+<script src="app_02.js"></script>
+
+
+</body>
+</html>
