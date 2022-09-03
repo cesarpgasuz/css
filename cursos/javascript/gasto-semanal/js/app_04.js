@@ -1,16 +1,23 @@
 //variables
 const formulario = document.querySelector('#agregar-gasto');
-const gastosListado = document.querySelector('#gastos ul')
+const gastosListado = document.querySelector('#gastos ul');
+
+
+
+
+
+
 
 //eventListeners
 eventListeners();
 
 function eventListeners(){
 
-	document.addEventListener('DOMContentLoaded', pedirPresupuestoUsuario);
-	formulario.addEventListener('submit', agregarGastos);
+	document.addEventListener('DOMContentLoaded', pedirPresupuesto);
+	formulario.addEventListener('submit', agregarGasto);
 
 }
+
 
 
 //classes
@@ -23,21 +30,27 @@ class Presupuesto{
 
 	nuevoGasto(gasto){
 		this.gastos = [...this.gastos, gasto];
-		console.log(this.gastos);
+		this.calcularRestante();
 	}
-
-
+	calcularRestante(){
+		const gastado = this.gastos.reduce((total, gasto) => total + gasto.cantidad, 0);
+		this.restante = this.presupuesto - gastado;
+		console.log(this.restante);
+	}
+	eliminarGastos(id){
+		this.gastos = this.gastos.filter(gasto => gasto.id !== id);
+		this.calcularRestante();
+	}
 
 }
 
-class UI{
+class UI {
 
 	insertarPresupuesto(cantidad){
-
 		document.querySelector('#total').textContent = cantidad.presupuesto;
 		document.querySelector('#restante').textContent = cantidad.restante;
-
 	}
+
 	mostrarAlerta(mensaje, tipo){
 		const divMensaje = document.createElement('div');
 
@@ -53,32 +66,32 @@ class UI{
 
 		setTimeout(() => {
 			divMensaje.remove();
-		}, 2500)
-
+		}, 2500);
 
 	}
 
 
-	gastoListado(gastos){
+	mostrarGasto(gastos){
 
 		this.limpiarHTML();
 
 		gastos.forEach(gasto => {
 
-			const listaGasto = document.createElement('li');
-			listaGasto.dataset.id = gasto.id;
-			listaGasto.innerHTML = `${gasto.nombre} -- ${gasto.cantidad}`;
+			const gastoLista = document.createElement('li');
+			gastoLista.dataset.id = gasto.id;
+			gastoLista.innerHTML = `${gasto.nombre} -- ${gasto.cantidad}`;
+			gastosListado.appendChild(gastoLista);
 
-			const botonEliminar = document.createElement('button');
-			botonEliminar.textContent = 'Eliminar X';
-			botonEliminar.classList.add('eliminar__gasto');
-			listaGasto.appendChild(botonEliminar);
+			const btnELiminar = document.createElement('button');
+			btnELiminar.textContent = 'Eliminar X';
+			btnELiminar.classList.add('btn__eliminar');
+			btnELiminar.onclick = () => {
+				eliminarGasto(gasto.id);
+			}
 
-			gastosListado.appendChild(listaGasto);
-
+			gastoLista.appendChild(btnELiminar);
 
 		})
-
 
 	}
 
@@ -90,6 +103,33 @@ class UI{
 		}
 	}
 
+	actualizarRestante(restante){
+		document.querySelector('#restante').textContent = restante;
+	}
+
+	comprobarRestante(presupuestoObj){
+
+		const divRestante = document.querySelector('.restante')
+
+		if((presupuestoObj.presupuesto / 4) > presupuestoObj.restante){
+			divRestante .classList.add('danger');
+			divRestante .classList.remove('success', 'warning');
+		}else if((presupuestoObj.presupuesto / 2) > presupuestoObj.restante){
+			divRestante.classList.add('warning');
+			divRestante.classList.remove('success', 'danger'); 
+		}else{
+			divRestante.classList.remove('warning', 'danger');
+			divRestante.classList.add('success');
+		}
+
+		if(presupuestoObj.restante <= 0){
+			ui.mostrarAlerta('Gastaste todo el presupuesto', 'error');
+			formulario.querySelector('button[type="submit"]').disabled = true;
+		}else{
+			formulario.querySelector('button[type="submit"]').disabled = false;
+		}
+
+	}
 
 }
 
@@ -97,45 +137,41 @@ const ui = new UI();
 
 let presupuesto;
 
+///funciones
+function pedirPresupuesto(){
 
-//funciones
-function pedirPresupuestoUsuario(){
-
-	const presupuestoUsuario = prompt('Cual es tu presupuesto ?');
+	const presupuestoUsuario = prompt('Cual es tu presupuesto');
 
 	if(presupuestoUsuario === '' || presupuestoUsuario === null || isNaN(presupuestoUsuario) || presupuestoUsuario <= 0){
 		window.location.reload();
 	}
 
-
+	
 	presupuesto = new Presupuesto(presupuestoUsuario);
 
+
 	ui.insertarPresupuesto(presupuesto);
+
+
 
 	console.log(presupuesto);
 
 }
 
-function agregarGastos(e){
+function agregarGasto(e){
 	e.preventDefault();
 
 	const nombre = document.querySelector('#gasto').value;
-	const cantidad = document.querySelector('#cantidad').value;
+	const cantidad = Number(document.querySelector('#cantidad').value);
 
-
-	if(nombre == '' || cantidad === ''){
-
+	if(nombre === '' || cantidad === ''){
 		ui.mostrarAlerta('Todos los campos son obligatorios', 'error');
 		return;
-
 	}else if(cantidad <= 0 || isNaN(cantidad)){
-		
-		ui.mostrarAlerta('Cantidad no Valida', 'error');
+		ui.mostrarAlerta('Cantidad no Valida', 'error')
 		return;
-
 	}
 
-	
 	const gasto = {
 		nombre: nombre,
 		cantidad: cantidad,
@@ -143,14 +179,28 @@ function agregarGastos(e){
 	}
 
 	presupuesto.nuevoGasto(gasto);
+	ui.mostrarAlerta('Gasto Añadido Correctamente');
 
-	ui.mostrarAlerta('gasto agregando correctamte');
+	const {gastos, restante} = presupuesto;
 
-	const {gastos} = presupuesto;
-	ui.gastoListado(gastos);
+	ui.mostrarGasto(gastos);
+	
+	ui.actualizarRestante(restante);
 
+	ui.comprobarRestante(presupuesto);
 
 	formulario.reset();
+}
+
+
+function eliminarGasto(id){
+	presupuesto.eliminarGastos(id);
+
+	ui.mostrarGasto(presupuesto.gastos);
+	
+	ui.actualizarRestante(presupuesto.restante);
+
+	ui.comprobarRestante(presupuesto);
 
 
 }
