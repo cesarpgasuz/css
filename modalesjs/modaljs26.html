@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modal js 26</title>
+
+    
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        body{
+            background-color: aqua;
+            
+        }
+        .modal{
+            height: 200px;
+            width: 200px;
+            background-color: pink;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            transition: all 0.5s;
+            transform: translateY(100vh);
+        }
+        .modal.active{
+            transform: translateY(0);
+            transition: all 0.5s;
+        }
+        .modal-2{
+            background-color: rgba(0, 0, 0, 0.513);
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            visibility: hidden;
+            cursor: pointer;
+            z-index: 1;
+            transition: all 0.5s;
+            transition-delay: 0.2s;
+        }
+       
+      
+         .modal-content{
+            height: 200px;
+            width: 200px;
+            background-color: rgb(255, 255, 255);
+            position: absolute;
+            top: -100%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 200;
+            display: block;
+            cursor: auto;
+            transition: all 1s;
+        } 
+         .modal-2.active{
+            visibility: visible; 
+            
+        }
+        .modal-2.active .modal-content{
+            transition-delay: 0.5s;
+            top: 50%;
+            transition: all 1s;
+        }
+        .footer{
+            width: 100%;
+            min-height: 100px;
+            background-color: red;
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: -100%;
+            transition: all 0.5s;
+        }
+        .footer.active{
+            bottom: 0;
+            transition: all 0.5s;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+    <button type="button" class="open--modal" data-open="hola-mundo">modal 1</button>
+    <button type="button" class="open--modal" data-open="2">modal 2</button>
+    <button type="button" class="open--modal" data-open="3">modal 3</button>
+    <button type="button" class="open--modal" data-open="4">modal 4</button>
+
+
+    <div class="modal-2" id="hola-mundo">
+        <div class="modal-content">
+            modal 1<button class="close-modal" aria-label="close modal" data-close>✕</button>
+        </div>
+    </div>
+
+    <div class="modal-2" id="2">
+        <div class="modal-content">
+            modal 2<button class="close-modal" aria-label="close modal" data-close>✕</button>
+        </div>
+    </div>
+
+    <div class="modal-2" id="3">
+        <div class="modal-content">
+            modal 3<button class="close-modal" aria-label="close modal" data-close>✕</button>
+        </div>
+    </div>
+
+    <div class="modal-2" id="4">
+        <div class="modal-content">
+            modal 4<button class="close-modal" aria-label="close modal" data-close>✕</button>
+        </div>
+    </div>
+
+
+    <script>
+        
+        const openModal = document.querySelectorAll('[data-open]');
+        const openModal2 = document.querySelector('[data-open]');
+        const closeModal = document.querySelectorAll('[data-close]');
+
+
+        console.log(openModal);
+        console.log(openModal2);
+      
+
+        
+         for(const mod of openModal){
+            console.log(mod)
+         mod.addEventListener('click', () => {
+                const modalId = mod.dataset.open;
+               document.getElementById(modalId).classList.add('active');
+            })
+         }
+        for(const mod of closeModal){
+            console.log(mod)
+            mod.addEventListener('click', () => {
+                mod.parentElement.parentElement.classList.remove('active');
+        })
+         }
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+    
+</body>
+</html>

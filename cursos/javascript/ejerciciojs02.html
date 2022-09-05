@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio js 02</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: aquamarine;
+        }
+        .footer{
+            background-color: blueviolet;
+            height: auto;
+            width: 100%;
+            padding: 25px;
+            position: fixed;
+            bottom: -100%;
+            left: 0;
+            right: 0;
+            transition: all 0.7s;
+        }
+        .footer.active{
+            bottom: 0;
+            transition:  all 0.7s;
+        }
+        .boton{
+            background-color: red;
+            color: white;
+            padding: 10px 25px;
+            display: inline-block;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            user-select: none;
+        }
+        .boton:hover{
+            cursor: pointer;
+        }
+        .boton.activo{
+            background-color: black;
+            color: red;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="boton">abrir footer</div>
+   
+    <div class="footer">
+        <h2>esto es el footer</h2>
+        <ul>
+            <li>home</li>
+            <li>acerca</li>
+            <li>contacto</li>
+        </ul>
+    </div>
+    
+
+<script>
+    const footer = document.querySelector('.footer');
+    const boton = document.querySelector('.boton');
+
+
+    boton.addEventListener('click', abrirFooter);
+
+    function abrirFooter(){
+        if(footer.classList.contains('active')){
+            footer.classList.remove('active');
+            this.classList.remove('activo');
+            this.textContent = 'abrir footer';
+          
+        }else{
+            footer.classList.add('active');
+            this.classList.add('activo');
+            this.textContent = 'cerrar footer';
+            
+        }
+    }
+
+
+
+
+</script>
+
+</body>
+</html>

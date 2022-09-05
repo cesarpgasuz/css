@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio js 04 carrito</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+
+        }
+        table,td {
+            border: 1px solid black;
+        }
+        .seccion__1{
+            width: 60%;
+            height: 100%;
+            background-color: aqua;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .card{
+            width: 25%;
+            height: 250px;
+            background-color: yellowgreen;
+        }
+        .card img{
+            height: 80px;
+            width: 150px;
+            object-fit: cover;
+        }
+        h4, p, .precio, a:link{
+            border: 2px solid black;
+        }
+
+        
+        .seccion__2{
+            width: 40%;
+            height: 100vh;
+            background-color: yellow;
+        }
+        .borrar-curso{
+            background-color: red;
+            color: white;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 5px;
+            border-radius: 100px;
+            text-decoration: none;
+        }
+        .model{
+            background-color: red;
+            height: 300px;
+            width: 400px;
+            transform: translate(50px);
+            text-align: center;
+            
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="seccion__1" id="lista-cursos">
+
+        <div class="card">
+            <img src="images/curso01.jpg" class="imagen-curso">
+            <div class="info-card">
+                <h4>curso 01</h4>
+                <p>cesar pablo</p>
+                <p class="precio">$200</p>
+                <a href="#" class="agregar-carrito" data-id="1">Agregar al carrito</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="images/curso02.jpg" class="imagen-curso">
+            <div class="info-card">
+                <h4>curso 02</h4>
+                <p>pepe el toro</p>
+                <p class="precio">$500</p>
+                <a href="#" class="agregar-carrito" data-id="2">Agregar al carrito</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="images/curso03.jpg" class="imagen-curso">
+            <div class="info-card">
+                <h4>curso 03</h4>
+                <p>sofia</p>
+                <p class="precio">$2000</p>
+                <a href="#" class="agregar-carrito" data-id="3">Agregar al carrito</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="images/curso04.jpg" class="imagen-curso">
+            <div class="info-card">
+                <h4>curso 04</h4>
+                <p>renata</p>
+                <p class="precio">$40</p>
+                <a href="#" class="agregar-carrito" data-id="4">Agregar al carrito</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="images/curso05.jpg" class="imagen-curso">
+            <div class="info-card">
+                <h4>curso 05</h4>
+                <p>pablo</p>
+                <p class="precio">$25600</p>
+                <a href="#" class="agregar-carrito" data-id="5">Agregar al carrito</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="images/curso06.jpg" class="imagen-curso">
+            <div class="info-card">
+                <h4>curso 6</h4>
+                <p>pedro</p>
+                <p class="precio">$200</p>
+                <a href="#" class="agregar-carrito" data-id="6">Agregar al carrito</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="images/curso07.jpg" class="imagen-curso">
+            <div class="info-card">
+                <h4>curso 7</h4>
+                <p>andrea</p>
+                <p class="precio">$20075</p>
+                <a href="#" class="agregar-carrito" data-id="7">Agregar al carrito</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="images/curso08.jpg" class="imagen-curso">
+            <div class="info-card">
+                <h4>curso 8</h4>
+                <p>daniela</p>
+                <p class="precio">$5660</p>
+                <a href="#" class="agregar-carrito" data-id="8">Agregar al carrito</a>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- seccion donde se colocaran los productos a elegir -->
+    <div class="seccion__2" id="carrito">
+        <table id="lista-carrito">
+            <thead>
+                <tr>Imagen</tr>
+                <tr>Nombre</tr>
+                <tr>Precio</tr>
+                <tr>cantidad</tr>
+                <tr></tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <a href="#" id="vaciar-carrito">vaciar carrito</a>
+    </div>
+
+
+    
+    <!-- <script src="jscarrito/js_01.js"></script> -->
+    <!-- <script src="jscarrito/js_02.js"></script> -->
+    <!-- <script src="jscarrito/js_03.js"></script> 
+    <script src="jscarrito/js_04.js"></script>
+    <script src="jscarrito/js_05.js"></script>
+    <script src="jscarrito/js_06.js"></script>
+    <script src="jscarrito/js_07.js"></script>
+    <script src="jscarrito/js_08.js"></script>--> 
+    <script src="jscarrito/js_09.js"></script>
+    <script src="jscarrito/js_10.js"></script>
+    <script src="jscarrito/js_11.js"></script>
+    <script src="jscarrito/js_12.js"></script>
+    <script src="jscarrito/js_13.js"></script>
+    <script src="jscarrito/js_14.js"></script>
+    <script src="jscarrito/js_15.js"></script>
+    <!-- <script src="jscarrito/js_16.js"></script>
+    <script src="jscarrito/js_17.js"></script>
+    <script src="jscarrito/js_18.js"></script>
+    <script src="jscarrito/js_19.js"></script>
+    <script src="jscarrito/js_20.js"></script>
+    <script src="jscarrito/js_21.js"></script>
+    <script src="jscarrito/js_22.js"></script>
+    <script src="jscarrito/js_23.js"></script>
+    <script src="jscarrito/js_24.js"></script>
+    <script src="jscarrito/js_25.js"></script>
+    <script src="jscarrito/js_26.js"></script>
+    <script src="jscarrito/js_27.js"></script>
+    <script src="jscarrito/js_28.js"></script>
+    <script src="jscarrito/js_29.js"></script>
+    <script src="jscarrito/js_30.js"></script>
+    <script src="jscarrito/js_31.js"></script> -->
+  
+
+
+
+
+</body>
+</html>

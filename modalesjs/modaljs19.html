@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>modal js 19</title>
+
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body{
+			background: chartreuse;
+		}
+		.modal{
+			height: 300px;
+			width: 400px;
+			background: white;
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			margin: auto;
+			transform: translateY(-100vh);
+			transition: all 0.6s;
+		}
+		.modal--show{
+			transform: translateY(0);
+			transition: all 0.6s;
+		}
+
+	</style>
+
+</head>
+<body>
+
+	<a href="#" class="open__modal">abrir modal</a>
+
+	<div class="modal">
+		<h1>hola soy un modal</h1>
+		<a href="#" class="close__modal">cerrar modal</a>
+	</div>
+
+	<div class="contenedor">
+		
+	</div>
+
+
+	<script>
+		const openModal = document.querySelector('.open__modal');
+		const closeModal = document.querySelector('.close__modal');
+		const modal = document.querySelector('.modal');
+
+		openModal.addEventListener('click', (e) => {
+			e.preventDefault();
+			modal.classList.add('modal--show');
+		});
+
+		closeModal.addEventListener('click', (e) => {
+			e.preventDefault();
+			modal.classList.remove('modal--show');
+		});
+
+
+
+		const card = document.createElement('div');
+		card.classList.add('card');
+
+		const titulo = document.createElement('h2');
+		titulo.textContent = 'hola desde card';
+		titulo.classList.add('title');
+
+		const contenedor = document.querySelector('.contenedor');
+
+		card.appendChild(titulo);
+		contenedor.appendChild(card);
+
+
+
+
+
+	</script>
+
+</body>
+</html>

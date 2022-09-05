@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>agosto modal js 3</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background: yellow;
+        }
+        .modal{
+            height: 300px;
+            width: 300px;
+            background: hotpink;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            transform: translateY(-100vh);
+            transition: transform 0.5s;
+        }
+        .modal.active{
+            transform: translateY(0);
+            transition: transform 0.5s;
+        }
+        .btnFooter{
+            padding: 20px 45px;
+            background: blue;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            user-select: none;
+            border-radius: 50px;
+        }
+        .btnFooter.active{
+            background: red;
+            color: white;
+        }
+        .footer{
+            width: 100%;
+            min-height: 100px;
+            text-align: center;
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: -100%;
+            transition: bottom 0.5s;
+            background-color: orange;
+        }
+        .footer.active{
+            bottom: 0;
+            transition: bottom 0.5s;
+        }
+
+        .modal2{
+            height: 400px;
+            width: 400px;
+            background: paleturquoise;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            transform: translateY(-100vh);
+            transition: transform 0.5s;
+        }
+        .modal2.active{
+            transform: translateY(0);
+            transition: transform 0.5s;
+        }
+    </style>
+
+</head>
+<body>
+
+<a href="#" class="open__modal">abrir modal</a>
+<div class="modal">
+    hola soy un modal
+    <a href="#" class="close__modal">cerrar modal</a>
+</div>
+
+<div class="btnFooter">abrir footer</div>
+<div class="footer">
+    hola soy el footer
+</div>
+
+
+<button type="button" data-open="modal1">modal 1</button>
+<button type="button" data-open="modal2">modal 2</button>
+<button type="button" data-open="modal3">modal 3</button>
+<button type="button" data-open="modal4">modal 4</button>
+
+
+<div id="modal1" class="modal2">modal 1 <button type="button" data-close>x</button></div>
+<div id="modal2" class="modal2">modal 2 <button type="button" data-close>x</button></div>
+<div id="modal3" class="modal2">modal 3 <button type="button" data-close>x</button></div>
+<div id="modal4" class="modal2">modal 4 <button type="button" data-close>x</button></div>
+
+
+<script>
+    const openModal = document.querySelector('.open__modal');
+    const closeModal = document.querySelector('.close__modal');
+    const modal = document.querySelector('.modal');
+
+    openModal.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.add('active');
+    });
+
+    closeModal.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.remove('active');
+    })
+
+    const btnFooter = document.querySelector('.btnFooter');
+    const footer = document.querySelector('.footer');
+
+    btnFooter.addEventListener('click', abrirCerrarFooter);
+
+    function abrirCerrarFooter(){
+        if(footer.classList.contains('active')){
+            footer.classList.remove('active');
+            this.classList.remove('active');
+            this.textContent = 'abrir footer';
+        }else{
+            footer.classList.add('active');
+            this.classList.add('active');
+            this.textContent = 'cerrar footer';
+        }
+    }
+
+
+    const openModal2 = document.querySelectorAll('[data-open]');
+    const closeModal2 = document.querySelectorAll('[data-close]');
+
+    for(const mod of openModal2){
+        mod.addEventListener('click', () => {
+            const modalId = mod.dataset.open;
+            document.getElementById(modalId).classList.add('active');
+        })
+    }
+
+    for(const mod of closeModal2){
+        mod.addEventListener('click', () => {
+            mod.parentElement.classList.remove('active');
+        })
+    }
+
+
+
+</script>
+
+
+    
+</body>
+</html>

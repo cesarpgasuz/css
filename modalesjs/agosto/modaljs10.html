@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>agosto modal js 10</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+        body{
+            background-color: red;
+        }
+        .modal, .modal2{
+            height: 300px;
+            width: 300px;
+            background-color: yellow;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            transform: translateY(-100vh);
+            transition: transform 0.5s;
+
+        }
+        .modal.active, .modal2.active{
+            transform: translateY(0);
+            transition: transform 0.5s;
+        }
+        .btnFooter{
+            padding: 20px 40px;
+            border-radius: 100px;
+            background-color: blue;
+            color: white;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            user-select: none;
+        }
+        .btnFooter.active{
+            background-color: red;
+        }
+        .footer{
+            width: 100%;
+            min-height: 100px;
+            background-color: yellowgreen;
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: -100%;
+            transition: bottom 0.5s;
+        }
+        .footer.active{
+            bottom: 0;
+            transition: bottom 0.5s;
+        }
+        .spinner{
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: yellow;
+            width: 30px;
+            height: 30px;
+            
+        }
+        .spinner.active{
+            display: block;
+        }
+        .spinner.disabled{
+            display: none;
+        }
+
+
+        /* .spinner2{
+            position: absolute;
+           bottom: 15px;
+            right: 15px;
+            background-color: rgb(242, 16, 16);
+            width: 30px;
+            height: 30px;
+            
+        } */
+
+       
+    </style>
+ <script src="js/jquery-3.5.1.slim.min.js"></script>
+    	<script defer src="https://charcas.xyz/js/bootstrap.bundle.min.js"></script>
+    	<script defer src="https://charcas.xyz/js/app.js"></script>
+</head>
+<body>
+
+    <a href="/modalesjs/agosto/modaljs09.html" class="viajes">ir al modal 9</a>
+    <a href="/modalesjs/agosto/modaljs08.html" class="viajes">ir al modal 8</a>
+
+    <a href="#" class="open__modal">abrir modal</a>
+    <div class="modal">
+        <h3>hola soy un modal</h3>
+        <a href="#" class="close__modal">cerrar modal</a>
+    </div>
+
+    <div class="btnFooter">abrir footer</div>
+    <div class="footer">
+        hola soy el footer
+    </div>
+
+    <button type="button" data-open="modal1">modal 1</button>
+    <button type="button" data-open="modal2">modal 2</button>
+    <button type="button" data-open="modal3">modal 3</button>
+    <button type="button" data-open="modal4">modal 4</button>
+    <button type="button" data-open="modal5">modal 5</button>
+
+    <div id="modal1" class="modal2">modal 1<button type="button" data-close>X</button></div>
+    <div id="modal2" class="modal2">modal 2<button type="button" data-close>X</button></div>
+    <div id="modal3" class="modal2">modal 3<button type="button" data-close>X</button></div>
+    <div id="modal4" class="modal2">modal 4<button type="button" data-close>X</button></div>
+    <div id="modal5" class="modal2">modal 5<button type="button" data-close>X</button></div>
+
+    <a href="https://www.google.com" class="viajes">ir a google</a>
+    <a href="https://www.facebook.com" class="viajes">ir a facebook</a>
+    <a href="https://www.twitter.com" class="viajes">ir a twittr</a>
+    <a href="https://www.genbeta.com" class="viajes">ir a genbeta</a>
+
+    
+
+    <div class="spinner active"></div>
+    <div class="spinner2"></div>
+
+    <script>
+
+        const spinner2 = document.querySelector('.spinner2');
+
+        document.addEventListener('DOMContentLoaded', espera);
+        const viajes = [...document.querySelectorAll('.viajes')];
+        const spinner = document.querySelector('.spinner');
+
+
+        function espera(){
+
+            if(spinner.classList.contains('active')){
+                spinner.classList.add('disabled');
+                spinner.classList.remove('active');
+            }else{
+              console.log('error...')
+            }
+        }
+
+         
+           viajes.forEach( viaje => {
+            viaje.addEventListener('click', () =>{
+                spinner.classList.remove('disabled');
+                spinner.classList.add('active');
+             })
+         })
+
+       
+         
+
+        const openModal = document.querySelector('.open__modal');
+        const closeModal = document.querySelector('.close__modal');
+        const modal = document.querySelector('.modal');
+
+        openModal.addEventListener('click', (e) =>{
+            e.preventDefault();
+            modal.classList.add('active');
+        });
+        closeModal.addEventListener('click', (e) =>{
+            e.preventDefault();
+            modal.classList.remove('active');
+        });
+
+
+        const btnFooter = document.querySelector('.btnFooter');
+        const footer = document.querySelector('.footer');
+
+        btnFooter.addEventListener('click', abrirCerrarFooter);
+
+        function abrirCerrarFooter(){
+            if(footer.classList.contains('active')){
+                footer.classList.remove('active');
+                this.classList.remove('active');
+                this.textContent = 'abrir footer';
+            }else{
+                footer.classList.add('active');
+                this.classList.add('active');
+                this.textContent = 'cerrar footer';
+            }
+           
+        }
+
+        const openModal2 = document.querySelectorAll('[data-open]');
+        const closeModal2 = document.querySelectorAll('[data-close]');
+console.log(openModal2)
+
+        for(const mod of openModal2){
+            mod.addEventListener('click', () => {
+                const modalId = mod.dataset.open;
+                document.getElementById(modalId).classList.add('active');
+            })
+        }
+
+        for(const mod of closeModal2){
+            mod.addEventListener('click', () => {
+                mod.parentElement.classList.remove('active');
+            })
+        }
+
+
+
+
+    </script>
+
+    
+</body>
+</html>

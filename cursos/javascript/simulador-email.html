@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio 05 js</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: rgb(232, 205, 255);
+        }
+        .spinner{
+            display: none;
+        }
+        .sk-chase {
+            width: 40px;
+            height: 40px;
+            position: relative;
+            animation: sk-chase 2.5s infinite linear both;
+            }
+
+        .sk-chase-dot {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0; 
+            animation: sk-chase-dot 2.0s infinite ease-in-out both; 
+            }
+
+        .sk-chase-dot:before {
+            content: '';
+            display: block;
+            width: 25%;
+            height: 25%;
+            background-color: rgb(26, 26, 26);
+            border-radius: 100%;
+            animation: sk-chase-dot-before 2.0s infinite ease-in-out both; 
+            }
+
+            .sk-chase-dot:nth-child(1) { animation-delay: -1.1s; }
+            .sk-chase-dot:nth-child(2) { animation-delay: -1.0s; }
+            .sk-chase-dot:nth-child(3) { animation-delay: -0.9s; }
+            .sk-chase-dot:nth-child(4) { animation-delay: -0.8s; }
+            .sk-chase-dot:nth-child(5) { animation-delay: -0.7s; }
+            .sk-chase-dot:nth-child(6) { animation-delay: -0.6s; }
+            .sk-chase-dot:nth-child(1):before { animation-delay: -1.1s; }
+            .sk-chase-dot:nth-child(2):before { animation-delay: -1.0s; }
+            .sk-chase-dot:nth-child(3):before { animation-delay: -0.9s; }
+            .sk-chase-dot:nth-child(4):before { animation-delay: -0.8s; }
+            .sk-chase-dot:nth-child(5):before { animation-delay: -0.7s; }
+            .sk-chase-dot:nth-child(6):before { animation-delay: -0.6s; }
+
+            @keyframes sk-chase {
+            100% { transform: rotate(360deg); } 
+            }
+
+            @keyframes sk-chase-dot {
+            80%, 100% { transform: rotate(360deg); } 
+            }
+
+            @keyframes sk-chase-dot-before {
+            50% {
+                transform: scale(0.4); 
+            } 100%, 0% {
+                transform: scale(1.0); 
+            } 
+            }
+
+        form{
+            background-color: #fff;
+            width: 500px;
+            height: fit-content;
+            padding: 20px 50px;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            border: 2px solid violet;
+            border-radius: 10px;
+            transition: all 0.5s;
+        }
+        .botones{
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-around;
+        }
+        button{
+            padding: 20px 35px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #enviar{
+            background-color: rgb(37, 132, 255);
+            color: white;
+        }
+        #enviar.disabled{
+            background-color: gray;
+            cursor: not-allowed;
+            color: rgb(52, 52, 52);
+        }
+        #resetBtn{
+            background-color: rgb(8, 179, 8);
+        }
+        .campo{
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        input, textarea{
+            width: 80%;
+            border: 1px solid gray;
+            background-color: rgb(220, 220, 220);
+        }
+        input{
+            height: 40px;
+            padding: 10px;
+        }
+        input:focus{
+            border: none;
+            outline: none;
+        }
+        input.success, textarea.success{
+            border: 1px solid rgb(7, 205, 63);
+            background-color: greenyellow;
+        }
+        input.failed, textarea.failed{
+            border: 1px solid rgb(205, 33, 7);
+            background-color: rgb(255, 95, 47);
+        }
+        .mensaje__error{
+            background-color: red;
+            color: white;
+            margin-top: 20px;
+            padding: 15px;
+            position: block;
+            text-align: center;
+        }
+
+        .mensaje__enviado{
+            background-color: rgb(84, 255, 69);
+            color: rgb(9, 123, 1);
+            margin-top: 20px;
+            padding: 15px;
+            position: block;
+            text-align: center;
+        }
+
+
+
+    </style>
+
+</head>
+<body>
+    
+    <form action="" id="enviar-mail" autocomplete="off">
+        <div class="campo">
+            <label for="email">Para:</label>
+            <input type="email" id="email">
+        </div>
+        <div class="campo">
+            <label for="asunto">Asunto:</label>
+            <input type="text" id="asunto">
+        </div>
+        <div class="campo">
+            <label for="mensaje">Mensaje:</label>
+            <textarea  id="mensaje" cols="30" rows="10"></textarea>
+        </div>
+
+        <div class="spinner">
+            <div class="sk-chase">
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+              </div>
+        </div>
+
+        <div class="botones">
+           <button id="enviar" type="submit">enviar</button>
+        <button id="resetBtn" type="button">resetear form</button>  
+        </div>
+       
+
+
+    </form>
+
+
+
+
+
+
+
+    <!-- <script src="jssimuladoremail/js_01.js"></script>
+    <script src="jssimuladoremail/js_02.js"></script> 
+    <script src="jssimuladoremail/js_03.js"></script>
+    <script src="jssimuladoremail/js_04.js"></script>
+     <script src="jssimuladoremail/js_05.js"></script>
+    <script src="jssimuladoremail/js_06.js"></script>
+    <script src="jssimuladoremail/js_07.js"></script>
+    <script src="jssimuladoremail/js_08.js"></script>-->
+    <script src="jssimuladoremail/js_09.js"></script>
+   <!-- <script src="jssimuladoremail/js_10.js"></script>
+    <script src="jssimuladoremail/js_11.js"></script>
+    <script src="jssimuladoremail/js_12.js"></script>
+    <script src="jssimuladoremail/js_13.js"></script>
+    <script src="jssimuladoremail/js_14.js"></script>
+    <script src="jssimuladoremail/js_15.js"></script>
+    <script src="jssimuladoremail/js_16.js"></script>
+    <script src="jssimuladoremail/js_17.js"></script>
+    <script src="jssimuladoremail/js_18.js"></script>
+    <script src="jssimuladoremail/js_19.js"></script>
+    <script src="jssimuladoremail/js_20.js"></script>
+    <script src="jssimuladoremail/js_21.js"></script>
+    <script src="jssimuladoremail/js_22.js"></script>
+    <script src="jssimuladoremail/js_23.js"></script>
+    <script src="jssimuladoremail/js_24.js"></script>
+    <script src="jssimuladoremail/js_25.js"></script>
+    <script src="jssimuladoremail/js_26.js"></script>
+    <script src="jssimuladoremail/js_27.js"></script>
+    <script src="jssimuladoremail/js_28.js"></script>
+    <script src="jssimuladoremail/js_29.js"></script>
+    <script src="jssimuladoremail/js_30.js"></script>
+    <script src="jssimuladoremail/js_31.js"></script> -->
+
+</body>
+</html>

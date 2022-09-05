@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio js 03</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: violet;
+        }
+        .bton{
+            background-color: blue;
+            color: white;
+            padding: 10px 35px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 10px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .bton.active{
+            color: white;
+            background-color: red;
+        }
+        .menu{
+            background-color: rebeccapurple;
+            height: auto;
+            width: 100%;
+            position: fixed;
+            bottom: -100%;
+            left: 0;
+            right: 0;
+            padding: 25px;
+            transition: all 0.7s;
+        }
+        .menu.active{
+            bottom: 0;
+            transition: all 0.7s;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="bton">abrir menu</div>
+
+    <div class="menu">
+        <h1>soy un menu</h1>
+        <ul>
+            <li>inicio</li>
+            <li>contacto</li>
+            <li>acerca De</li>
+            <li>nosotros</li>
+        </ul>
+    </div>
+    
+
+    <script>
+        const boton = document.querySelector('.bton');
+        const menuBottom = document.querySelector('.menu');
+
+        boton.addEventListener('click', menuVisible);
+
+        function menuVisible(){
+            if(menuBottom.classList.contains('active')){
+                menuBottom.classList.remove('active');
+                this.classList.remove('active');
+                this.textContent = 'abrir menu';
+            }else{
+                menuBottom.classList.add('active');
+                this.classList.add('active');
+                this.textContent = 'cerrar menu';
+            }
+
+        }
+
+    </script>
+
+
+
+
+</body>
+</html>

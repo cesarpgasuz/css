@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>modal js 21</title>
+
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body{
+			background: yellow;
+		}
+		.modal{
+			height: 200px;
+			width: 400px;
+			background: whitesmoke;
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			margin: auto;
+			transform: translateY(-100vh);
+			transition: all 0.6s;
+
+		}
+		.modal.active{
+			transform: translateY(0);
+			transition: all 0.6s;
+		}
+
+		.abrir__footer{
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			padding: 20px 40px;
+			background: blue;
+			color: white;
+			border-radius: 10px;
+			cursor: pointer;
+			user-select: none;
+		}
+		.abrir__footer.active{
+			background: red;
+			color: white;
+
+		}
+		.footer{
+			height: auto;
+			padding: 50px;
+			width: 100%;
+			position: fixed;
+			bottom: -100%;
+			background: pink;
+			transition: all 0.5s;
+		}
+		.footer.active{
+			bottom: 0;
+			transition: all 0.5s;
+		}
+
+	</style>
+
+</head>
+<body>
+
+	<a href="#" class="open__modal">abrir modal</a>
+
+	<div class="modal">
+		<h1>hola soy un modal</h1>
+		<a href="#" class="close__modal">cerrar modal</a>
+	</div>
+
+
+
+	<div class="abrir__footer">abrir footer</div>
+
+	<div class="footer">
+		<h2>hola soy el footer</h2>
+		<ul>
+			<li>inicio</li>
+			<li>acerca de</li>
+			<li>contacto</li>
+		</ul>
+	</div>
+
+
+	<script>
+		const openModal = document.querySelector('.open__modal');
+		const closeModal = document.querySelector('.close__modal');
+		const modal = document.querySelector('.modal');
+
+		openModal.addEventListener('click', (e) => {
+			e.preventDefault();
+			modal.classList.add('active');
+		});
+
+		closeModal.addEventListener('click', (e) => {
+			e.preventDefault();
+			modal.classList.remove('active');
+		})
+
+
+		const openFooter = document.querySelector('.abrir__footer');
+		const footer = document.querySelector('.footer');
+
+		openFooter.addEventListener('click', openCloseFooter);
+
+		function openCloseFooter(){
+			if(footer.classList.contains('active')){
+				footer.classList.remove('active');
+				this.classList.remove('active');
+				this.textContent = 'abrir footer';
+			}else{
+				footer.classList.add('active');
+				this.classList.add('active');
+				this.textContent = 'cerrar footer';
+
+			}
+
+		}
+
+	</script>
+
+</body>
+</html>
