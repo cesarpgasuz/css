@@ -1,7 +1,8 @@
-//variables
+/// variables
 const formulario = document.querySelector('#formulario');
 const listaTweets = document.querySelector('#lista-tweets');
 let tweets = [];
+
 
 //eventListeners
 eventListeners();
@@ -9,19 +10,15 @@ eventListeners();
 function eventListeners(){
 
 	formulario.addEventListener('submit', agregarTweet);
-
 	document.addEventListener('DOMContentLoaded', () => {
 
 		tweets = JSON.parse(localStorage.getItem('tweets')) || [];
-		
 		tweetHTML();
 
 	})
-
-
 }
 
-//funciones
+// funciones
 function agregarTweet(e){
 	e.preventDefault();
 
@@ -31,98 +28,93 @@ function agregarTweet(e){
 		mostrarError('No has escrito ningun tweet');
 		return;
 	}
-
+	
 
 	const tweetObj = {
 		texto: tweet,
 		id: Date.now()
 	}
 
-	tweets = [...tweets, tweetObj];
 
+	tweets = [...tweets, tweetObj];
 
 	tweetHTML();
 
-
 	formulario.reset();
-
-	console.log(tweets);
-
 
 
 }
 
+function mostrarError(error){
 
-function mostrarError(mensaje){
-
-	const divMensaje = document.createElement('p');
-	divMensaje.textContent = mensaje;
-	divMensaje.classList.add('mensaje__error', 'error');
+	const mensajeError = document.createElement('p');
+	mensajeError.textContent = error;
+	mensajeError.classList.add('mensaje__error', 'error');
 
 	const errores = document.querySelectorAll('.error');
 
 	if(errores.length === 0){
 		const contenido = document.querySelector('#contenido');
-	    contenido.appendChild(divMensaje);
+		contenido.appendChild(mensajeError);
 	}
-	
-	setTimeout(() =>{
-		divMensaje.remove();
-	},2500)
 
+	setTimeout(() => {
+		mensajeError.remove();
+	},3000)
+	
 
 }
+
 
 
 function tweetHTML(){
 
 	limpiarHTML();
 
-	if(tweets.length > 0){
+	if(tweets.length > 0) {
 
 		tweets.forEach(tweet => {
-		const tweetItem = document.createElement('p');
-		tweetItem.textContent = tweet.texto;
-		tweetItem.classList.add('tweet');
+			const tweetItem = document.createElement('p');
+			tweetItem.classList.add('tweet');
+			tweetItem.textContent = tweet.texto;
 
-		const btnEliminar = document.createElement('button');
-		btnEliminar.classList.add('btn__eliminar');
-		btnEliminar.textContent = 'X';
-		btnEliminar.onclick = () => {
-			eliminarTweet(tweet.id);
-		}
+			const btnEliminar = document.createElement('button');
+			btnEliminar.classList.add('btn__eliminar');
+			btnEliminar.textContent = 'X';
+			btnEliminar.onclick = () => {
+				eliminarTweet(tweet.id);
+			}
 
-		tweetItem.appendChild(btnEliminar);
+			tweetItem.appendChild(btnEliminar);
 
-
-		listaTweets.appendChild(tweetItem);
-	})
+			listaTweets.appendChild(tweetItem);
 
 
+		})
 	}
-
+	
 	sincronizarStorage();
-
 
 }
 
 function sincronizarStorage(){
 
-	localStorage.setItem('tweets', JSON.stringify(tweets));
+	localStorage.setItem('tweets', JSON.stringify(tweets))
 
 }
 
 
 function limpiarHTML(){
+
 	while(listaTweets.firstChild){
 		listaTweets.removeChild(listaTweets.firstChild);
 	}
+
 }
 
 function eliminarTweet(id){
-	
+
 	tweets = tweets.filter(tweet => tweet.id !== id);
-	console.log(tweets);
 	tweetHTML();
 
 }
