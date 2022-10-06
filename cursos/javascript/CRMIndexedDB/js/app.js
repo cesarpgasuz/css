@@ -1,35 +1,31 @@
 (function(){
-    //variables
-    let DB;
 
-    //eventListeners
+    let DB;
+    const listadoClientes = document.querySelector('#listado-clientes');
+    
     document.addEventListener('DOMContentLoaded', () => {
+
 
         crearDB();
 
         if(window.indexedDB.open('crm', 1)){
-            obtenerCliente();
+            obtenerClientes();
         }
+
+        listadoClientes.addEventListener('click', eliminarCliente);
+
 
     })
 
-    //funciones
-    
     function crearDB(){
-        //creamos la base de datos
+
         const crearDB = window.indexedDB.open('crm', 1);
-        //verificacon errores
         crearDB.onerror = function(){
             console.log('hubo un error');
         }
-        //
         crearDB.onsuccess = function(){
-            console.log('base de datos creada');
             DB = crearDB.result;
-            console.log(DB)
         }
-
-        //configuracion
         crearDB.onupgradeneeded = function(e){
 
             const db = e.target.result;
@@ -45,65 +41,91 @@
             objectStore.createIndex('empresa', 'empresa', {unique: false});
             objectStore.createIndex('id', 'id', {unique: true});
 
-            console.log('base de datos creada y lista');
+            console.log('base creada y lista');
+
 
         }
 
 
     }
 
-    function obtenerCliente(){
 
-        const abrirConexion = window.indexedDB.open('crm',1);
-            abrirConexion.onerror = function(){
-                 console.log('hubo un error');
-            };
+    function eliminarCliente(e){
 
-            abrirConexion.onsuccess = function(){
+        if(e.target.classList.contains('eliminar')){
+            
+            const idEliminar = Number(e.target.dataset.cliente);
 
-                DB =abrirConexion.result;
+            const confirmar = confirm('Seguro que quieres eliminar el registro');
 
-                const objectStore = DB.transaction('crm').objectStore('crm');
+            if(confirmar){
 
-                objectStore.openCursor().onsuccess = function(e){
+                const transaction = DB.transaction(['crm'], 'readwrite');
+                const objectStore = transaction.objectStore('crm');
 
-                    const cursor = e.target.result;
+                objectStore.delete(idEliminar);
 
-                    if(cursor){
+                transaction.onerror = function(){
+                    console.log('hubo un error');
+                }
+                transaction.oncomplete = function(){
+                    console.log('cliente eliminado')
 
-                        const {nombre, email, telefono, empresa, id} = cursor.value;
-                        const listadoCliente = document.querySelector('#listado-clientes');
+                    e.target.parentElement.parentElement.remove();
+                }
 
-                        listadoCliente.innerHTML += `
+            }
 
-                            <tr>
-                                <td>${nombre} - ${email}</td>
-                                <td>${telefono}</td>
-                                <td>${empresa}</td>
-                                <td><a href="editar-cliente.html?id=${id}">Editar</a></td>
-                                <td><a href="#" data-cliente="${id}">Eliminar</a></td>
+        }
 
-                            <tr>
-                        
-                        `;
+    }
 
-                        cursor.continue();
+    function obtenerClientes(){
 
+        const abrirConexion = window.indexedDB.open('crm', 1);
+        abrirConexion.onerror = function(){
+            console.log('hubo un error');
+        };
+        abrirConexion.onsuccess = function(){
 
-                    }else{
-                        console.log('son todos los datos');
-                    }
+            DB = abrirConexion.result;
 
 
+            const objectStore = DB.transaction('crm').objectStore('crm');
+            objectStore.openCursor().onsuccess = function(e){
+
+                const cursor = e.target.result;
+
+                if(cursor){
+
+                    const {nombre, email, telefono, empresa, id} = cursor.value;
+
+                    
+                    listadoClientes.innerHTML += `
+                        <tr>
+                            <td>${nombre} -- ${email}</td>
+                            <td>${telefono}</td>
+                            <td>${empresa}</td>
+                            <td>
+                                <a href="editar-cliente.html?id=${id}">Editar</a>
+                                <a href="#" data-cliente="${id}" class="eliminar">Eliminar</a>
+                            </td>
+                        </tr>
+                    `;
+
+
+                    cursor.continue();
+
+
+                }else{
+                    console.log('son todos los registros')
+                }
 
             }
 
 
 
         }
-
-
-
 
 
     }
