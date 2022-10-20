@@ -4,10 +4,12 @@ const buscador = document.querySelector('.buscador');
 const resultado = document.querySelector('#resultado');
 const paginacionDiv = document.querySelector('#paginacion');
 
-const registrosPorPagina = 40;
+const registrosPorPaginas = 40;
 let totalPaginas;
 let iterador;
 let paginaActual = 1;
+
+
 //eventListeners
 window.onload = () => {
 
@@ -15,45 +17,52 @@ window.onload = () => {
 
 }
 
-
 //funciones
 function validarFormulario(e){
     e.preventDefault();
 
     const terminoBusqueda = document.querySelector('#termino').value;
 
-    //validamos
     if(terminoBusqueda === ''){
         mostrarAlerta('Campo Vacio');
         return;
     }
 
-    buscarImagenes();
+    buscarImagen();
 
 }
 
 
 
-function buscarImagenes(){
+function buscarImagen(){
 
     const termino = document.querySelector('#termino').value;
 
     const key = '30551190-02e0296e1956956298e1b78a3';
 
-    const url = `https://pixabay.com/api/?key=${key}&q=${termino}&per_page=${registrosPorPagina}&page=${paginaActual}`;
+    const url = `https://pixabay.com/api/?key=${key}&q=${termino}&per_page=${registrosPorPaginas}&page=${paginaActual}`;
 
     fetch(url)
         .then(respuesta => {
             return respuesta.json();
         })
         .then(datos => {
-            console.log(datos)
-            totalPaginas = calcularPaginas(datos.totalHits);
-            console.log(totalPaginas);
-            mostrarImagenes(datos.hits);
+            console.log(datos);
+            if(datos.totalHits > 0){
+                totalPaginas = calcularPaginas(datos.totalHits);
+                console.log(totalPaginas);
+                mostrarImagenes(datos.hits);
+            }else{
+                mostrarAlerta('No se encontraron Imagenes')
+            }
+           
+            
         })
 
+
 }
+
+
 
 
 
@@ -64,37 +73,38 @@ function mostrarImagenes(imagenes){
     }
 
     imagenes.forEach(imagen => {
-        
+
         const {largeImageURL, likes, previewURL} = imagen;
 
         resultado.innerHTML += `
         
-            <div class="image-pix">
+            <div class="imagen-pix">
                 <img src="${previewURL}">
-                <p>Likes: ${likes}</p>
-                <a href="${largeImageURL}" target="_blank" rel="noopener noreferrer">ver imagen</a>
+                <p>Likes ${likes}</p>
+                <a href="${largeImageURL}" target="_blank" rel="noopener noreferrer">Ver Imagen</a>
             </div>
         
         `;
 
+        
     });
 
-    //limpia el paginador previo si existe
+    //limpia si hay un paginador previo
     while(paginacionDiv.firstChild){
         paginacionDiv.removeChild(paginacionDiv.firstChild);
     }
 
-    //generamos el paginador.
-    imprimirPaginador();    
+    imprimirPaginador();
 
 }
 
-//funcion para calcular el total de paginas segun el registro total
+
+
 function calcularPaginas(total){
-    return parseInt(Math.ceil(total / registrosPorPagina));
+    return parseInt(Math.ceil(total / registrosPorPaginas));
 }
 
-//creacion de un generador para la creacion del paginador
+
 function *crearPaginador(total){
 
     for(let i = 1; i <= total; i++){
@@ -103,42 +113,45 @@ function *crearPaginador(total){
 
 }
 
-//mostramos el paginador
 function imprimirPaginador(){
+
     iterador = crearPaginador(totalPaginas);
 
     while(true){
-        
         const {value, done} = iterador.next();
 
-       if(done){
+        if(done){
             return;
-       }else{
+        }else{
+
             const boton = document.createElement('a');
             boton.href = '#';
-            boton.classList.add('siguiente', 'boton');
+            boton.classList.add('boton');
+            boton.dataset.imagen = value;
             boton.textContent = value;
-            boton.dataset.pagina = value;
 
             boton.onclick = () => {
-                
                 paginaActual = value;
 
-                buscarImagenes();
-
+                buscarImagen();
             }
 
             paginacionDiv.appendChild(boton);
-       }
+
+        }
 
     }
+
 
 }
 
 
+
+
+
 function mostrarAlerta(mensaje){
 
-    const alerta = document.querySelector('p.alerta');
+    const alerta = document.querySelector('.alerta');
 
     if(!alerta){
         const mensajeAlerta = document.createElement('p');
@@ -149,7 +162,7 @@ function mostrarAlerta(mensaje){
 
         setTimeout(() => {
             mensajeAlerta.remove();
-        }, 2500);
+        }, 3500);
     }
-    
+
 }
