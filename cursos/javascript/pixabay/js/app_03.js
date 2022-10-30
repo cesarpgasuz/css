@@ -121,6 +121,8 @@ function *crearPaginador(total){
 function imprimirPaginador(){
 
     iterador = crearPaginador(totalPaginas);
+
+    
     
     while(true){
 
