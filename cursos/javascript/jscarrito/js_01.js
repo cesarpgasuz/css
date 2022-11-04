@@ -18,8 +18,6 @@ function eventListeners(){
         console.log(articulosCarrito);
         limpiarHTML();
     });
-
-
 }
 
 
