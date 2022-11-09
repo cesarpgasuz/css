@@ -10,6 +10,25 @@
             background-color: red;
             color: white;
         }
+        .agotado{
+            display: flex;
+            width: 100%;
+            position: fixed;
+            height: auto;
+            padding: 25px 0;
+            justify-content: center;
+            align-items: center;
+            background-color: red;
+            color: white;
+            bottom: -100%;
+            left: 0;
+            transition: 0.5s bottom;
+        }
+        .agotado.show{
+            bottom: 0;
+            transition: 0.5s bottom;
+        }
+
         .mensaje__success{
             background-color: greenyellow;
             color: green;
@@ -33,10 +52,15 @@
         .restante.danger{
             background-color: rgb(223, 55, 55);
         }
+        
     </style>
 
   </head>
   <body>
+
+    <div class="agotado">
+
+    </div>
     <div class="container">
         <header>
                 <h1 class="text-center">Gasto Semanal</h1>
@@ -58,6 +82,7 @@
 
                                 <button type="submit" class="btn btn-primary">Agregar</button>
                             </form>
+                           
 
                     </div> <!--.contenido-->
                 </div> <!--.col-->
@@ -97,9 +122,9 @@
     <!-- <script src="js/app_10.js"></script> -->
     <!-- <script src="js/app_11.js"></script> -->
     <!-- <script src="js/app_12.js"></script> -->
-    <script src="js/app_13.js"></script>
-    <!-- <script src="js/app_14.js"></script>
-    <script src="js/app_15.js"></script>
+    <!-- <script src="js/app_13.js"></script> -->
+    <script src="js/app_14.js"></script>
+    <!-- <script src="js/app_15.js"></script>
     <script src="js/app_16.js"></script>
     <script src="js/app_17.js"></script>
     <script src="js/app_18.js"></script>
