@@ -172,34 +172,217 @@
 // console.log(numero5); // -20
 
 
-//operaciones con numeros
+// //operaciones con numeros
 
-const numero1 = 30;
-const numero2 = 20;
+// const numero1 = 30;
+// const numero2 = 20;
 
-let resultado;
+// let resultado;
 
-//suma
-resultado = numero1 + numero2;
-console.log(resultado); // 50
+// //suma
+// resultado = numero1 + numero2;
+// console.log(resultado); // 50
 
-//resta
-resultado = numero1 - numero2;
-console.log(resultado); // 10
+// //resta
+// resultado = numero1 - numero2;
+// console.log(resultado); // 10
 
-//multiplicacion
-resultado = numero1 * numero2;
-console.log(resultado); // 600
+// //multiplicacion
+// resultado = numero1 * numero2;
+// console.log(resultado); // 600
 
-//division
-resultado = numero1 / numero2;
-console.log(resultado); // 1.5
+// //division
+// resultado = numero1 / numero2;
+// console.log(resultado); // 1.5
 
-//modulo
-resultado = numero1 % numero2;
-console.log(resultado); // 10
-
-
+// //modulo
+// resultado = numero1 % numero2;
+// console.log(resultado); // 10
 
 
 
+
+// //Math
+ 
+// let resultado;
+
+// //PI
+// resultado = Math.PI   //3.14159265358979
+
+// //Redondear
+// resultado = Math.round(2.8); //3
+// resultado = Math.round(2.2); //2
+// resultado = Math.round(2.5); //3
+
+// // Redondear hacia arriba
+// resultado = Math.ceil(2.1); //3
+
+// // Redondear hacia abajo
+// resultado = Math.floor(2.9); //2
+
+// //Minimo
+// resultado = Math.min(3,5,1,12,); // 1
+// resultado = Math.min(3,5,12,1,-12); // -12
+
+// //Maximo
+// resultado = Math.max(3,5,1,12,); // 12
+
+// console.log(resultado)
+
+
+// //incrementos y decrementos
+
+// let puntaje = 5;
+
+// puntaje++; //5  lo aumenta depues de llamarlo otra vez
+// ++puntaje; //6
+
+// puntaje--; //5  lo disminuye depues de llamarlo otra vez
+// --puntaje; //4 
+
+
+// puntaje += 3; // 8  incrementa 3
+// puntaje += 3; // 11
+
+// puntaje -= 3; // 8 decrementa 3
+// puntaje -= 3; // 5
+
+// console.log(puntaje);
+
+
+
+// //Convertir Strings a numeros
+
+// // => parseInt (convierte a entero)
+// const numero1 = "20";
+// console.log(parseInt(numero1)); // 20
+// console.log(Number.parseInt(numero1)); //20
+
+// const numero2 = "20.8";
+// console.log(parseInt(numero2)); // 20
+
+// const numero3 = "Uno";
+// console.log(parseInt(numero3)); // NaN  (no es un numero)
+
+// const numero4 = "15etr55";
+// console.log(parseInt(numero4)); // 15 
+// console.log(Number.parseInt(numero4)); // 15 
+// //toma en cuenta todos los numero del inicio e ignora los puntos
+// //y cualquier otro caracter
+
+// const numero5 = "etr55";
+// console.log(parseInt(numero5)); // NaN  (no es un numero)
+
+// // => parseFloat (es flotante.. toma en cuenta los decimales)
+// const numero6 = "20.2";
+// console.log(parseFloat(numero6)); // 20.2
+// console.log(Number.parseFloat(numero6)); // 20.2
+
+// const numero7 = "25.5ee";
+// console.log(parseFloat(numero7)); // 25.5
+// console.log(Number.parseFloat(numero7)); // 25.5
+// //toma en cuenta todos los numero del inicio y los puntos
+// //e ignora cualquier otro caracter
+
+
+// // => Number
+// const numero8 = "65";
+// console.log(Number(numero8));  // 65
+
+// const numero9 = "65.5";
+// console.log(Number(numero9));  // 65.5
+
+// const numero10 = "65.5ddd";
+// console.log(Number(numero10));  //NaN  (no es un numero)
+
+// //la diferencia entre Number y (parseInt y parseFloat)
+// //esque number al encontrar otros caracteres mandara como nan
+// // y parse los ignora (pero despues del numero)
+
+// // => isInteger (comprueba si es entero o no)
+// console.log(Number.isInteger(numero1)) //false
+
+// const numero11 = 50;
+// console.log(Number.isInteger(numero11)) //true
+
+
+
+// //Operadores
+
+// const numero1 = 20;
+// const numero2 = "20";
+// const numero3 = 30;
+
+// // operador mayor a...
+// console.log(numero1 > numero3); // false
+// console.log(numero3 > numero1); // true
+
+// //operador menor a ...
+// console.log(numero1 < numero3); // true
+
+// //////revisa si dos numero son iguales 
+
+// // == comparacion (se fija solo en el valor)
+// console.log(numero1 == numero3) // false
+// console.log(numero1 == numero2) // true
+
+// // === comparador estricto (se fija en el valor y tipo de dato)
+// console.log(numero1 === numero2) // false
+// console.log(numero1 === parseInt(numero2)) // true (usamos parseInt para convertir)
+
+// // Diferente !=
+// const password1 = "admin";
+// const password2 = "Admin";
+
+// console.log(password1 != password2); //true (si son diferentes)
+
+// console.log(numero1 != numero2); // false (no son diferentes)
+
+// // diferente estricto !==
+// console.log(numero1 !== numero2) // true (si son diferentes)
+
+
+
+// //comparar Null y undefined
+
+// let numero;
+// console.log(numero) // undefined
+
+// let numero2 = null;
+// console.log(numero2); //null
+
+// console.log(numero == numero2); // true
+// console.log(numero === numero2); // false
+
+// // siempre hay que usar el comparador estricto
+
+
+
+// // comparar boolean
+
+// const boolean1 = true;
+// const boolean2 = false;
+// const boolean3 = 'true';
+
+// console.log(boolean1 == boolean3); //false
+// console.log(boolean1 == boolean2); //false
+
+
+// Buenas Practica Boolean
+
+////////no hacer
+const autenticado = true;
+
+if(autenticado === true){
+    console.log('si puedes entrar');
+}else{
+    console.log('no puedes entrar');
+}
+
+////// lo correcto
+if(autenticado){
+    console.log('si puedes entrar');
+}else{
+    console.log('no puedes entrar')
+}
+//dentro del if ya se da por implicito el true
