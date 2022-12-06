@@ -1,14 +1,17 @@
 const imagenes = document.querySelectorAll('.image_animation');
 
+
 const callback = (entries) => {
 
-    entries.forEach(entry => {
-        
-        if(entry.isIntersecting){
-            entry.target.classList.add('active');
-        }
+   entries.forEach(entry => {
 
-    });
+        if(entry.isIntersecting){
+
+            entry.target.classList.add('active')
+        }
+        
+
+   });
 
 }
 
