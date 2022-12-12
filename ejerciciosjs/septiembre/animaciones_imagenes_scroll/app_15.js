@@ -5,6 +5,7 @@ const callback = (entries) => {
     entries.forEach(entry => {
         
         if(entry.isIntersecting){
+            
             entry.target.classList.add('active');
         }
 
@@ -19,5 +20,5 @@ const options = {
 const observador = new IntersectionObserver(callback, options);
 
 imagenes.forEach(imagen => {
-    observador.observe(imagen);
+    observador.observe(imagen)
 })

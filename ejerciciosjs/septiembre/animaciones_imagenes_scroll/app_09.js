@@ -1,14 +1,15 @@
 const imagenes = document.querySelectorAll('.image_animation');
 
-const callback = (entries) => {
+const callback = (entries, observador) => {
 
     entries.forEach(entry => {
-        
+
         if(entry.isIntersecting){
             entry.target.classList.add('active');
         }
-
+    
     });
+
 
 }
 
