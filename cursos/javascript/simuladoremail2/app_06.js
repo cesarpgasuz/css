@@ -1,14 +1,12 @@
 
-
 document.addEventListener('DOMContentLoaded', function(){
 
+    ////variables
     const email = {
         email: '',
         asunto: '',
         mensaje: ''
     }
-
-    /// variables
     const formulario = document.querySelector('#formulario');
     const inputEmail = document.querySelector('#email');
     const inputAsunto = document.querySelector('#asunto');
@@ -17,23 +15,23 @@ document.addEventListener('DOMContentLoaded', function(){
     const btnReset = document.querySelector('#formulario button[type="reset"]');
     const spinner = document.querySelector('#spinner');
 
-
+    ///eventListeners
     inputEmail.addEventListener('blur', validar);
     inputAsunto.addEventListener('blur', validar);
     inputMensaje.addEventListener('blur', validar);
-
-    formulario.addEventListener('submit', enviarFormulario);
-
+    formulario.addEventListener('submit', enviarEmail);
     btnReset.addEventListener('click', function(e){
         e.preventDefault();
-        reiniciarFormulario();
+        resetearFormulario();
     });
 
 
+
+    /// funcioens
     function validar(e){
 
         if(e.target.value.trim() === ''){
-            mostrarError(`El campo ${e.target.id} esta vacio`, e.target.parentElement);
+            mostrarError(`EL campo ${e.target.id} esta vacio`, e.target.parentElement);
             email[e.target.name] = '';
             comprobarEmail();
             return;
@@ -46,38 +44,37 @@ document.addEventListener('DOMContentLoaded', function(){
             return;
         }
 
-        limpiarAlerta(e.target.parentElement);
+        limpiarError(e.target.parentElement);
 
         email[e.target.name] = e.target.value.trim().toLowerCase();
 
         comprobarEmail();
 
-
-
     }
 
     function mostrarError(mensaje, referencia){
 
-        limpiarAlerta(referencia);
-
+        limpiarError(referencia);
+        
         const mensajeError = document.createElement('P');
         mensajeError.classList.add('mensaje__error', 'error');
         mensajeError.textContent = mensaje;
 
         referencia.appendChild(mensajeError);
 
-
     }
 
-    function limpiarAlerta(referencia){
-        const alerta = referencia.querySelector('p.error');
-        if(alerta){
-            alerta.remove();
+    function limpiarError(referencia){
+
+        const error = referencia.querySelector('p.error');
+        if(error){
+            error.remove();
         }
+
     }
 
     function validarEmail(email){
-            
+
         const regex =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
         const resultado = regex.test(email);
         return resultado;
@@ -86,30 +83,29 @@ document.addEventListener('DOMContentLoaded', function(){
     function comprobarEmail(){
 
         if(Object.values(email).includes('')){
-            btnEnviar.disabled = true;
             btnEnviar.classList.add('opacity-50');
-            console.log('si')
+            btnEnviar.disabled = true;
             return;
-
         }
-        btnEnviar.disabled = false;
+
         btnEnviar.classList.remove('opacity-50');
-        console.log('no')
+        btnEnviar.disabled = false;
 
     }
 
 
-    function enviarFormulario(e){
+    function enviarEmail(e){
         e.preventDefault();
 
-        spinner.classList.add('flex');
         spinner.classList.remove('hidden');
+        spinner.classList.add('flex');
 
         setTimeout(() => {
+
             spinner.classList.add('hidden');
             spinner.classList.remove('flex');
 
-            reiniciarFormulario();
+            resetearFormulario();
             const mensajeEnviado = document.createElement('P');
             mensajeEnviado.classList.add('mensaje__enviado');
             mensajeEnviado.textContent = 'Mensaje Enviado Correctamente';
@@ -119,20 +115,20 @@ document.addEventListener('DOMContentLoaded', function(){
 
                 mensajeEnviado.remove();
 
-            }, 3000);
+            }, 3000)
 
-        },2500)
+        }, 2000);
 
     }
 
-    function reiniciarFormulario(){
+    function resetearFormulario(){
 
         formulario.reset();
-        
         email.email = '';
         email.asunto = '';
         email.mensaje = '';
         comprobarEmail();
+
     }
 
 

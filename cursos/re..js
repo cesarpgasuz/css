@@ -2769,30 +2769,102 @@
 
 
 
-/// Prevenir Event Bubbling con un Metodo
-// es ideal cuando vamos generando el html
+// /// Prevenir Event Bubbling con un Metodo
+// // es ideal cuando vamos generando el html
 
-const parrafo = document.createElement('p');
-parrafo.textContent = '$800 por persona';
-parrafo.classList.add('precio');
-parrafo.onclick = nuevaFuncion;
-function nuevaFuncion(){
-    console.log('desde nueva funcion');
-}
+// const parrafo = document.createElement('p');
+// parrafo.textContent = '$800 por persona';
+// parrafo.classList.add('precio');
+// parrafo.onclick = nuevaFuncion;
+// function nuevaFuncion(){
+//     console.log('desde nueva funcion');
+// }
 
 
-//si queremos pasar parametros
-parrafo.onclick = function(){
-    nuevaFuncion(1) // si quieremos pasar parametros
-}
-function nuevaFuncion(id){
-    console.log('desde nueva funcion', id);
-}
+// //si queremos pasar parametros
+// parrafo.onclick = function(){
+//     nuevaFuncion(1) // si quieremos pasar parametros
+// }
+// function nuevaFuncion(id){
+//     console.log('desde nueva funcion', id);
+// }
 
-// tambien se puede utilizar en un arrow function
-parrafo.onclick = () => {
-    nuevaFuncion(1)
-}
-function nuevaFuncion(id){
-    console.log('desde nueva funcion', id);
-}
+// // tambien se puede utilizar en un arrow function
+// parrafo.onclick = () => {
+//     nuevaFuncion(1)
+// }
+// function nuevaFuncion(id){
+//     console.log('desde nueva funcion', id);
+// }
+
+
+// /////////// Local Storage 
+// /// solo almacena strings
+// // .setItem (almacena)
+
+// ///                   llave     valor
+// localStorage.setItem('nombre', 'cesar');
+// localStorage.setItem('nombre2', 1) 
+// // se conservan los datos aunque se cierre el navegador
+
+// sessionStorage.setItem('nombre', 'pablo');
+// // los datos permanecen solamente en la sesion actual
+// // si se cierra el navegador se borra la informacion
+
+// /// almacenar un objecto en local storage
+// const producto = {
+//     nombre: 'Monitor 24 Pulgadas',
+//     precio: 300
+// }
+
+// const productoString = JSON.stringify(producto);
+// localStorage.setItem('producto', productoString);
+
+// // almacenar un arreglo
+// const meses = ['Enero', 'Febrero', 'Marzo'];
+// const mesesString = JSON.stringify(meses);
+// localStorage.setItem('meses', mesesString);
+
+// // se puede aplicar directamente
+// localStorage.setItem('meses', JSON.stringify(meses));
+
+
+
+// /////// Local Storage
+// /// .getItem (para obtener los datos)
+
+// const nombre = localStorage.getItem('nombre');
+// console.log(nombre) // cesar
+
+// /// convertir un string a un objeto o arreglo (aplica solamente
+// // si el string tiene la forma de objeto o arreglo )
+// // JSON.parse
+// const productoJSON = localStorage.getItem('producto');
+// console.log(JSON.parse(productoJSON));
+// // {nombre: 'Monitor 24 Pulgadas', precio: 300}
+// //   nombre: "Monitor 24 Pulgadas"
+// //   precio: 300
+
+// const meses = localStorage.getItem('meses');
+// console.log(JSON.parse(meses));
+// // (3) ['Enero', 'Febrero', 'Marzo']
+
+// // 2da opcion
+// const meses = localStorage.getItem('meses');
+// const mesesArray = JSON.parse('meses');
+// console.log(mesesArray);
+
+// //// Local Storage
+// /// .removeItem (para eliminar)
+
+// localStorage.removeItem('nombre');
+
+// // actualizar un registro
+// const mesesArray = JSON.parse(localStorage.getItem('meses'));
+// console.log(mesesArray);
+// mesesArray.push('Nuevo Mes');
+// console.log(mesesArray);
+// localStorage.setItem('meses', JSON.stringify(mesesArray));
+
+// // para limpiar todo el local storage
+// localStorage.clear();
