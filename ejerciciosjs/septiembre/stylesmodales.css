@@ -11,7 +11,7 @@
 
         body.dark{
             background-color: #1a1919;
-             ransition: all 0.5s ease;
+            transition: all 0.5s ease;
              --color-primary: #262626;
         }
         .titulo{
