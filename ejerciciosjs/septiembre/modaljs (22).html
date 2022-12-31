@@ -70,7 +70,7 @@
 <button data-open="modal3">modal 3</button>
 <button data-open="modal4">modal 4</button>
 
-<div id="modal1" class="modal2">modal 2 <button data-close>X</button></div>
+<div id="modal1" class="modal2">modal 1 <button data-close>X</button></div>
 <div id="modal2" class="modal2">modal 2 <button data-close>X</button></div>
 <div id="modal3" class="modal2">modal 3 <button data-close>X</button></div>
 <div id="modal4" class="modal2">modal 4 <button data-close>X</button></div>
@@ -83,7 +83,77 @@
 
 
 <script>
+   ////
+   const openModal = document.querySelector('.open__modal');
+   const closeModal = document.querySelector('.close__modal');
+   const modal = document.querySelector('.modal');
+
+   openModal.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.add('active');
+   });
+   closeModal.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.remove('active');
+   });
+
+   /////////
+   const btnFooter = document.querySelector('.btnFooter');
+   const footer = document.querySelector('.footer');
+
+   btnFooter.addEventListener('click', abrirCerrarFooter);
+
+   function abrirCerrarFooter(){
+        if(footer.classList.contains('active')){
+            footer.classList.remove('active');
+            this.textContent = 'abrir footer';
+        }else{
+            footer.classList.add('active');
+            this.textContent = 'cerrar footer';
+        }
+   }
+
+   ////////////
+   const openModal2 = document.querySelectorAll('[data-open]');
+   const closeModal2 = document.querySelectorAll('[data-close]');
+
+   for(const mod of openModal2){
+        mod.addEventListener('click', () => {
+            const modalId = mod.dataset.open;
+            document.getElementById(modalId).classList.add('active');
+        });
+   }
+
+   for(const mod of closeModal2){
+        mod.addEventListener('click', () => {
+            mod.parentElement.classList.remove('active');
+        });
+   }
    
+   /////////////
+   const btnSwitch = document.querySelector('.switch');
+
+   btnSwitch.addEventListener('click', function(){
+        document.body.classList.toggle('dark');
+        this.classList.toggle('active');
+
+
+        if(document.body.classList.contains('dark')){
+            localStorage.setItem('dark-mode', true);
+        }else{
+            localStorage.setItem('dark-mode', false);
+        }
+
+   });
+
+   if(localStorage.getItem('dark-mode') === 'true'){
+        document.body.classList.add('dark');
+        btnSwitch.classList.add('active');
+   }else{
+        document.body.classList.remove('dark');
+        btnSwitch.classList.remove('active');
+   }
+
 
 
 </script>
