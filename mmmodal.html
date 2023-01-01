@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>modalsss</title>
+
+	<style>
+		#modal{
+			display: none;
+			position: fixed;
+			z-index: 1;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: rgba(0, 0, 0,0.4);
+		}
+		.modal-content{
+			background-color: #fefefe;
+			margin: 15% auto;
+			padding: 20px;
+			border: 1px solid #888;
+			width: 80%;
+		}
+		.close-btn{
+			color: #aaa;
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
+		}
+		.close-btn:hover,
+		.close-btn:focus{
+			color: black;
+
+		}
+
+	</style>
+
+</head>
+<body>
+
+	<button id="openModalBtn">Abrir ventana modal</button>
+
+	<div id="modal">
+		<div class="modal-content">
+			<span class="close-btn">&times;</span>
+			<h3>Titulo de la ventana modal</h3>
+			<p>Contenido de la ventana modal</p>
+		</div>
+	</div>
+
+
+
+
+	<script>
+		
+		const modal = document.getElementById("modal");
+		const openModalBtn = document.getElementById("openModalBtn");
+
+		const closeBtn = document.getElementsByClassName("close-btn")[0];
+
+		openModalBtn.addEventListener("click", function(){
+			modal.style.display = "block";
+		});
+
+		closeBtn.addEventListener("click", function(){
+			modal.style.display = "none";
+		});
+
+		window.addEventListener("click", function(e){
+			if(e.target == modal){
+				modal.style.display = "none";
+			}
+		});
+
+
+	</script>
+
+
+</body>
+</html>
