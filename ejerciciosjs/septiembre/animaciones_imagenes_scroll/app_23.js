@@ -2,22 +2,22 @@ const imagenes = document.querySelectorAll('.image_animation');
 
 const callback = (entries) => {
 
-	entries.forEach(entry => {
+    entries.forEach(entry => {
 
-		if(entry.isIntersecting){
-			entry.target.classList.add('active');
-		}
-
-	});
+        if(entry.isIntersecting){
+            entry.target.classList.add('active');
+        }
+        
+    });
 
 }
 
 const options = {
-	threshold: 1
+    threshold: 1
 }
 
 const observador = new IntersectionObserver(callback, options);
 
 imagenes.forEach(imagen => {
-	observador.observe(imagen);
+    observador.observe(imagen);
 })
