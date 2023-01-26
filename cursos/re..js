@@ -2868,3 +2868,884 @@
 
 // // para limpiar todo el local storage
 // localStorage.clear();
+
+
+
+// ///// Fechas
+
+// const diaHoy = new Date();
+
+// let valor;
+// valor = diaHoy;
+
+// console.log(valor); 
+// // Mon Jan 02 2023 16:47:18 GMT-0600 (hora estándar central)
+
+// valor = diaHoy.getFullYear();
+// console.log(valor);  // 2023 (nos muestra el año en el que estamos)
+
+// valor = diaHoy.getMonth();
+// console.log(valor);  // 0  (los meses comienzan en cero)
+
+// valor = diaHoy.getMinutes();
+// console.log(valor);  // 54  (en que minuto estamos)
+
+// valor = diaHoy.getHours();
+// console.log(valor);  // 16 (en que hora estamos)
+
+// valor = diaHoy.getTime();
+// console.log(valor); 
+// // 1672700424176 (milisegundos que han trascurrido del 1 de enero de
+// // 1970 asta la fecha, van cambiando)
+
+// // get sirve para extraer
+
+// // set sirve para modificar 
+// valor = diaHoy.setFullYear(2010);
+// console.log(diaHoy); // Sat Jan 02 2010 17:04:30 GMT-0600 (hora estándar central)
+
+// Date.now()  // no necesita instanciarse
+// new Date(); // si necesita instanciarse
+
+// ////// Moment
+
+// const diaHoy = new Date();
+
+// moment.locale('es-mx')
+// console.log( moment().format('MMMM Do YYYY, h:mm:ss a') );
+// // enero 2º 2023, 5:28:55 pm
+
+// console.log(moment().format('LLLL', diaHoy));
+// // lunes, 2 de enero de 2023 17:29
+
+
+// ///////// Classes en JavaScript
+// // se utiliza mas declaration
+
+
+// //>> class declaration
+// class Cliente{
+//     constructor(nombre, saldo){
+//         this.nombre = nombre;
+//         this.saldo = saldo;
+//     }
+// }
+
+// // instanciamos
+// const cesar = new Cliente('Cesar', 400);
+// console.log(cesar);
+// // Cliente {nombre: 'Cesar', saldo: 400}
+
+
+
+// //>> class expression
+// const Cliente2 = class{
+//     constructor(nombre, saldo){
+//         this.nombre = nombre;
+//         this.saldo = saldo;
+//     }
+// }
+
+// // instanciamos
+// const cesar2 = new Cliente2('Cesar', 400);
+// console.log(cesar2);
+// // Cliente2 {nombre: 'Cesar', saldo: 400}
+
+
+
+// ///////// Metodos y Metodos estaticos en las Classes
+// // (funciones)
+
+// //>> class declaration
+// class Cliente{
+//     constructor(nombre, saldo){
+//         this.nombre = nombre;
+//         this.saldo = saldo;
+//     }
+//     mostrarInformacion(){
+//         return `Cliente: ${this.nombre}, tu saldo es de ${this.saldo}`;
+//     }
+//     static bienvenida(){
+//         return `Bienvenido al cajero`;
+//     }
+// }
+
+// // instanciamos
+// const cesar = new Cliente('Cesar', 400);
+// console.log(cesar.mostrarInformacion()); // Cliente: Cesar, tu saldo es de 400
+// console.log(cesar);  // Cliente {nombre: 'Cesar', saldo: 400}
+
+// // static no requiere instancia
+// console.log(Cliente.bienvenida()); // Bienvenido al cajero
+// console.log(cesar.bienvenida()); // Uncaught TypeError: cesar.bienvenida is not a function
+
+
+// //>> class expression
+// const Cliente2 = class{
+//     constructor(nombre, saldo){
+//         this.nombre = nombre;
+//         this.saldo = saldo;
+//     }
+//     mostrarInformacion(){
+//         return `Cliente: ${this.nombre}, tu saldo es de ${this.saldo}`;
+//     }
+// }
+
+// // instanciamos
+// const cesar2 = new Cliente2('Cesar', 400);
+// console.log(cesar2.mostrarInformacion()); // Cliente: Cesar, tu saldo es de 400
+// console.log(cesar2);  // Cliente2 {nombre: 'Cesar', saldo: 400}
+
+
+// //////// Heredar una clase
+
+// class Cliente{
+//     constructor(nombre, saldo){
+//         this.nombre = nombre;
+//         this.saldo = saldo;
+//     }
+//     mostrarInformacion(){
+//         return `Cliente: ${this.nombre}, tu saldo es de ${this.saldo}`;
+//     }
+//     static bienvenida(){
+//         return `Bienvenido al cajero`;
+//     }
+// }
+
+// // Herencia
+// class Empresa extends Cliente{
+    
+// }
+
+// const cesar = new Cliente('Cesar', 400);
+// const empresa = new Empresa('Dyxer Team', 500);
+// console.log(empresa.mostrarInformacion()); // Cliente: Dyxer Team, tu saldo es de 500
+
+
+// class Empresa2 extends Cliente{
+//     constructor(nombre, saldo, telefono, categoria){
+//         super(nombre, saldo); // utilizamos super para buscar en el constructor padre
+//         this.telefono = telefono;
+//         this.categoria = categoria;
+//     }
+//     static bienvenida(){ // reescribe el metodo
+//         return `Bienvenido al cajero de empresa`;
+//     }
+// }
+
+
+// const empresa2 = new Empresa2('LALA', 600, 41910012525, 'Aprendizaje en Línea');
+// console.log(empresa2.mostrarInformacion()); // Cliente: LALA, tu saldo es de 600
+
+// console.log(Empresa2.bienvenida()); // Bienvenido al cajero de empresa
+
+
+
+
+/////// Propiedades Privadas en JavaScript
+// // (no funciona en todos los navegadores)
+// class Cliente{
+
+//     #nombre;
+
+//     constructor(nombre, saldo){
+//         this.#nombre = nombre;
+//         this.saldo = saldo;
+//     }
+//     mostrarInformacion(){
+//         return `Cliente: ${this.#nombre}, tu saldo es de ${this.saldo}`;
+//     }
+//     static bienvenida(){
+//         return `Bienvenido al cajero`;
+//     }
+// }
+
+// const cesar = new Cliente('cesar', 200);
+// console.log(cesar.mostrarInformacion()); // Cliente: cesar, tu saldo es de 200
+// console.log(cesar.#nombre); 
+// // Uncaught SyntaxError: Private field '#nombre' 
+//  must be declared in an enclosing class
+
+// /////// sets
+// // permite crear una lista de valores sin duplicados
+// // solo son valores, (no son llave y valor)
+
+// const carrito = new Set();
+
+// //agregar elementos .add
+// carrito.add('Camisa');
+// carrito.add('Disco #1');
+// carrito.add('Disco #2');
+// carrito.add('Camisa');
+// carrito.add('camisa'); // Set(4) {'Camisa', 'Disco #1', 'Disco #2', 'camisa'}
+
+// console.log(carrito); // Set(3) {'Camisa', 'Disco #1', 'Disco #2'}
+
+// // los valores duplicados no se agregan, minusculas y mayusculas los toman
+// // como diferente
+
+// //para ver cuantos elementos hay en un arreglo se utiliza .size en vez de length
+// console.log(carrito.size);  // 4
+
+// // si un elemento existe .has
+// console.log(carrito.has('Camisa')); // true
+
+// // eliminar un elemento
+// carrito.delete('Disco #2');
+// //eliminar todos los elementos del set
+// carrito.clear();
+
+// //los sets son iterables
+// carrito.forEach(producto => {
+//     console.log(producto);
+// })
+
+// carrito.forEach((producto, index, pertenece) => {
+//     console.log(producto);  // Camisa Disco #1 Disco #2 camisa
+//     console.log(index);     // Camisa Disco #1 Disco #2 camisa
+//     console.log(pertenece); // Set(4) {'Camisa', 'Disco #1', 'Disco #2', 'camisa'}
+//                             // Set(4) {'Camisa', 'Disco #1', 'Disco #2', 'camisa'}
+//                             // Set(4) {'Camisa', 'Disco #1', 'Disco #2', 'camisa'}
+//                             // Set(4) {'Camisa', 'Disco #1', 'Disco #2', 'camisa'}
+// });
+
+// /// uso (eliminar duplicados del siguiente arreglo)
+// const numeros = [10,20,30,40,50,10,20];
+
+// const noDuplicados = new Set(numeros);
+// console.log(noDuplicados); // Set(5) {10, 20, 30, 40, 50}
+
+// ///// WeakSet
+// // en el set le podemos pasar cualquier valor (objetos, numeros, booleans, etc..)
+// // en el weakset solamente le podemos pasar objetos
+// const weakset = new WeakSet();
+
+// const cliente = {
+//     nombre: 'cesar',
+//     saldo: 100
+// }
+
+// // para agregar .add
+// weakset.add(cliente);
+
+// //para verificiar si existe .has
+// console.log(weakset.has(cliente)); // true
+// console.log(weakset.has(cliente2)); // Uncaught ReferenceError: cliente2 is not defined
+
+// // para eliminar
+// weakset.delete(cliente); // WeakSet {}
+// console.log(weakset);
+
+// // .size no existe en un weakset
+// // los wekset no son iterables
+
+
+/// Maps
+// son listas ordenadas en llave y valor 
+// (llave y valor pueden ser cualquier tipo de dato)
+
+// const cliente = new Map();
+
+// // para agregar .set
+// cliente.set('nombre', 'cesar');
+// cliente.set('tipo', 'Premium');
+// cliente.set('saldo', 1000);
+
+// console.log(cliente); 
+// // Map(3) {'nombre' => 'cesar', 'tipo' => 'Premium', 'saldo' => 1000}
+
+// // tamaño .size
+// console.log(cliente.size); // 3
+// // para saber si un valor existe
+// console.log(cliente.has('nombre'));  // true
+// console.log(cliente.has('nombre2')); // false
+// //para obtener un valor
+// console.log(cliente.get('nombre'));  // cesar
+// // para eliminar
+// cliente.delete('saldo');
+// // para limpiar, elimina todo el map
+// cliente.clear();
+
+// // tambien se puede iniciar un map con valores
+// const paciente = new Map([['nombre', 'paciente'], ['cuarto', 'disponible']])
+
+// paciente.set('dr', 'Dr. Asignado');
+// paciente.set('nombre', 'Antonio');  // si escribimos la misma llave sobrescribe
+//                                     // el valor
+
+// console.log(paciente);
+
+// // los map son iterables
+// paciente.forEach(datos => {
+//     console.log(datos); //Antonio disponible Dr. Asignado
+// })
+
+// // index nos reporta la llave
+// paciente.forEach((datos, index) => {
+//     console.log(index); //nombre cuarto dr
+// })
+
+
+// //// WeakMaps
+// // sirven para mantener una serie de datos privados
+// // llevan llave y valor
+
+// const producto = {
+//     idProducto: 10
+// }
+
+// const weakmap = new WeakMap();
+// // para agregar se utiliza .set
+// weakmap.set(producto, 'Monitor');
+// // para comprobar si exite un valor
+// console.log(weakmap.has(producto)); // true
+// // para extraer
+// console.log(weakmap.get(producto)); // Monitor
+
+// // no se pueden iterar
+// // no se puede conocer la extension
+
+// // para eliminar
+// weakmap.delete(producto);
+
+// // solo acepta objetos
+
+
+// /// Symbols
+// // sirven para crear una propiedad unica
+// // ningun symbol es igual
+
+// const sym = Symbol();
+// const sym2 = Symbol();
+
+// if(sym === sym2){
+//     console.log('son iguales');
+// }else{
+//     console.log('son diferentes')
+// }
+
+// // son diferentes
+
+// //////
+// const nombre = Symbol();
+// const apellido = Symbol();
+
+// const persona = {}
+
+// //agregar nombre y apellido como llabes del objeto
+// persona[nombre] = 'cesar';
+// persona[apellido] = 'garcia';
+// persona.tipoCliente = 'premium';
+// persona.saldo = 500;
+
+// console.log(persona);
+// // {tipoCliente: 'premium', saldo: 500, Symbol(): 'cesar', Symbol(): 'garcia'}
+// // saldo: 500
+// // tipoCliente: "premium"
+// // Symbol(): "cesar"
+// // Symbol(): "garcia"
+
+// console.log(persona[nombre]);  // cesar
+
+// // las propiedades que utilizan un symbol no son iterables
+// for(let i in persona){
+//     console.log(i); // tipoCliente saldo
+// }
+
+// // definir una descripcion del symbol
+// const nombreCliente = Symbol('Nombre del cliente');
+// const cliente = {};
+
+// cliente[nombreCliente] = 'pablo';
+
+// console.log(cliente);  // {Symbol(Nombre del cliente): 'pablo'}
+// console.log(cliente[nombreCliente]); // pablo
+
+
+// //// ITERADORES
+
+// // crear un iterador
+
+// function creatIterador(carrito){
+
+//     let i = 0;
+
+//     return{
+//         siguiente: () => {
+//             const fin = (i >= carrito.length);
+//             const valor = !fin ? carrito[i++] : undefined;
+
+//             return {
+//                 fin,
+//                 valor
+//             }
+//         }
+//     }
+
+// }
+
+// const carrito = ['Producto 1', 'Producto 2', 'Producto 3'];
+
+// const recorrerCarrito = creatIterador(carrito);
+
+// console.log(recorrerCarrito.siguiente());
+// console.log(recorrerCarrito.siguiente());
+// console.log(recorrerCarrito.siguiente());
+// console.log(recorrerCarrito.siguiente());
+
+/// GENERADORES
+
+// // un generador es una funcion que retorna un iterador
+// // un generador lleva un asterisco al inicio
+// // yield son los valores que se pueden iterar
+
+// function *crearGenerador(){
+//     yield 1;
+//     yield 'cesar';
+//     yield 3+3;
+//     yield true;
+// }
+
+// const iterador = crearGenerador();
+
+// console.log(iterador);
+// console.log(iterador.next().value);
+// console.log(iterador.next());
+// console.log(iterador.next().value);
+// console.log(iterador.next());
+// console.log(iterador.next());
+// console.log(iterador);
+
+// // generador para carrito de compras
+
+// function *generadorCarrito(carrito){
+//     for(let i = 0; i < carrito.length; i++){
+//         yield carrito[i];
+//     }
+// }
+
+// const carrito = ['Producto 1', 'Producto 2', 'Producto 3'];
+
+// const iterador = generadorCarrito(carrito);
+
+// console.log(iterador.next());
+// console.log(iterador.next());
+// console.log(iterador.next());
+// console.log(iterador.next());
+
+
+// /// iteradorees en JavaScript
+
+// const ciudades = ['Londres', 'New York', 'Madrid', 'Paris'];
+// const ordenes = new Set([123, 231, 131, 102]);
+// const datos = new Map();
+
+// datos.set('nombre', 'cesar');
+// datos.set('profesion', 'desarrollador web');
+
+// /// entries iterator (retorna llave y valor)
+// for(let entry of ciudades.entries()){
+//     console.log(entry);
+// }
+
+// for(let entry of ordenes.entries()){
+//     console.log(entry);
+// }
+
+// for(let entry of datos.entries()){
+//     console.log(entry);
+// }
+
+// // values iterator (retorna valor)
+// for(let value of ciudades.values()){
+//     console.log(value);
+// }
+
+// for(let value of ordenes.values()){
+//     console.log(value);
+// }
+
+// for(let value of datos.values()){
+//     console.log(value);
+// }
+
+// // keys iterator (retorna llaves)
+// for(let keys of ciudades.keys()){
+//     console.log(keys);
+// }
+
+// for(let keys of ordenes.keys()){
+//     console.log(keys);
+// }
+
+// for(let keys of datos.keys()){
+//     console.log(keys);
+// }
+
+// //Default
+// for(let ciudad of ciudades){
+//     console.log(ciudad);
+// }
+
+// for(let orden of ordenes){
+//     console.log(orden);
+// }
+
+// for(let dato of datos){
+//     console.log(dato);
+// }
+
+
+
+///// Modulos
+
+// (function(){
+
+// //     console.log('desde un iffe');
+
+// // })();
+
+// <script src="app.js" type="module"></script>
+
+// //// app.js
+// export const nombreCliente = 'cesar';
+// export const ahorro = 200;
+// //// exportar una funcion
+// export function mostrarInformacion(nombre, ahorro){
+//     return `Cliente: ${nombre} - Ahorro: ${ahorro}`;
+// }
+// export function tieneSaldo(ahorro){
+//     if(ahorro > 0){
+//         console.log('si tiene saldo');
+//     }else{
+//         console.log('no tiene saldo');
+//     }
+// }
+// // exportar una clase
+// export class Cliente{
+//     constructor(nombre, ahorro){
+//         this.nombre = nombre;
+//         this.ahorro = ahorro;
+//     }
+//     mostrarInformacion(){
+//         return `Cliente: ${this.nombre} - Ahorro: ${this.ahorro}`;
+//     }
+// }
+
+// export default function nuevaFuncion(){
+//     console.log('este es el export default');
+// }
+
+
+// //// cliente.js
+// import nuevaFuncion, {nombreCliente, ahorro, mostrarInformacion, tieneSaldo, Cliente} from './cliente.js';
+// import {Empresa} from './empresa.js';
+
+// console.log(nombreCliente);
+// console.log(ahorro);
+// console.log(mostrarInformacion(nombreCliente, ahorro));
+
+// tieneSaldo(ahorro);
+
+// const cliente = new Cliente(nombreCliente, ahorro);
+
+// console.log(cliente);
+// confirm.log(cliente.mostrarInformacion());
+
+// // importar empresa
+// const empresa = new Empresa('Dyx', 100, 'Online');
+// console.log(empresa);
+
+// // export default (solamente puede haber un export default por archivo)
+// nuevaFuncion();
+
+
+
+// // empresa.js
+// import {Cliente} from './cliente.js';
+
+// export class Empresa extends Cliente{
+//     constructor(nombre, ahorro, categoria){
+//         super(nombre, ahorro);
+//         this.categoria = categoria;
+//     }
+// }
+
+
+
+// ///// IndexedDB
+
+// //
+// document.addEventListener('DOMContentLoaded', () => {
+//     crmDB();
+
+//     setTimeout(() => {
+//         crearCliente();
+//     }, 5000);
+
+
+// });
+
+// function crmDB(){
+//     //crear base de datos version 1.0
+//     // crm es el nombre de la base de datos (colocarlo como string)
+//     let crmDB = window.indexedDB.open('crm', 1); 
+
+//     // si hay un error
+//     crmDB.onerror = function(){
+//         console.log('hubo un error a la hora de crear la DB');
+//     }
+
+//     //si se creo bien
+//     crmDB.onsuccess = function(){
+//         console.log('base de datos creada');
+//         DB = crmDB.result;
+//     }
+
+//     //configuracion de la base de datos
+//     crmDB.onupgradeneeded = function(e){
+//         console.log('este metodo solo se ejecuta una vez');
+//         console.log(e.target.result); // resultado del evento onupgradeneeded
+//         const db = e.target.result;
+
+//         // object store permite crear las columnas de la base de datos
+//         const objectStore = db.createObjectStore('crm', {
+//             keyPath: 'crm',
+//             autoIncrement: true
+//         });
+
+//         //definir las columnas
+//         objectStore.createIndex('nombre', 'nombre', {unique: false});
+//         objectStore.createIndex('email', 'email', {unique: true});
+//         objectStore.createIndex('telefono', 'telefono', {unique: false});
+
+//         console.log('columnas creadas');
+//     }
+// }
+
+// let DB;
+// function crearCliente(){
+
+//     let transaction = DB.transaction(['crm'], 'readwrite');
+
+//     transaction.oncomplete = function(){
+//         console.log('transaccion completada');
+//     }
+//     transaction.onerror = function(){
+//         console.log('hubo un error en la transaccion');
+//     }
+
+//     const objecStore = transaction.objectStore('crm');
+
+//     const nuevoCliente = {
+//         telefono: 45454,
+//         nombre: 'cesar',
+//         email: 'correo@correo.com'
+//     }
+
+//     const peticion = objecStore.add(nuevoCliente);
+//     console.log(peticion);
+
+// }
+
+
+// /// Ejemplo de Callbacks
+
+// const paises = ['Francia', 'España', 'Portugal', 'Australia', 'Inglaterra'];
+
+// function nuevoPais(pais, callback){
+//     setTimeout(() => {
+//             paises.push(pais);
+//             callback(); // Francia España Portugal Australia Inglaterra Alemania
+//     }, 2000);
+// }
+
+
+// function mostrarPaises(){
+//     setTimeout(() => {
+//         paises.forEach(pais => {
+//             console.log(pais); // Francia España Portugal Australia Inglaterra
+//         });
+//     }, 1000);
+// }
+
+// mostrarPaises();
+
+// nuevoPais('Alemania', mostrarPaises); 
+
+
+//// Promises
+//palabras reservadas (resolve, )
+// >  resolve se ejecuta cuando se cumple el promise
+// >  reject cuando hay un error
+
+// const aplicarDescuento = new Promise((resolve, reject) => {
+
+//     const descuento = true;
+
+//     if(descuento){
+//         resolve('Descuento Aplicado');
+//     }else{
+//         reject('NO se pudo aplicar el descuento');
+//     }
+
+
+// });
+
+// // then (y entonces)
+// aplicarDescuento
+//     .then(resultado => {
+//         console.log(resultado); // Descuento Aplicado
+//         //tambien se pueden ejecutar funciones
+//         descuento(resultado);
+//     })
+//     .catch(error => {
+//         console.log(error);  // NO se pudo aplicar el descuento
+//     })
+
+
+// // console.log(aplicarDescuento);
+
+// // hay 3 valores posibles
+// // fulfilled - El promise se cumplio
+// // rejected - El promise no se cumplio
+// // pending - No se ha cumplido y tampoco fue rechazado
+
+// function descuento(mensaje){
+//     console.log(mensaje); // Descuento Aplicado
+// }
+
+
+// const paises = [];
+
+// // const nuevoPais = () => {
+// //     new Promise
+// // }
+
+// const nuevoPais = pais => new Promise(resolve => {
+//     setTimeout(() => {
+//         paises.push(pais);
+//         resolve(`Agregado: ${pais}`); 
+//     }, 3000);
+// })
+
+// nuevoPais('Alemania')
+//     .then(resultado => {  //resultado es lo que se pasa de resolve
+//         console.log(resultado); // Agregado: Alemania
+//         console.log(paises);    // ['Alemania']
+//         return nuevoPais('Francia'); // return para volver a llamar 
+//                                         // el promise
+//     })
+//     .then(resultado => {
+//         console.log(resultado); // Agregado: Francia
+//         console.log(paises);    // (2) ['Alemania', 'Francia']
+//         return nuevoPais('Inglaterra');
+//     })
+//     .then(resultado => {
+//         console.log(resultado); // Agregado: Inglaterra
+//         console.log(paises);    // (3) ['Alemania', 'Francia', 'Inglaterra']
+//     })
+
+
+//// APIS NATIVAS
+
+// //notificaciones
+// const notificacionBtn = document.querySelector('#notificar');
+
+// notificacionBtn.addEventListener('click', () => {
+//     Notification
+//         .requestPermission()
+//         .then(resultado => {
+//             console.log(`El resultado es`, resultado);
+//         })
+// });
+
+// const verNotificacion = document.querySelector('#verNotificacion');
+
+// verNotificacion.addEventListener('click', () => {
+//     if(Notification.permission === 'granted'){
+//         // new Notification('Esta es la Notificacion', {
+//         //     icon: 'image.jpg',
+//         //     body: 'Aprendiendo APIS'
+//         // });
+
+//         //abrir una url al dar click en la notifiacion
+//         const notifiacion = new Notification('Esta es la Notificacion', {
+//             icon: 'image.jpg',
+//             body: 'Aprendiendo APIS'
+//         });
+
+//         notifiacion.onclick = function(){
+//             window.open('https://cesarpgasuz.xyz'); 
+//             // open es para abrir una url
+//         }
+//     }
+// });
+
+//// APIS NATIVAS
+
+// // Intersection Observer
+
+// document.addEventListener('DOMContentLoaded', () => {
+
+//     const observer = new IntersectionObserver(entries => {
+//         console.log(entries[0]);
+//         if(entries[0].isIntersecting){
+//             console.log('ya esta visible');
+//         }
+
+//     });
+
+//     observer.observe(document.querySelector('.premium'));
+//     // observe se encarga de todo
+// });
+
+// //// APIS NATIVAS
+
+// // detectar si hay internet
+
+// window.addEventListener('online', actualizarEstado);
+// window.addEventListener('offline', actualizarEstado);
+
+// function actualizarEstado(){
+//     if(navigator.onLine){
+//         console.log('estas conectado');
+//     }else{
+//         console.log('no estas conectado');
+//     }
+// }
+
+
+// // //// APIS NATIVAS
+
+// // ejecutar pantalla completa
+
+// const abrirBtn = document.querySelector('#abrir-pantalla-completa');
+// const salirBtn = document.querySelector('#salir-pantalla-completa');
+
+// abrirBtn.addEventListener('click', pantallaCompleta);
+// salirBtn.addEventListener('click', cerrarPantallaCompleta);
+
+// function pantallaCompleta(){
+//     document.documentElement.requestFullscreen();
+// }
+
+// function cerrarPantallaCompleta(){
+//     document.exitFullscreen();
+// }
+
+// // // //// APIS NATIVAS
+
+// // visibilityState (detectar cuando estamos viendo una pagina)
+
+// document.addEventListener('visibilitychange', () => {
+//     console.log(document.visibilityState);
+//     if(document.visibilityState === 'visible'){
+//         console.log('Ejecutar la funcion para reproducir el video..')
+//     }else{
+//         console.log('pausando el video...')
+//     }
+// })
+
+
+//// F
