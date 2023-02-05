@@ -251,6 +251,4 @@ function iniciarApp(){
 }
 
 
-
-
 document.addEventListener('DOMContentLoaded', iniciarApp);

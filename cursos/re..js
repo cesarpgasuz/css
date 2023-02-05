@@ -3749,3 +3749,616 @@
 
 
 //// F
+
+
+// ////// try catch
+
+// console.log(1 + 1);  //  2
+
+// autenticarUsuario(); // ReferenceError: autenticarUsuario is not defined
+
+// console.log(2 + 2);  // no se ejecuta el console log
+
+
+// // el try catch ayuda a que la aplicacion se ejecute aunque
+// // una parte del codigo tengo un error
+
+// console.log(1 + 1);  //  2
+
+// try{
+//     autenticarUsuario();
+// }catch (error){
+//     console.log(error) // ReferenceError: autenticarUsuario is not defined
+// }
+
+// console.log(2 + 2);  // 4
+
+
+// // ejemplo async await y que es lo que hace (function declaration)
+
+// function descargarClientes(){
+
+//     return new Promise((resolve, reject) => {
+//         const error = false;
+
+//         setTimeout(() => {
+//             if(!error){
+//                 resolve('El listado de clientes se descargo');
+//             }else{
+//                 reject('Error en la conexion');
+//             }
+//         }, 3000);
+//     })
+// }
+
+// // async tiene que ir en la funcion padre
+// // await donde queramos bloquear el codigo
+// async function ejecutar(){
+//     try{
+//         console.log(1 + 1); // 2
+//         const respuesta = await descargarClientes();
+//         // await detiene la ejecucion del codigo asta que se
+//         // resuelva el promise
+//         // respuesta es el resolve
+
+//         console.log(2 + 2); // 4
+//         console.log(respuesta); // El listado de clientes se descargo
+//     }catch(error){
+//         // el reject se lee en el catch
+//         console.log(error);
+//     }
+// }
+
+// ejecutar();
+
+
+
+// // ejemplo async await y que es lo que hace (function expression)
+
+// function descargarClientes(){
+
+//     return new Promise((resolve, reject) => {
+//         const error = false;
+
+//         setTimeout(() => {
+//             if(!error){
+//                 resolve('El listado de clientes se descargo');
+//             }else{
+//                 reject('Error en la conexion');
+//             }
+//         }, 3000);
+//     })
+// }
+
+// // async tiene que ir en la funcion padre
+// // await donde queramos bloquear el codigo
+// const ejecutar = async () =>{
+//     try{
+//         console.log(1 + 1); // 2
+//         const respuesta = await descargarClientes();
+//         // await detiene la ejecucion del codigo asta que se
+//         // resuelva el promise
+//         // respuesta es el resolve
+
+//         console.log(2 + 2); // 4
+//         console.log(respuesta); // El listado de clientes se descargo
+//     }catch(error){
+//         // el reject se lee en el catch
+//         console.log(error);
+//     }
+// }
+
+// ejecutar();
+
+// // multiples awaits
+
+// function descargarNuevosClientes(){
+//     return new Promise(resolve => {
+//         console.log('Descargando clientes...');
+
+//         setTimeout(() => {
+//             resolve('Los clientes fueron descargados');
+//         }, 5000);
+//     })
+// }
+
+// function descargarNuevosPedidos(){
+//     return new Promise(resolve => {
+//         console.log('Descargando pedidos...');
+
+//         setTimeout(() => {
+//             resolve('Los pedidos fueron descargados');
+//         }, 3000);
+//     })
+// }
+
+// const app = async () =>{
+//     try{
+//         // 1 forma -> se puede utilizar si queremos unos
+//         // resultados primero y luego hacer la consulta 
+//         // en otros (si una consulta depende de la otra)
+//         const clientes = await descargarNuevosClientes();
+//         console.log(clientes);
+//         const pedidos = await descargarNuevosPedidos();
+//         console.log(pedidos);
+
+//         // 2 forma las dos funciones se ejecutan en paralelo
+//         // se utiliza cuando las funciones son independientes
+//         // se gana el performance
+//         const respuesta = await Promise.all([descargarNuevosClientes(), descargarNuevosPedidos()]);
+//         console.log(respuesta[0]);
+//         console.log(respuesta[1]);
+
+//     }catch(error){
+//         console.log(error);
+//     }
+// }
+
+// app();
+
+// /// async await hacia una api con fetch
+
+// const url = 'https://picsum.photos/list';
+
+// document.addEventListener('DOMContentLoaded', obtenerDatos);
+
+// // con promises
+// function obtenerDatos(){
+//     fetch(url)
+//         .then(respuesta => respuesta.json())
+//         .then(resultado => console.log(resultado))
+//         .catch(error => console.log(error));
+// }
+
+// // con async await
+// async function obtenerDatos(){
+//     try{
+//         const respuesta = await fetch(url);
+//         const resultado = await respuesta.json();
+//         console.log(resultado);  
+//     }catch(error){
+//         console.log(error);
+//     }
+    
+// }
+
+// // Progrmacion Funcional
+// // 1.- inmutabilidad: no se deber reasignar los valores
+// // hay que usar const
+// // 2.- separar datos de funciones
+// // 3.- first class function
+
+// // First-class Function
+
+// //poder crar funciones que parezcan cualquier
+// //variable como lo es function expression
+
+// const suma = function(a, b){
+//     return a + b;
+// }
+// const resultado = suma;
+
+// console.log(resultado(10,20)); // 30
+
+
+// // funciones como argumentos
+
+// const suma = (a, b) =>  a + b; 
+// const multiplicar = (a, b) =>  a * b; 
+
+// const sumarOMultiplicar = fn => fn(10,20);
+
+// console.log(sumarOMultiplicar(suma));        // 30
+// console.log(sumarOMultiplicar(multiplicar)); // 200
+
+
+
+// higher order function
+
+// (separar los datos de las funciones)
+// casi todos los array methods son higher order function
+// const carrito = [
+//     {nombre: 'monitor', precio: 300},
+//     {nombre: 'telefono', precio: 200},
+//     {nombre: 'teclado', precio: 100}
+// ];
+
+// /// 1.-
+// const resultado = carrito.filter(producto => {
+//     return producto.precio > 200;
+// });
+// console.log(resultado);
+
+// // 2.-
+// const mayor200 = producto => {
+//     return producto.precio > 200;
+// }
+// const resultado = carrito.filter(mayor200);
+// console.log(resultado);
+
+//// .map
+// const carrito = [
+//     {nombre: 'monitor', precio: 300},
+//     {nombre: 'telefono', precio: 200},
+//     {nombre: 'teclado', precio: 100}
+// ];
+
+// const obtenerNombres = producto => {
+//     return producto.nombre;
+// }
+
+// const resultado = carrito.map(obtenerNombres);
+// console.log(resultado)  // (3) ['monitor', 'telefono', 'teclado']
+
+
+// /// menos cantidad de codigo en las funciones
+
+// const carrito = [
+//     {nombre: 'monitor', precio: 300},
+//     {nombre: 'telefono', precio: 200},
+//     {nombre: 'teclado', precio: 100}
+// ];
+
+// const obtenerNombres = producto =>  producto.nombre;
+
+// const resultado = carrito.map(obtenerNombres);
+// console.log(resultado)  // (3) ['monitor', 'telefono', 'teclado']
+
+
+/// Pure Functions (funciones puras)
+// funciones que retornan un dato pero no modifican los
+// valores de las variables
+
+// const duplicar = numero => numero * 2;
+
+// const numero1 = 20;
+
+// const resueltado = duplicar(numero1);
+// console.log(resueltado); // 40
+
+
+// // funciones que retornan funciones
+
+// const obtenerCliente = () => () => console.log('Cesar');
+
+// const fn = obtenerCliente();
+
+// fn();
+
+
+// // cesar
+
+// closures
+// los closures son creados cada vez que se crea una funcion
+// un closure es la forma de acceder a una funcion o valor desde
+// el exterior
+
+// const cliente =  'cesar';
+
+// function mostrarCliente(){ 
+//     const cliente = 'pablo';
+//     console.log(cliente);
+// }
+// mostrarCliente();
+
+// // pablo
+
+
+// // ejmplo de closure
+// const obtenerCliente = () => {
+//     const nombre = 'cesar';
+//     function muestraNombre(){
+//         console.log(nombre);
+//     }
+//     return muestraNombre;
+// }
+
+// const cliente = obtenerCliente();
+
+// cliente();
+
+// // cesar
+
+
+// /// Partials y Currying
+// // divir funciones en pequeñas partes
+
+// const suma = (a,b,c) => a + b + c;
+
+
+// // divir en dos parciales
+// const parcial = a => (b, c) => suma(a,b,c);
+
+// const primerNumero = parcial(5);
+// const resultado = primerNumero(4,3);
+// console.log(resultado); // 12
+
+// // dividir en 3 parciales
+// const parcial = a => b => c => suma(a,b,c);
+
+// const primerNumero = parcial(5);
+// const segundoNumero = primerNumero(4);
+// const resultado = segundoNumero(3);
+
+// console.log(resultado); // 12
+
+
+// const parcial = a => b => c => suma(a,b,c);
+
+// const resultadoParcial = parcial(5)(4)(3);
+
+// console.log(resultadoParcial)  // 12
+
+
+// // composition
+// // alternativa a las classes
+// // assing toma funcion y la copia dentro de un objeto
+// const obtenerNombres = info => ({
+//     mostrarNombre(){
+//         console.log(`Nombre: ${info.nombre}`);
+//     }
+// })
+
+// const guardarEmail = info => ({
+//     agregarEmail(email){
+//         console.log(`Guardando email en: ${info.nombre}`);
+//         info.email = email;
+//     }
+// });
+
+// const obtenerEmail = info => ({
+//     mostrarEmail(){
+//         console.log(`Correo: ${info.email}`);
+//     }
+// });
+
+// const obtnerEmpresa = info => ({
+//     mostrarEmpresa(){
+//         console.log(`Empresa: ${info.empresa}`);
+//     }
+// });
+
+// const obtnerPuesto = info => ({
+//     mostrarPuesto(){
+//         console.log(`Puesto: ${info.puesto}`);
+//     }
+// });
+
+
+// function Cliente(nombre, email, empresa){
+//     let info = {
+//         nombre,
+//         email,
+//         empresa
+//     }
+//     return Object.assign(
+//         info,
+//         obtenerNombres(info),
+//         guardarEmail(info),
+//         obtenerEmail(info),
+//         obtnerEmpresa(info)
+//     )
+// }
+
+// function Empleado(nombre, email, puesto){
+//     let info = {
+//         nombre,
+//         email,
+//         puesto
+//     }
+//     return Object.assign(
+//         info,
+//         obtenerNombres(info),
+//         guardarEmail(info),
+//         obtenerEmail(info),
+//         obtnerPuesto(info)
+//     )
+// }
+
+// const cliente = Cliente('cesar', null, 'dyxerteam');
+// cliente.mostrarNombre();
+// cliente.agregarEmail('cliente@cliente.com');
+// cliente.mostrarEmail();
+// cliente.mostrarEmpresa();
+
+// // Nombre: cesar
+// // Guardando email en: cesar
+// // Correo: cliente@cliente.com
+// // Empresa: dyxerteam
+
+// const empleado = Empleado('pablo', null, 'programador');
+// empleado.mostrarNombre(); // Nombre: pablo
+// empleado.agregarEmail('empleado@empleado.com');
+// empleado.mostrarEmail();
+// empleado.mostrarPuesto();
+
+// // Nombre: pablo
+// // Guardando email en: pablo
+// // Correo: empleado@empleado.com
+// // Puesto: programador
+
+
+// // scope (alcance)
+// const cliente = 'cesar';
+
+// function mostrarCliente(){
+//     const cliente = 'pablo';
+//     console.log(cliente);
+// }
+
+// mostrarCliente();
+// // pablo
+
+// Hoisting
+// javascript se ejecuta en dos vueltas
+// // 1.- se registran las funciones
+// // 2.- se mandar llamar
+
+// obtenerCliente('cesar');
+
+// function obtenerCliente(nombre){
+//     console.log(`Nombre: ${nombre}`);
+// }
+
+// // cuando se utiliza function declaration se puede llamar antes
+// // o despues y no hay problema
+// function obtenerCliente(nombre){
+//     console.log(`Nombre: ${nombre}`);
+// }
+
+// obtenerCliente('cesar');
+
+
+// ///////////// function expression (si se manda llamar despues no hay
+// // problema )
+// const obtenerCliente2 = function(nombre){
+//     console.log(`Nombre: ${nombre}`);
+// }
+// obtenerCliente2('pablo');
+
+// //// si se manda llamar antes si marca un error
+// obtenerCliente2('pablo');
+
+// const obtenerCliente2 = function(nombre){
+//     console.log(`Nombre: ${nombre}`);
+// }
+
+
+
+/// coercion
+// conversion automatica, implicita o explicita de valores 
+// de un tipo a otro
+
+// coercion implicita lo forza
+
+// const numero1 = 20;
+// const numero2 = '40';
+// console.log(numero1 + numero2); // 2040
+
+// // coercion explicita
+// console.log(Number(numero2)); // 40
+
+
+
+// // implicit binding (this busca en el mismo objeto)
+
+// const usuario =  {
+//     nombre: 'cesar',
+//     edad: 20,
+//     infomarcion(){
+//         console.log(`Nombre: ${this.nombre}, edad: ${this.edad}`);
+//     },
+//     mascota: {
+//         nombre: 'hook',
+//         edad: 1,
+//         infomarcion(){
+//             console.log(`Nombre: ${this.nombre}, edad: ${this.edad}`);
+//         }
+//     }
+// }
+
+// usuario.infomarcion(); // Nombre: cesar, edad: 20
+// usuario.mascota.infomarcion(); // Nombre: hook, edad: 1
+
+
+// explicit binding 
+
+// function persona(el1, el2){
+//     console.log(`Nombre: ${this.nombre} y escucho ${el1} y ${el2}`);
+// }
+// const informacion = {
+//     nombre: 'cesar'
+// }
+// const musica = ['Rock', 'Pop'];
+
+// // en call se tiene que pasar cada elemento de forma individual
+// persona.call(informacion, musica[0], musica[1]);
+// // Nombre: cesar y escucho Rock y Pop
+
+// // en apply se puede pasar el arreglo completo
+// persona.apply(informacion, musica);
+// // Nombre: cesar y escucho Rock y Pop
+
+// // bind crea un nueva funcion y se le pasa cada elemento de forma individual
+// const nuevaFuncion = persona.bind(informacion, musica[0], musica[1]);
+// nuevaFuncion();
+// // Nombre: cesar y escucho Rock y Pop
+
+
+// /// New Binding
+
+// function Auto(modelo, color){
+//     this.modelo = modelo;
+//     this.color = color;
+// }
+
+// const auto = new Auto('Camaro', 'Negro');
+// console.log(auto);
+
+
+// // window binding
+// window.color = 'negro';
+
+// function hola(){
+//     console.log(color);
+// }
+// hola();
+
+
+// event loop o loop de eventos
+
+// console.log('Primero');
+
+// setTimeout(() => {
+//     console.log('segundo')
+// }, 0);
+
+// console.log('tercero');
+
+// setTimeout(() => {
+//     console.log('cuarto')
+// }, 0);
+
+// new Promise(function(resolve){
+//     resolve('Desconocido')
+// }).then(console.log)
+
+// console.log('ultimo')
+
+// function hola(){
+//     console.log('hola');
+// }
+// hola();
+
+// // Primero
+// // tercero
+// // ultimo
+// // hola
+// // Desconocido
+// // segundo
+// // cuarto
+
+
+
+// self
+
+// se refiere a la ventana global es similar a window
+// se utiliza en los service workers
+
+self.onload = () => {
+    console.log('ventana lista')
+}
+// ventana lista
+
+window.nombre = 'Monitor 20 Pulgadas';
+
+const producto = {
+    precio: 30,
+    disponible: true,
+    mostrarInfo: function(){
+        return `Producto: ${self.nombre}`;
+    }
+}
+
+console.log(producto.mostrarInfo());
+// Producto: Monitor 20 Pulgadas
