@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>listado</title>
+
+	<style>
+		#navegacion{
+			display: flex;
+			gap: 30px;
+		}
+		#navegacion li{
+			list-style: none;
+		}
+		.active{
+			background: blueviolet;
+			color: white;
+		}
+	</style>
+</head>
+<body>
+
+
+	
+		<ul id="navegacion">
+			<li class="active">Inicio</li>
+			<li>Acerca de</li>
+			<li>contacto</li>
+			<li>Login</li>
+		</ul>
+	
+
+		<script>
+			
+			const listado = document.querySelectorAll('#navegacion li');
+
+			for(const elemento of listado){
+				elemento.addEventListener('click', () => {
+
+					elemento.classList.add('active');
+					const hermanos = conseguirHermanos(elemento);
+					hermanos.forEach(hermano => hermano.classList.remove('active'))
+
+				})
+			}
+			
+			function conseguirHermanos(elemento){
+
+				let hermanos = [];
+				let hermano = elemento.parentNode.firstChild;
+				let hermana = elemento.parentNode.firstChild;
+				console.log(hermano);
+
+				while(hermano){
+
+					if(hermano.nodeType === 1 && hermano !== elemento){
+						hermanos.push(hermano);
+					}
+					hermano = hermano.nextSibling;
+					console.log(hermano);
+				}
+
+				return hermanos;
+			}
+
+
+		</script>
+
+</body>
+</html>

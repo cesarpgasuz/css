@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Touch</title>
+
+    <style>
+        #container {
+        -webkit-overflow-scrolling: touch;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        }
+        #container::-webkit-scrollbar {
+        display: none;
+        }
+        #content {
+        width: 200vw;
+        height: 100vh;
+        }
+        .card{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <div id="container" style="width: 100vw; height: 100vh; overflow-x: scroll;">
+        <div id="content" style="width: 200vw; height: 100vh;">
+        
+            <div class="card">hola soy un card</div>
+        
+        </div>
+      </div>
+
+
+      <script>
+        let container = document.getElementById('container');
+        let startX, startY, deltaX, deltaY;
+
+        container.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        });
+
+        container.addEventListener('touchmove', function(e) {
+        deltaX = e.touches[0].clientX - startX;
+        deltaY = e.touches[0].clientY - startY;
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            e.preventDefault();
+            container.scrollLeft -= deltaX;
+        }
+});
+
+      </script>
+
+</body>
+</html>

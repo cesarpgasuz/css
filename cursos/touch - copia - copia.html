@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Touch</title>
+
+    <style>
+      #modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal-contenido {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+#modal.oculto {
+  display: none;
+}
+
+
+    </style>
+
+</head>
+<body>
+    
+  <button id="abrir-modal">Abrir modal</button>
+
+  <div id="modal" class="oculto">
+    <div id="modal-contenido">
+      <h1>Modal</h1>
+      <p>Contenido del modal...</p>
+      <button id="cerrar-modal">X</button>
+    </div>
+  </div>
+  
+
+
+      <script>
+      // Obtener los elementos del DOM
+const botonAbrirModal = document.getElementById('abrir-modal');
+const botonCerrarModal = document.getElementById('cerrar-modal');
+const modal = document.getElementById('modal');
+
+
+// Agregar controlador de eventos al botón que muestra el modal
+botonAbrirModal.addEventListener('click', mostrarModal);
+
+// Agregar controlador de eventos al botón "X" dentro del modal
+botonCerrarModal.addEventListener('click', ocultarModal);
+
+// Agregar controlador de eventos al evento "popstate" de la API de Historial
+window.addEventListener('popstate', function(event) {
+  if (!modal.classList.contains('oculto')) {
+    ocultarModal();
+  }
+});
+
+// Función para mostrar el modal
+function mostrarModal() {
+  modal.classList.remove('oculto');
+}
+
+// Función para ocultar el modal
+function ocultarModal() {
+  modal.classList.add('oculto');
+}
+
+
+
+// Agregar una nueva entrada en el historial cuando se muestra el modal
+botonAbrirModal.addEventListener('click', function() {
+  history.pushState({ modal: true }, '');
+});
+
+// Eliminar la entrada en el historial cuando se cierra el modal
+botonCerrarModal.addEventListener('click', function() {
+  history.back();
+});
+
+
+      </script>
+
+</body>
+</html>

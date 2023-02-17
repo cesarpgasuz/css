@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Touch</title>
+
+    <style>
+       #container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        background-color: aqua;
+        }
+        #open-btn {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        z-index: 1;
+        }
+        #menu {
+        position: absolute;
+        bottom: -100%;
+        left: 0;
+        right: 0;
+        height: 50vh;
+        background-color: yellowgreen;
+        transition: bottom 0.3s ease-in-out;
+        }
+
+        #menu.open {
+  bottom: 0;
+}
+
+    </style>
+
+</head>
+<body>
+    
+    <div id="container">
+        
+        <div id="menu">
+          <ul>
+            <li>hola</li>
+            <li>secon</li>
+          </ul>
+        </div>
+      </div>
+
+
+      <script>
+       let container = document.getElementById('container');
+let menu = document.getElementById('menu');
+let startY = null;
+let currentY = null;
+
+container.addEventListener('touchstart', function(e) {
+  startY = e.touches[0].clientY;
+  currentY = startY;
+});
+
+container.addEventListener('touchmove', function(e) {
+  currentY = e.touches[0].clientY;
+  let deltaY = currentY - startY;
+  if (deltaY < 0 || deltaY > 100) {
+    return;
+  }
+  e.preventDefault();
+  menu.style.bottom = -deltaY + 'px';
+});
+
+container.addEventListener('touchend', function(e) {
+  let deltaY = currentY - startY;
+  if (deltaY > 50) {
+    menu.classList.add('open');
+    container.style.overflow = 'visible';
+  } else {
+    menu.style.bottom = '-100%';
+  }
+});
+
+      </script>
+
+</body>
+</html>

@@ -309,12 +309,24 @@ for (const el of closeEls) {
 }
 
 document.addEventListener("click", e => {
-  if (e.target == document.querySelector(".modal.is-visible")) {
-    document.querySelector(".modal.is-visible").classList.remove(isVisible);
+
+  // if (e.target == document.querySelector(".modal.is-visible")) {
+
+  //   console.log(e.target)
+  //   document.querySelector(".modal.is-visible").classList.remove(isVisible);
+
+    
+  // }
+
+
+  if(e.target.classList.contains('is-visible')){
+    document.querySelector('.modal.is-visible').classList.remove('is-visible');
   }
+  
 });
 
 document.addEventListener("keyup", e => {
+  console.log(e.key);
   // if we press the ESC
   if (e.key == "Escape" && document.querySelector(".modal.is-visible")) {
     document.querySelector(".modal.is-visible").classList.remove(isVisible);
