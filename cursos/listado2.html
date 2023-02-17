@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #navegacion{
+            display: flex;
+            gap: 35px;
+        }
+        #navegacion li{
+            list-style-type: none;
+            cursor: pointer;
+        }
+        .active{
+            background-color: purple;
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+
+    <ul id="navegacion">
+        <li class="active">inicio</li>
+        <li>acerca</li>
+        <li>nosotros</li>
+        <li>contacto</li>
+        <li>login</li>
+    </ul>
+
+    <script>
+
+        const listado = document.querySelectorAll('#navegacion li');
+
+        for(const lista of listado){
+
+            lista.addEventListener('click', function(){
+
+                lista.classList.add('active');
+                const hermanos = obtenerHermanos(lista);
+                hermanos.forEach(hermano => hermano.classList.remove('active'));
+
+            });
+
+        }
+
+        function obtenerHermanos(elemento){
+
+            let hermanos = [];
+            let hermano = elemento.parentNode.firstChild;
+
+            while(hermano){
+
+                if(hermano.nodeType === 1 && hermano !== elemento){
+                    hermanos.push(hermano);
+                }
+                hermano = hermano.nextSibling;
+
+            }
+            return hermanos;
+
+        }
+
+
+
+
+    </script>
+    
+</body>
+</html>
