@@ -4342,23 +4342,341 @@
 
 // self
 
-// se refiere a la ventana global es similar a window
-// se utiliza en los service workers
+// // se refiere a la ventana global es similar a window
+// // se utiliza en los service workers
 
-self.onload = () => {
-    console.log('ventana lista')
+// self.onload = () => {
+//     console.log('ventana lista')
+// }
+// // ventana lista
+
+// window.nombre = 'Monitor 20 Pulgadas';
+
+// const producto = {
+//     precio: 30,
+//     disponible: true,
+//     mostrarInfo: function(){
+//         return `Producto: ${self.nombre}`;
+//     }
+// }
+
+// console.log(producto.mostrarInfo());
+// // Producto: Monitor 20 Pulgadas
+
+
+/////////// design patterns
+
+
+// //// class pattern
+
+// class Persona{
+//     constructor(nombre, email){
+//         this.nombre = nombre;
+//         this.email = email;
+//     }
+// }
+
+// const persona = new Persona('cesar', 'cesar@correo.com');
+
+// console.log(persona)
+
+
+
+/////////// design patterns
+
+/// constructor pattern
+
+// class Persona{
+//     constructor(nombre, email){
+//         this.nombre = nombre;
+//         this.email = email;
+//     }
+// }
+
+// class Cliente extends Persona{
+//     constructor(nombre, email, empresa){
+//         super(nombre, email);
+//         this.empresa = empresa;
+//     }
+// }
+
+// const cliente = new Cliente('Pablo', 'pablo@correo.com', 'dyxer');
+// console.log(cliente)
+
+
+/////////// design patterns
+
+/// singleton (previene que no creen multiples instancias )
+
+// let instancia = null;
+
+// class Persona{
+//     constructor(nombre, email){
+//         if(!instancia){
+//            this.nombre = nombre;
+//             this.email = email;
+//             instancia = this; 
+//         }else{
+//             return instancia;
+//         }
+//     }
+// }
+
+// const persona = new Persona('cesar', 'cesar@correo.com');
+// console.log(persona);
+
+// const persona2 = new Persona('pablo', 'pablo@correo.com');
+// console.log(persona2);
+
+
+
+// /////////// design patterns
+
+// // factory (crea objetos basados en ciertas condiciones, comporten ciertos
+// // atributos basados en esas condiciones)
+
+// class InputHTML{
+//     constructor(type, nombre){
+//         this.type = type;
+//         this.nombre = nombre;
+//     }
+
+//     crearInput(){
+//         return `<input type="${this.type}" name="${this.nombre}" id="${this.nombre}">`;
+//     }
+// }
+
+// class HTMLFactory{
+//     crearElemento(tipo,nombre){
+//         switch(tipo){
+//             case 'text':
+//                 return new InputHTML('text', nombre)
+//             case 'tel':
+//                 return new InputHTML('tel', nombre)
+//             case 'email':
+//                 return new InputHTML('email', nombre)
+//             default:
+//                 return;
+
+//         }
+//     }
+// }
+
+// const elemento = new HTMLFactory();
+// const inputText = elemento.crearElemento('text', 'nombre-cliente');
+// console.log(inputText.crearInput());
+// // <input type="text" name="nombre-cliente" id="nombre-cliente"></input>
+
+// const elemento2 = new HTMLFactory();
+// const inputText2 = elemento2.crearElemento('tel', 'telefono-cliente');
+// console.log(inputText2.crearInput());
+// // <input type="tel" name="telefono-cliente" id="telefono-cliente">
+
+// const elemento3 = new HTMLFactory();
+// const inputText3 = elemento3.crearElemento('email', 'email-cliente');
+// console.log(inputText3.crearInput());
+// // <input type="email" name="email-cliente" id="email-cliente">
+
+
+/// anteriores fueron de creacion
+
+// estos son de organizacion
+
+/// module pattern
+
+// // emac 6
+// const mostrarCliente = nombre => {
+//     console.log(nombre);
+// }
+// export default mostrarCliente;
+
+// /////////////////////////////////////////////
+// // emac anteriores al 6
+
+// const modulo1 = (function(){
+
+//     const nombre = 'cesar';
+
+//     function hola(){
+//         console.log('hola')
+//     }
+//     return {
+//         nombre,
+//         hola
+//     }
+
+// })();
+
+//  /// en el otro archivo
+//  console.log(modulo1.nombre);
+
+//  modulo1.hola();
+
+
+
+// mixin pattern
+
+// es una forma de agregar funciones a una clase una vez
+// halla sido creada
+
+// class Persona{
+//     constructor(nombre, email){
+//         this.nombre = nombre;
+//         this.email = email;
+//     }
+// }
+
+// class Cliente{
+//     constructor(nombre, email){
+//         this.nombre = nombre;
+//         this.email = email;
+//     }
+// }
+
+// const funcionesPersona = {
+//     mostrarInformacion(){
+//         console.log(`Nombre: ${this.nombre} Email: ${this.email}`);
+//     },
+//     mostrarNombre(){
+//         console.log(`Mi nombre es ${this.nombre}`);
+//     }
+// }
+
+// //añadir funcionesPersona a la clase persona
+// Object.assign(Persona.prototype, funcionesPersona);
+// Object.assign(Cliente.prototype, funcionesPersona);
+
+// const cliente = new Persona('cesar', 'cesar@correo.com');
+
+// console.log(cliente);
+// // ▶️ Persona {nombre: 'cesar', email: 'cesar@correo.com'}
+
+// cliente.mostrarInformacion();
+// // Nombre: cesar Email: cesar@correo.com
+
+// cliente.mostrarNombre();
+// // Mi nombre es cesar
+
+
+// const cliente2 = new Cliente('cliente', 'cliente@cliente.com');
+
+// console.log(cliente2);
+// // ▶️ Cliente {nombre: 'cliente', email: 'cliente@cliente.com'}
+
+// cliente2.mostrarInformacion();
+// // Nombre: cliente Email: cliente@cliente.com
+
+// cliente2.mostrarNombre();
+// // Mi nombre es cliente
+
+
+/////// Namespace
+
+// // ayuda a evitar colision con nombres en el scope global
+// // crea un objeto global alrededor de la aplicacion
+
+// const restaurantAPP = {};
+
+// restaurantAPP.platillos = [
+//     {
+//         platillo: 'Pizza',
+//         precio: 25
+//     },
+//     {
+//         platillo: 'Hamburguesa',
+//         precio: 20
+//     },
+//     {
+//         platillo: 'Hot Dog',
+//         precio: 20
+//     }
+// ];
+
+// restaurantAPP.funciones = {
+//     mostrarMenu: platillos => {
+//         console.log('Bienenidos a nuestro menu');
+//         platillos.forEach((platillo, index) => {
+//             console.log(`${index} : ${platillo.platillo} $${platillo.precio}`) ;
+//         });
+//     },
+//     ordernar: id => {
+//         console.log(`Tu Platillo: ${restaurantAPP.platillos[id].platillo} se esta preparando`)
+//     },
+//     agregarPlatillo: (platillo, precio) => {
+//         const nuevo = {
+//             platillo,
+//             precio
+//         };
+//         restaurantAPP.platillos.push(nuevo);
+//     }
+// }
+
+// restaurantAPP.funciones.ordernar(1);
+
+// restaurantAPP.funciones.agregarPlatillo('Taco', 20);
+
+// const {platillos} = restaurantAPP;
+
+// restaurantAPP.funciones.mostrarMenu(platillos);
+
+
+
+/////// Mediator
+
+/// comunica diferentes objetos a la vez
+
+function Vendedor(nombre){
+    this.nombre = nombre;
+    this.sala = null;
 }
-// ventana lista
 
-window.nombre = 'Monitor 20 Pulgadas';
-
-const producto = {
-    precio: 30,
-    disponible: true,
-    mostrarInfo: function(){
-        return `Producto: ${self.nombre}`;
+Vendedor.prototype = {
+    oferta: (articulo, precio) => {
+        console.log(`Tenemos el siguiente articulo ${articulo}, iniciamos con un precio de ${precio}`);
+    },
+    vendido: comprador => {
+        console.log(`Vendido a ${comprador}`);
     }
 }
 
-console.log(producto.mostrarInfo());
-// Producto: Monitor 20 Pulgadas
+function Comprador(nombre){
+    this.nombre = nombre;
+    this.sala = null;
+}
+
+Comprador.prototype = {
+    oferta: (cantidad, comprador) => {
+        console.log(`${comprador.nombre}: ${cantidad}`);
+    }
+}
+
+function Subasta(){
+    let compradores = {};
+
+    return{
+        registrar: usuario => {
+            compradores[usuario.nombre] = usuario;
+            subasta.sala = this;
+        }
+    }
+}
+
+// crear objetos
+const cesar = new Comprador('Cesar');
+const pablo = new Comprador('Pablo');
+const vendedor = new Vendedor('Vendedor de Autos');
+const subasta = new Subasta();
+
+/// tienes que registrarlos
+subasta.registrar(cesar);
+subasta.registrar(pablo);
+subasta.registrar(vendedor);
+
+vendedor.oferta('Mustang 66', 300);
+
+cesar.oferta(350, cesar);
+pablo.oferta(450, pablo);
+cesar.oferta(500, cesar);
+pablo.oferta(700, pablo);
+
+vendedor.vendido('cesar pablo')

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lista de Pokemones</title>
+</head>
+<body>
+	<h1>Lista de Pokemones</h1>
+	<div id="pokemon-list"></div>
+	<button id="load-more">Mostrar más</button>
+
+	<script>
+		let offset = 0;
+		const limit = 20;
+		const apiUrl = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
+
+		function fetchPokemonList() {
+			fetch(apiUrl)
+			  .then(response => response.json())
+			  .then(pokemonData => {
+			  	offset += limit;
+			    displayPokemonList(pokemonData.results);
+			  })
+              .catch(error => console.log(error))
+			  
+		}
+
+		function displayPokemonList(pokemonList) {
+			const pokemonListElement = document.getElementById('pokemon-list');
+
+			pokemonList.forEach(pokemon => {
+
+                console.log(pokemon)
+				const pokemonElement = document.createElement('div');
+
+				// Create and append the image element
+				// const pokemonImage = document.createElement('img');
+				// pokemonImage.src = pokemon.sprites.front_default;
+				// pokemonImage.alt = pokemon.name;
+				// pokemonElement.appendChild(pokemonImage);
+
+				// Create and append the name element
+				const pokemonName = document.createElement('span');
+				pokemonName.innerText = pokemon.name;
+				pokemonElement.appendChild(pokemonName);
+
+				pokemonListElement.appendChild(pokemonElement);
+			});
+
+			const loadMoreButton = document.getElementById('load-more');
+			loadMoreButton.addEventListener('click', () => {
+				fetchPokemonList();
+			});
+		}
+
+		fetchPokemonList();
+	</script>
+</body>
+</html>
+
