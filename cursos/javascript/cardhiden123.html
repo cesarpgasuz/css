@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+    	body{
+    		margin: 0;
+    		padding: 0;
+    	}
+    	ul{
+    		display: flex;
+    		background-color: pink;
+    		margin: 0 auto;
+    		justify-content: center;
+    		gap: 20px;
+    		padding-top: 10px;
+    		padding-bottom: 10px;
+    	}
+    	a:link{
+    		text-decoration: none;
+    	}
+    	ul li{
+    		list-style: none;
+    	}
+
+    	.tarjeta{
+    		border: 2px solid black;
+    		width: 300px;
+    		margin-left: auto;
+    		margin-right: auto;
+    		margin-top: 20px;
+    	}
+    	.active{
+    		background-color: hotpink;
+    	}
+
+    </style>
+
+
+</head>
+<body>
+
+<ul class="fil list-unstyled">
+	<li class="active"><a href="#search" class="btn-fil" data-filter="todos">Todos</a></li>
+	<li><a href="#" class="btn-fil" data-filter="accesorios">Accesorios</a></li>
+	<li><a href="#" class="btn-fil" data-filter="reparaciones">Reparaciones</a></li>
+	<li><a href="#" class="btn-fil" data-filter="ventaEquipos">Venta de Equipos</a></li>
+	<li><a href="#" class="btn-fil" data-filter="liberacion">Liberaciones</a></li>
+</ul>
+
+
+<div class="tarjeta box-cat todos reparaciones">
+	<h2>reparaciones</h2>
+</div>
+					
+<div class="tarjeta todos ventaEquipos accesorios">
+	<h2>Venta equipo accesororios</h2>
+</div>
+					
+
+<div class="tarjeta todos ventaEquipos reparaciones liberacion">
+	<h2>venta equipo reparaciones liberacion</h2>
+</div>
+
+<div class="tarjeta todos ventaEquipos reparaciones">
+	<h2>venta equipos reparaciones</h2>
+</div>
+
+<script>
+	
+	const botonesFil = document.querySelectorAll('.btn-fil');
+	const tarjetas = document.querySelectorAll('.tarjeta');
+
+
+	for(const boton of botonesFil){
+
+		boton.addEventListener('click', (e) => {
+			e.preventDefault();
+
+			const filtro = boton.dataset.filter;
+
+			if(filtro === 'todos'){
+				tarjetas.forEach(tarjeta => tarjeta.style.display = 'block')
+			}else{
+
+				tarjetas.forEach(tarjeta => {
+
+					if(tarjeta.classList.contains(filtro)){
+						tarjeta.style.display = 'block';
+					}else{
+						tarjeta.style.display = 'none';
+					}
+				})
+			}
+		})
+	}
+
+
+	const filtroLista = document.querySelectorAll('.fil li');
+
+	for(const filtroLi of filtroLista){
+
+		filtroLi.addEventListener('click', () => {
+
+			filtroLi.classList.add('active');
+			let colletion = filtroLi.parentElement.children;
+
+			for(let i = 0; i < colletion.length; i ++){
+
+				if(colletion[i] !== filtroLi){
+					colletion[i].classList.remove('active');
+				}
+			}
+		})
+	}
+
+
+
+
+
+
+
+</script>				
+
+
+
+    
+</body>
+</html>

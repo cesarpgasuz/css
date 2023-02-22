@@ -5,11 +5,110 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filtrado Fetch</title>
+
+    <style>
+            
+        .imagen__usuario{
+            width: 100%;
+            height: 20px;
+        }
+
+    </style>
+
+
 </head>
 <body>
     
 
     <input type="text" placeholder="buscar nombre" id="inputBusqueda">
+
+    <ol id="resultados">
+        
+    </ol>
+
+
+    <script>
+        
+        const busquedaInput = document.querySelector('#inputBusqueda');
+        const resultados = document.querySelector('#resultados');
+        let usuarios = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            buscarUsuarios();
+            busquedaInput.addEventListener('input', filtrarUsuarios);
+
+        });
+
+
+        async function buscarUsuarios(){
+
+            const url = 'https://fakerapi.it/api/v1/users?_quantity=200';
+
+            cargando();
+
+            try{
+
+                const respuesta = await fetch(url)
+                const resultado = await respuesta.json()
+                usuarios = resultado.data;
+                
+                mostrarUsuarios(usuarios);
+
+            }catch(error){
+                console.log(error);
+            }
+
+        }
+
+        function mostrarUsuarios(usuarios){
+
+            limpiarHTML();
+
+            if(usuarios.length){
+                usuarios.forEach(usuario => {
+                const {firstname, lastname, image} = usuario;
+                const listaUsuarios = document.createElement('LI');
+                listaUsuarios.innerText = `${firstname} ${lastname}`
+                
+                resultados.appendChild(listaUsuarios);
+
+
+
+                })
+            }else{
+                const noExiste = document.createElement('H2');
+                noExiste.textContent = 'No se encontraron personas con esos nombres..';
+                resultados.appendChild(noExiste);
+            }
+            
+
+        }
+
+        function filtrarUsuarios(e){
+            const termino = e.target.value.toLowerCase();
+            const nuevosUsuarios = usuarios.filter(usuario =>  `${usuario.firstname.toLowerCase()} ${usuario.lastname.toLowerCase()}`.includes(termino));
+            mostrarUsuarios(nuevosUsuarios);
+            
+        }
+
+
+        function limpiarHTML() {
+            while(resultados.firstChild){
+                resultados.removeChild(resultados.firstChild);
+            }
+        }
+
+        function cargando(){
+            const cargando = document.createElement('H2');
+            cargando.textContent = 'Cargando...';
+            resultados.appendChild(cargando);
+        }
+
+
+    </script>
+
+
 
 </body>
 </html>
