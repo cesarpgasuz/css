@@ -71,58 +71,49 @@
 </div>
 
 <script>
-	
-	const botonesFil = document.querySelectorAll('.btn-fil');
-	const cards = document.querySelectorAll('.tarjeta')
+	const botones = document.querySelectorAll('.btn-fil');
+	const tarjetas = document.querySelectorAll('.tarjeta');
 
 
-	botonesFil.forEach(boton => {
-		boton.addEventListener('click', function(){
-			const filtro = this.dataset.filter;
+	for(const boton of botones){
+
+		boton.addEventListener('click', (e) => {
+			e.preventDefault();
+
+			const filtro = boton.dataset.filter;
 
 			if(filtro === 'todos'){
-				cards.forEach(card => card.style.display = 'block');
-
+				tarjetas.forEach(tarjeta => tarjeta.style.display = 'block');
 			}else{
-				cards.forEach(card => {
-					if(card.classList.contains(filtro)){
-						card.style.display = 'block';
+
+				tarjetas.forEach(tarjeta => {
+
+					if(tarjeta.classList.contains(filtro)){
+						tarjeta.style.display = 'block';
 					}else{
-						card.style.display = 'none';
+						tarjeta.style.display = 'none';
 					}
 				})
 			}
 		})
-	});
+	}
 
+	const filtros = document.querySelectorAll('.fil li');
 
-	let botonLi = document.querySelectorAll('ul li');
-
-	botonLi.forEach(boton => {
-		boton.addEventListener('click', function() {
+	for(const filtro of filtros){
 		
-			boton.classList.add('active');
-
+		filtro.addEventListener('click', () => {
 			
-			let hermanos = boton.parentNode.children;
-
+			filtro.classList.add('active');
+			let hermanos = filtro.parentElement.children;
 
 			for(let i = 0; i < hermanos.length; i++){
-
-				if(hermanos[i] !== boton){
+				if(hermanos[i] !== filtro){
 					hermanos[i].classList.remove('active');
 				}
 			}
-
-
 		})
-	})
-
-
-
-
-
-	
+	}
 
 
 

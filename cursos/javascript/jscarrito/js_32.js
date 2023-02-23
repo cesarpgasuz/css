@@ -1,19 +1,15 @@
-/////// variables
+///// variables
 const listaCursos = document.querySelector('#lista-cursos');
 const carrito = document.querySelector('#carrito');
 const contenedorCarrito = document.querySelector('#lista-carrito tbody');
 const btnVaciarCarrito = document.querySelector('#vaciar-carrito');
-const limpiarStorage = document.querySelector('#limpiar-storage');
 let articulosCarrito = [];
+const btnLimpiarStorage = document.querySelector('#limpiar-storage');
 
-/// eventListeners
+////// eventListeners
 eventListeners();
 
 function eventListeners(){
-
-	limpiarStorage.addEventListener('click', () => {
-		localStorage.clear();
-	})
 
 	listaCursos.addEventListener('click', agregarCurso);
 	carrito.addEventListener('click', borrarCurso);
@@ -23,23 +19,25 @@ function eventListeners(){
 		limpiarHTML();
 		localStorage.removeItem('carrito');
 	});
-
 	document.addEventListener('DOMContentLoaded', () => {
+
 		articulosCarrito = JSON.parse(localStorage.getItem('carrito')) || [];
 		carritoHTML();
-	});
 
+	});
+	btnLimpiarStorage.addEventListener('click', () => {
+		localStorage.clear();
+	})
 }
 
-/// funciones
+//// funciones
 function agregarCurso(e){
 	e.preventDefault();
-	
+
 	if(e.target.classList.contains('agregar-carrito')){
 		const cursoSeleccionado = e.target.parentElement.parentElement;
 		leerDatosCurso(cursoSeleccionado);
 	}
-
 }
 
 function borrarCurso(e){
@@ -51,11 +49,10 @@ function borrarCurso(e){
 		console.log(articulosCarrito);
 		carritoHTML();
 	}
-
 }
 
 function leerDatosCurso(curso){
-
+	
 	const infoCurso = {
 		imagen: curso.querySelector('img').src,
 		titulo: curso.querySelector('h4').textContent,
@@ -76,9 +73,11 @@ function leerDatosCurso(curso){
 			}else{
 				return curso;
 			}
-		});
+
+		})
 
 		articulosCarrito = [...cursos];
+
 
 	}else{
 		articulosCarrito = [...articulosCarrito, infoCurso];
@@ -108,22 +107,21 @@ function carritoHTML(){
 
 		contenedorCarrito.appendChild(row);
 
-	})
+	});
 
 	sincronizarStorage();
 
 }
 
+
 function sincronizarStorage(){
 
 	localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
+
 }
 
-
 function limpiarHTML(){
-
 	while(contenedorCarrito.firstChild){
 		contenedorCarrito.removeChild(contenedorCarrito.firstChild);
 	}
-
 }

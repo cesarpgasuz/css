@@ -73,56 +73,53 @@
 <script>
 	
 	const botonesFil = document.querySelectorAll('.btn-fil');
-	const cards = document.querySelectorAll('.tarjeta')
+	const tarjetas = document.querySelectorAll('.tarjeta');
 
 
-	botonesFil.forEach(boton => {
-		boton.addEventListener('click', function(){
-			const filtro = this.dataset.filter;
+	for(const boton of botonesFil){
+
+		boton.addEventListener('click', (e) => {
+			e.preventDefault();
+
+			const filtro = boton.dataset.filter;
 
 			if(filtro === 'todos'){
-				cards.forEach(card => card.style.display = 'block');
-
+				tarjetas.forEach(tarjeta => tarjeta.style.display = 'block')
 			}else{
-				cards.forEach(card => {
-					if(card.classList.contains(filtro)){
-						card.style.display = 'block';
+
+				tarjetas.forEach(tarjeta => {
+
+					if(tarjeta.classList.contains(filtro)){
+						tarjeta.style.display = 'block';
 					}else{
-						card.style.display = 'none';
+						tarjeta.style.display = 'none';
 					}
 				})
 			}
 		})
-	});
+	}
 
 
-	let botonLi = document.querySelectorAll('ul li');
+	const filtroLista = document.querySelectorAll('.fil li');
 
-	botonLi.forEach(boton => {
-		boton.addEventListener('click', function() {
-		
-			boton.classList.add('active');
+	for(const filtroLi of filtroLista){
 
-			
-			let hermanos = boton.parentNode.children;
+		filtroLi.addEventListener('click', () => {
 
+			filtroLi.classList.add('active');
+			let colletion = filtroLi.parentElement.children;
 
-			for(let i = 0; i < hermanos.length; i++){
+			for(let i = 0; i < colletion.length; i ++){
 
-				if(hermanos[i] !== boton){
-					hermanos[i].classList.remove('active');
+				if(colletion[i] !== filtroLi){
+					colletion[i].classList.remove('active');
 				}
 			}
-
-
 		})
-	})
+	}
 
 
 
-
-
-	
 
 
 
