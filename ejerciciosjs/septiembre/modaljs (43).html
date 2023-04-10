@@ -83,7 +83,75 @@
 
 
 <script>
+    const openModal = document.querySelector('.open__modal');
+    const closeModal = document.querySelector('.close__modal');
+    const modal = document.querySelector('.modal');
+
+    openModal.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.add('active');
+    })
+    closeModal.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.remove('active');
+    })
+
+    ///////////////
+    const footerButton = document.querySelector('.btnFooter');
+    const footer = document.querySelector('.footer');
+
+    footerButton.addEventListener('click', abrirCerrarFooter);
+
+    function abrirCerrarFooter(){
+        if(footer.classList.contains('active')){
+            footer.classList.remove('active');
+            this.textContent = 'abrir footer';
+        }else{
+            footer.classList.add('active');
+            this.textContent = 'cerrar footer';
+        }
+    }
    
+   ////////////
+    const openModal2 = document.querySelectorAll('[data-open]');
+    const closeModal2 = document.querySelectorAll('[data-close]');
+
+    for(const modal of openModal2){
+        modal.addEventListener('click', () => {
+            const modalId = modal.dataset.open;
+            document.getElementById(modalId).classList.add('active');
+        })
+    }
+
+    for(const modal of closeModal2){
+        modal.addEventListener('click', () => {
+            modal.parentElement.classList.remove('active');
+        })
+    }
+
+    /////////////
+    const btnSwitch = document.querySelector('.switch');
+
+    btnSwitch.addEventListener('click', () => {
+        btnSwitch.classList.toggle('active');
+        document.body.classList.toggle('dark');
+
+
+        if(document.body.classList.contains('dark')){
+            localStorage.setItem('dark-mode', true);
+        }else{
+            localStorage.setItem('dark-mode', false);
+        }
+
+    })
+
+    if(localStorage.getItem('dark-mode') === 'true'){
+        btnSwitch.classList.add('active');
+        document.body.classList.add('dark');
+    }else{
+        btnSwitch.classList.remove('active');
+        document.body.classList.remove('dark');
+    }
 
 
 </script>
