@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 100%;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    
+    <ul class="resultados">
+       
+    </ul>
+
+
+    <script>
+         const resultados = document.querySelector('.resultados');
+
+        consultarAPI()
+
+        function consultarAPI(){
+            const url = 'https://museos-api.onrender.com/museos';
+
+            fetch(url)
+                .then(respuesta => respuesta.json())
+                .then(datos => mostrarInfo(datos))
+        }
+        
+        function mostrarInfo(museos){
+            console.log(museos)
+
+            while(resultados.firstChild){
+                resultados.removeChild(resultados.firstChild);
+            }
+            
+            museos.forEach(museo => {
+
+                const {nombre, descripcion, img_1, link} = museo;
+
+                const li = document.createElement('LI');
+                li.innerHTML = `
+                
+                    <img src="${img_1}" alt="">
+                    <h2><strong>Nombre</strong> ${nombre}</h2>
+                    <p>${descripcion}</p>
+                `;
+
+                resultados.appendChild(li);
+
+                
+            });
+        }
+
+
+
+    </script>
+
+</body>
+</html>

@@ -88,6 +88,7 @@
         function filtrarUsuarios(e){
             const termino = e.target.value.toLowerCase();
             const nuevosUsuarios = usuarios.filter(usuario =>  `${usuario.firstname.toLowerCase()} ${usuario.lastname.toLowerCase()}`.includes(termino));
+            console.log(nuevosUsuarios);
             mostrarUsuarios(nuevosUsuarios);
             
         }

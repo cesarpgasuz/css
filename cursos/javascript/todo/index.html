@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <form id="task-form">
+        <label for="title">Title:</label>
+        <input type="text" placeholder="Taks title" id="task-title">
+        <label for="description">Description</label>
+        <textarea id="task-description" rows="3" placeholder="Description"></textarea>
+        <button id="btn-task-save">Save</button>
+    </form>
+
+    <div id="tasks-container"></div>
+   
+    <script src="app.js" type="module"></script>
+</body>
+</html>
