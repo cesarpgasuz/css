@@ -32,7 +32,7 @@ function eventListeners(){
 	})
 
 }
-
+ 
 
 //funciones
 function agregarCurso(e){

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>compartir</title>
+</head>
+<body>
+    <div id="contenedor">
+        <p id="parrafo">Este es el texto que quiero copiar.</p>
+    </div>
+      
+    <button id="boton-copiar">Copiar</button>
+      
+    <div class="botones">
+        <a href="#" class="whatsapp" target="_blank">Enviar por whatsapp</a>
+        <a href="#" class="telegram" target="_blank">Enviar por telegram</a>
+    </div>
+      
+    <div class="telegramBoton" style="background-color: aqua; padding: 5px;">telegram boton</div>
+    <div class="facebookBoton" style="background-color: blue; padding: 5px;">facebook boton</div>
+    <div class="whatsappBoton" style="background-color: greenyellow; padding: 5px;">whatsapp boton</div>
+
+    <script>
+        const whatsapp = document.querySelector('.whatsapp');
+        const telegram = document.querySelector('.telegram');
+        const botones = document.querySelector('.botones');
+
+        const botonCopiar = document.querySelector('#boton-copiar');
+        const parrafo = document.querySelector('#parrafo');
+        // const url = window.location.href
+        const url = 'https://charcas.xyz/tacos'
+        botonCopiar.addEventListener('click', () => {
+        // Crea un elemento de texto temporal
+        const elementoTemporal = document.createElement('textarea');
+        
+        // Asigna el texto del párrafo al elemento temporal
+        //   elementoTemporal.value = parrafo.textContent;
+        elementoTemporal.value = url;
+        
+        // Agrega el elemento temporal al documento
+        document.body.appendChild(elementoTemporal);
+        
+        // Selecciona y copia el texto del elemento temporal
+        elementoTemporal.select();
+        document.execCommand('copy');
+        
+        // Elimina el elemento temporal
+        document.body.removeChild(elementoTemporal);
+        
+        // Notifica al usuario que el texto ha sido copiado
+        // alert('El texto se ha copiado al portapapeles.');
+
+          imprimirAlerta('url copiada');  
+
+        });
+
+        function imprimirAlerta(mensaje){
+
+            const alerta = document.querySelector('.alerta');
+
+            
+
+            
+            if(!alerta){
+
+            const mensajeAlerta = document.createElement('DIV');
+            mensajeAlerta.textContent = mensaje;
+            mensajeAlerta.classList.add('alerta')
+
+
+              document.body.appendChild(mensajeAlerta);  
+
+
+              setTimeout(() => {
+
+                mensajeAlerta.remove();
+                
+            }, 2000);
+            }
+            
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const urlWhatsapp = `https://api.whatsapp.com/send?text=${url}`;
+            whatsapp.href = urlWhatsapp;
+
+            const urlTelegram = `https://t.me/share/url?url=${url}`
+            telegram.href = urlTelegram;
+        });
+
+        function compartirPorTelegram(mensaje) {
+            const enlaceTelegram = `https://t.me/share/url?url=${encodeURIComponent(mensaje)}`;
+            window.open(enlaceTelegram);
+            }
+
+            const mensaje = `¡Hola! Te comparto este enlace interesante: ${url}`;
+            
+            const telegramBoton = document.querySelector('.telegramBoton');
+            telegramBoton.addEventListener('click', () => {
+                compartirPorTelegram(mensaje);
+            })
+
+
+
+            /// compartir facebook
+            const facebookBoton = document.querySelector('.facebookBoton');
+
+            function compartirPorFacebook(mensaje){
+                const enlaceFacebook = `https://www.facebook.com/sharer.php?u=${encodeURIComponent(url)}`;
+                window.open(enlaceFacebook);
+
+            }
+
+            facebookBoton.addEventListener('click', () => {
+                const urlCompartir = `Esta pagina es genial ${url}`;
+                compartirPorFacebook(urlCompartir)
+            });
+
+
+            // /// compartir facebook
+            const whatsappBoton = document.querySelector('.whatsappBoton');
+
+            function compartirPorWhatsapp(mensaje){
+                const enlaceWhatapp = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
+                window.open(enlaceWhatapp);
+
+            }
+
+            whatsappBoton.addEventListener('click', () => {
+                const urlCompartir = `¡Hola! Te comparto este enlace interesante: ${url}`;
+                compartirPorWhatsapp(urlCompartir)
+            });
+
+    </script>
+
+</body>
+</html>
